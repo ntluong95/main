@@ -1,4 +1,4 @@
-<h3><a href="https://github.com/mclix85/datacamp" target="_blank">View Source Code</a></h3>
+<h3><a href="https://github.com/mclix85/main" target="_blank">View Source Code</a></h3>
 
 <h3>Course Description</h3>
 
@@ -1430,7 +1430,7 @@ print(type(np_baseball))
 ```python
 # edited/added
 import pandas as pd
-mlb = pd.read_csv("datasets/baseball.csv")
+mlb = pd.read_csv("datasets/Introduction-to-Python/baseball.csv")
 
 # height_in is available as a regular list
 height_in = mlb['Height'].tolist()
@@ -1751,7 +1751,7 @@ np_x[:,0]
 
 ```python
 # edited/added
-baseball = pd.read_csv("datasets/baseball.csv")[['Height', 'Weight']]
+baseball = pd.read_csv("datasets/Introduction-to-Python/baseball.csv")[['Height', 'Weight']]
 
 # baseball is available as a regular list of lists
 
@@ -1812,9 +1812,9 @@ np_mat + np_mat
 
 ```python
 # edited/added
-baseball = pd.read_csv("datasets/baseball.csv")[['Height', 'Weight', 'Age']]
+baseball = pd.read_csv("datasets/Introduction-to-Python/baseball.csv")[['Height', 'Weight', 'Age']]
 n = len(baseball)
-updated = np.array(pd.read_csv("datasets/update.csv", header = None))
+updated = np.array(pd.read_csv("datasets/Introduction-to-Python/update.csv", header = None))
 
 # baseball is available as a regular list of lists
 # updated is available as 2D numpy array
@@ -2019,7 +2019,7 @@ heights = [191, 184, 185, 180, ...]
 
 ```python
 # edited/added
-fifa =  pd.read_csv("datasets/fifa.csv", skipinitialspace=True, usecols=['position', 'height'])
+fifa =  pd.read_csv("datasets/Introduction-to-Python/fifa.csv", skipinitialspace=True, usecols=['position', 'height'])
 positions = list(fifa.position)
 heights = list(fifa.height)
 
