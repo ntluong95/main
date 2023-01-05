@@ -914,9 +914,9 @@ command2
 <p>Which of the code chunks will do the job for us?</p>
 </div>
 
-- [ ] <code>del(areas[10]); del(areas[11])</code></li>
-- [ ] <code>del(areas[10:11])</code></li>
-- [x] <code>del(areas[-4:-2])</code></li>
+- [ ] <code>del(areas[10]); del(areas[11])</code>
+- [ ] <code>del(areas[10:11])</code>
+- [x] <code>del(areas[-4:-2])</code>
 - [ ] <code>del(areas[-3]); del(areas[-4])</code>
 
 <p class="">Correct! You'll learn about easier ways to remove specific elements from Python lists later on.</p>
