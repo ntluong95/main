@@ -1,24 +1,3 @@
----
-title: "Introduction to Python"
-subtitle: "Hugo Bowne-Anderson"
-date: "01 January 2023"
-author:
-  - name: "Dat Tran"
-output:
-  rmdformats::robobook:
-    keep_md: true
-    thumbnails: true
-    lightbox: true
-    gallery: true
-    use_bookdown: true
----
-
-<style>
-body {
-  text-align: justify;
-}
-</style>
-
 <h3><a href="https://github.com/mclix85/main" target="_blank">View Source Code</a></h3>
 
 <h3>Course Description</h3>
