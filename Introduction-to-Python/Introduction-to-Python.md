@@ -112,7 +112,7 @@ print(7 + 10)
 <div class>
 <p>Python is perfectly suited to do basic calculations. Apart from addition, subtraction, multiplication and division, there is also support for more advanced operations such as:</p>
 <ul>
-<li>Exponentiation: <code>\*\*</code>. This operator raises the number to its left to the power of the number to its right. For example <code>4\*\*2</code> will give <code>16</code>.</li>
+<li>Exponentiation: <code>**</code>. This operator raises the number to its left to the power of the number to its right. For example <code>4**2</code> will give <code>16</code>.</li>
 <li>Modulo: <code>%</code>. This operator returns the remainder of the division of the number to the left by the number on its right. For example <code>18 % 7</code> equals <code>4</code>.</li>
 </ul>
 <p>The code in the script gives some examples.</p>
