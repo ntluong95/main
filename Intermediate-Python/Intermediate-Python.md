@@ -1,24 +1,3 @@
----
-title: "Intermediate Python"
-subtitle: "Hugo Bowne-Anderson"
-date: "02 January 2023"
-author:
-  - name: "Dat Tran"
-output:
-  rmdformats::robobook:
-    keep_md: true
-    thumbnails: true
-    lightbox: true
-    gallery: true
-    use_bookdown: true
----
-
-<style>
-body {
-  text-align: justify;
-}
-</style>
-
 <h3><a href="https://github.com/mclix85/main" target="_blank">View Source Code</a></h3>
 
 <h3>Course Description</h3>
@@ -31,17 +10,17 @@ As you progress, you’ll look at logic, control flow, filtering and loops. Thes
 <br><br>
 Once you’ve completed all of the chapters, you’ll be ready to apply your new skills in your job, new career, or personal project, and be prepared to move onto more advanced Python learning.</p>
 
-# Matplotlib {.unnumbered}
+# Matplotlib
 
 <p class="chapter__description">
     Data visualization is a key skill for aspiring data scientists. Matplotlib makes it easy to create meaningful and insightful plots. In this chapter, you’ll learn how to build various types of plots, and customize them to be more visually appealing and interpretable.
   </p>
 
-## Basic plots with Matplotlib {.unnumbered}
+## Basic plots with Matplotlib
 
 
 
-### Line plot (1) {.unnumbered}
+### Line plot (1)
 
 
 <div class>
@@ -102,7 +81,7 @@ plt.show()
 
 <p class="">Great! Let's interpret the plot you just created.</p>
 
-### Line Plot (2): Interpretation {.unnumbered}
+### Line Plot (2): Interpretation
 
 
 <div class><p>Have another look at the plot you created in the previous exercise; it's shown on the right. Based on the plot, in <strong>approximately</strong> what year will there be more than ten billion human beings on this planet?</p></div>
@@ -114,7 +93,7 @@ plt.show()
 
 <p class="">Correct! Time to take your data visualization skills to the next level!</p>
 
-### Line plot (3) {.unnumbered}
+### Line plot (3)
 
 
 <div class>
@@ -168,7 +147,7 @@ plt.show()
 
 <p class="">Well done, but this doesn't look right. Let's build a plot that makes more sense.</p>
 
-### Scatter Plot (1) {.unnumbered}
+### Scatter Plot (1)
 
 
 <div class>
@@ -202,7 +181,7 @@ plt.show()
 
 <p class="">Great! That looks much better!</p>
 
-### Scatter plot (2) {.unnumbered}
+### Scatter plot (2)
 
 
 <div class>
@@ -234,11 +213,11 @@ plt.show()
 
 <p class="">Nice! There's no clear relationship between population and life expectancy, which makes perfect sense.</p>
 
-## Histogram {.unnumbered}
+## Histogram
 
 
 
-### Build a histogram (1) {.unnumbered}
+### Build a histogram (1)
 
 
 <div class>
@@ -273,7 +252,7 @@ plt.show()
 
 <p class="">Great job!</p>
 
-### Build a histogram (2): bins {.unnumbered}
+### Build a histogram (2): bins
 
 
 <div class>
@@ -340,7 +319,7 @@ plt.clf()
 
 <p class="">Nice! You can use the buttons to browse through the different plots you've created.</p>
 
-### Build a histogram (3): compare {.unnumbered}
+### Build a histogram (3): compare
 
 
 <div class>
@@ -412,7 +391,7 @@ plt.clf()
 
 <p class="">Great! Toggle between the created plots - do you notice anything interesting?</p>
 
-### Choose the right plot (1) {.unnumbered}
+### Choose the right plot (1)
 
 
 <div class><p>You're a professor teaching Data Science with Python, and you want to visually assess if the grades on your exam follow a particular distribution. Which plot do you use?</p></div>
@@ -423,7 +402,7 @@ plt.clf()
 
 <p class="">Excellent choice!</p>
 
-### Choose the right plot (2) {.unnumbered}
+### Choose the right plot (2)
 
 
 <div class><p>You're a professor in Data Analytics with Python, and you want to visually assess if longer answers on exam questions lead to higher grades. Which plot do you use?</p></div>
@@ -434,11 +413,11 @@ plt.clf()
 
 <p class="">Excellent choice!</p>
 
-## Customization {.unnumbered}
+## Customization
 
 
 
-### Labels {.unnumbered}
+### Labels
 
 
 <div class>
@@ -477,7 +456,7 @@ plt.show()
 
 <p class="">This looks much better already!</p>
 
-### Ticks {.unnumbered}
+### Ticks
 
 
 <div class>
@@ -512,7 +491,7 @@ plt.xticks(tick_val, tick_lab)
 ```
 
 ```
-## ([<matplotlib.axis.XTick object at 0x7f12f991fcd0>, <matplotlib.axis.XTick object at 0x7f12f991f580>, <matplotlib.axis.XTick object at 0x7f12f98cb490>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
+## ([<matplotlib.axis.XTick object at 0x7fb21f527c10>, <matplotlib.axis.XTick object at 0x7fb21f527580>, <matplotlib.axis.XTick object at 0x7fb21f4d3490>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
 ```
 </div>
 <div>
@@ -527,7 +506,7 @@ plt.show()
 
 <p class="">Great! Your plot is shaping up nicely!</p>
 
-### Sizes {.unnumbered}
+### Sizes
 
 
 <div class>
@@ -560,7 +539,7 @@ plt.xticks([1000, 10000, 100000],['1k', '10k', '100k'])
 ```
 
 ```
-## ([<matplotlib.axis.XTick object at 0x7f12f9a5f2b0>, <matplotlib.axis.XTick object at 0x7f12f9a5f9a0>, <matplotlib.axis.XTick object at 0x7f12f9a520d0>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
+## ([<matplotlib.axis.XTick object at 0x7fb21f6682b0>, <matplotlib.axis.XTick object at 0x7fb21f6689a0>, <matplotlib.axis.XTick object at 0x7fb21f6c95e0>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
 ```
 </div>
 <div>
@@ -604,7 +583,7 @@ plt.xticks([1000, 10000, 100000],['1k', '10k', '100k'])
 ```
 
 ```
-## ([<matplotlib.axis.XTick object at 0x7f1301baafa0>, <matplotlib.axis.XTick object at 0x7f1301baa670>, <matplotlib.axis.XTick object at 0x7f1301acad60>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
+## ([<matplotlib.axis.XTick object at 0x7fb21f6154c0>, <matplotlib.axis.XTick object at 0x7fb21f6150d0>, <matplotlib.axis.XTick object at 0x7fb21f615070>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
 ```
 </div>
 <div>
@@ -620,7 +599,7 @@ plt.show()
 
 <p class="">Bellissimo! Can you already tell which bubbles correspond to which countries?</p>
 
-### Colors {.unnumbered}
+### Colors
 
 
 <div class>
@@ -658,7 +637,7 @@ plt.xticks([1000,10000,100000], ['1k','10k','100k'])
 ```
 
 ```
-## ([<matplotlib.axis.XTick object at 0x7f1301c1d9d0>, <matplotlib.axis.XTick object at 0x7f1301c1d4c0>, <matplotlib.axis.XTick object at 0x7f1301c1dfd0>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
+## ([<matplotlib.axis.XTick object at 0x7fb21f813bb0>, <matplotlib.axis.XTick object at 0x7fb21f813730>, <matplotlib.axis.XTick object at 0x7fb21f894940>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
 ```
 </div>
 <div>
@@ -673,7 +652,7 @@ plt.show()
 
 <p class="">Nice! This is looking more and more like Hans Rosling's plot!</p>
 
-### Additional Customizations {.unnumbered}
+### Additional Customizations
 
 
 <div class><p>If you have another look at the script, under <code># Additional Customizations</code>, you'll see that there are two <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.text.html"><code>plt.text()</code></a> functions now. They add the words <code>"India"</code> and <code>"China"</code> in the plot.</p></div>
@@ -694,7 +673,7 @@ plt.xticks([1000,10000,100000], ['1k','10k','100k'])
 ```
 
 ```
-## ([<matplotlib.axis.XTick object at 0x7f1301aca100>, <matplotlib.axis.XTick object at 0x7f1301acad00>, <matplotlib.axis.XTick object at 0x7f1301c27400>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
+## ([<matplotlib.axis.XTick object at 0x7fb21f904ac0>, <matplotlib.axis.XTick object at 0x7fb21f904a90>, <matplotlib.axis.XTick object at 0x7fb21f904550>], [Text(1000, 0, '1k'), Text(10000, 0, '10k'), Text(100000, 0, '100k')])
 ```
 </div>
 <div>
@@ -716,7 +695,7 @@ plt.show()
 
 <p class="">Beautiful! A visualization only makes sense if you can interpret it properly. Let's do that in the next exercise.</p>
 
-### Interpretation {.unnumbered}
+### Interpretation
 
 
 <div class>
@@ -734,17 +713,17 @@ plt.show()
 
 <p class="">Correct! Up to the next chapter, on dictionaries!</p>
 
-# Dictionaries & Pandas {.unnumbered}
+# Dictionaries & Pandas
 
 <p class="chapter__description">
     Learn about the dictionary, an alternative to the Python list, and the pandas DataFrame, the de facto standard to work with tabular data in Python. You will get hands-on practice with creating and manipulating datasets, and you’ll learn how to access the information you need from these data structures.
   </p>
   
-## Dictionaries, Part 1 {.unnumbered}
+## Dictionaries, Part 1
 
 
 
-### Motivation for dictionaries {.unnumbered}
+### Motivation for dictionaries
 
 
 <div class><p>To see why dictionaries are useful, have a look at the two lists defined in the script. <code>countries</code> contains the names of some European countries. <code>capitals</code> lists the corresponding names of their capital.</p></div>
@@ -773,7 +752,7 @@ print(capitals[ind_ger])
 
 <p class="">As Hugo already told you: this works, but it's not very convenient. Head over to the next exercise to create a dictionary of this data.</p>
 
-### Create dictionary {.unnumbered}
+### Create dictionary
 
 
 <div class>
@@ -810,7 +789,7 @@ print(europe)
 
 <p class="">Great! Now that you've built your first dictionaries, let's get serious!</p>
 
-### Access dictionary {.unnumbered}
+### Access dictionary
 
 
 <div class>
@@ -851,11 +830,11 @@ print(europe['norway'])
 
 <p class="">Good job, now you're warmed up for some more.</p>
 
-## Dictionaries, Part 2 {.unnumbered}
+## Dictionaries, Part 2
 
 
 
-### Dictionary Manipulation (1) {.unnumbered}
+### Dictionary Manipulation (1)
 
 
 <div class>
@@ -905,7 +884,7 @@ print(europe)
 
 <p class="">Well done! Europe is growing by the minute! Did you notice that the order of the printout is not the same as the order in the dictionary's definition? That's because dictionaries are inherently unordered.</p>
 
-### Dictionary Manipulation (2) {.unnumbered}
+### Dictionary Manipulation (2)
 
 
 <div class>
@@ -943,7 +922,7 @@ print(europe)
 
 <p class="">Great job! That's much better!</p>
 
-### Dictionariception {.unnumbered}
+### Dictionariception
 
 
 <div class>
@@ -997,11 +976,11 @@ print(europe)
 
 <p class="">Great! It's time to learn about a new data structure!</p>
 
-## Pandas, Part 1 {.unnumbered}
+## Pandas, Part 1
 
 
 
-### Dictionary to DataFrame (1) {.unnumbered}
+### Dictionary to DataFrame (1)
 
 
 <div class>
@@ -1069,7 +1048,7 @@ print(cars)
 
 <p class="">Good job! Notice that the columns of <code>cars</code> can be of different types. This was not possible with 2D NumPy arrays!</p>
 
-### Dictionary to DataFrame (2) {.unnumbered}
+### Dictionary to DataFrame (2)
 
 
 <div class>
@@ -1141,7 +1120,7 @@ print(cars)
 
 <p class="">Nice! That looks much better already!</p>
 
-### CSV to DataFrame (1) {.unnumbered}
+### CSV to DataFrame (1)
 
 
 <div class>
@@ -1182,7 +1161,7 @@ print(cars)
 
 <p class="">Nice job! Looks nice, but not exactly what we expected. Let's fix this in the next exercise.</p>
 
-### CSV to DataFrame (2) {.unnumbered}
+### CSV to DataFrame (2)
 
 
 <div class>
@@ -1247,11 +1226,11 @@ print(cars)
 
 <p class="">That's much better!</p>
 
-## Pandas, Part 2 {.unnumbered}
+## Pandas, Part 2
 
 
 
-### Square Brackets (1) {.unnumbered}
+### Square Brackets (1)
 
 
 <div class>
@@ -1329,7 +1308,7 @@ print(cars[['country', 'drives_right']])
 
 <p class="">Nice!</p>
 
-### Square Brackets (2) {.unnumbered}
+### Square Brackets (2)
 
 
 <div class>
@@ -1378,7 +1357,7 @@ print(cars[3:6])
 
 <p class="">Good job. You can get interesting information, but using square brackets to do indexing is rather limited. Experiment with more advanced techniques in the following exercises.</p>
 
-### loc and iloc (1) {.unnumbered}
+### loc and iloc (1)
 
 
 <div class>
@@ -1433,7 +1412,7 @@ print(cars.loc[['AUS', 'EG']])
 
 <p class="">You aced selecting observations from DataFrames; over to selecting both rows and columns!</p>
 
-### loc and iloc (2) {.unnumbered}
+### loc and iloc (2)
 
 
 <div class>
@@ -1483,7 +1462,7 @@ print(cars.loc[['RU', 'MOR'], ['country', 'drives_right']])
 
 <p class="">Great work! <code>.loc[]</code> and <code>.iloc[]</code> are excellent tools for selecting DataFrame values by label and index. In the next exercise, you'll select entire columns using them!</p>
 
-### loc and iloc (3) {.unnumbered}
+### loc and iloc (3)
 
 
 <div class>
@@ -1562,17 +1541,17 @@ print(cars.loc[:, ['cars_per_cap', 'drives_right']])
 
 <p class="">What a drill on indexing and selecting data from Pandas DataFrames! You've done great! It's time to head over to Chapter 3 to learn all about logic, control flow, and filtering!</p>
 
-# Logic, Control Flow and Filtering {.unnumbered}
+# Logic, Control Flow and Filtering
 
 <p class="chapter__description">
     Boolean logic is the foundation of decision-making in Python programs. Learn about different comparison operators, how to combine them with Boolean operators, and how to use the Boolean outcomes in control structures. You'll also learn to filter data in pandas DataFrames using logic.
   </p>
   
-## Comparison Operators {.unnumbered}
+## Comparison Operators
 
 
 
-### Equality {.unnumbered}
+### Equality
 
 
 <div class>
@@ -1639,7 +1618,7 @@ print(True == 1)
 
 <p class="">The last comparison worked fine because actually, a boolean is a special kind of integer: <code>True</code> corresponds to 1, <code>False</code> corresponds to 0.</p>
 
-### Greater and less than {.unnumbered}
+### Greater and less than
 
 
 <div class>
@@ -1701,7 +1680,7 @@ print(True > False)
 
 <p class="">Great job!</p>
 
-### Compare arrays {.unnumbered}
+### Compare arrays
 
 
 <div class>
@@ -1748,11 +1727,11 @@ print(my_house < your_house)
 
 <p class="">Good job. It appears that the living room and bedroom in <code>my_house</code> are smaller than the corresponding areas in <code>your_house</code>.</p>
 
-## Boolean Operators {.unnumbered}
+## Boolean Operators
 
 
 
-### and, or, not (1) {.unnumbered}
+### and, or, not (1)
 
 
 <div class>
@@ -1808,7 +1787,7 @@ print(my_kitchen * 2 < your_kitchen * 3)
 
 <p class="">Good job!</p>
 
-### and, or, not (2) {.unnumbered}
+### and, or, not (2)
 
 
 <div class>
@@ -1827,7 +1806,7 @@ not(not(x &lt; 3) and not(y &gt; 14 or y &gt; 10))
 
 <p class="">Correct! <code>x &lt; 3</code> is <code>False</code>. <code>y &gt; 14 or y &gt; 10</code> is <code>False</code> as well. If you continue working like this, simplifying from inside outwards, you'll end up with <code>False</code>.</p>
 
-### Boolean operators with NumPy {.unnumbered}
+### Boolean operators with NumPy
 
 
 <div class>
@@ -1873,11 +1852,11 @@ print(np.logical_and(my_house < 11, your_house < 11))
 
 <p class="">Correcto perfecto!</p>
 
-## if, elif, else {.unnumbered}
+## if, elif, else
 
 
 
-### Warmup {.unnumbered}
+### Warmup
 
 
 <div class>
@@ -1900,7 +1879,7 @@ else :
 
 <p class="">Exactly!</p>
 
-### if {.unnumbered}
+### if
 
 
 <div class>
@@ -1941,7 +1920,7 @@ if area > 15 :
 
 <p class="">Great! <code>big place!</code> wasn't printed, because <code>area &gt; 15</code> is not <code>True</code>. Experiment with other values of <code>room</code> and <code>area</code> to see how the printouts change.</p>
 
-### Add else {.unnumbered}
+### Add else
 
 
 <div class>
@@ -1990,7 +1969,7 @@ else :
 
 <p class="">Nice! Again, feel free to play around with different values of <code>room</code> and <code>area</code> some more. After, head over to the next exercise where you'll take this customization one step further!</p>
 
-### Customize further: elif {.unnumbered}
+### Customize further: elif
 
 
 <div class>
@@ -2039,11 +2018,11 @@ else :
 
 <p class="">Well done!</p>
 
-## Filtering pandas DataFrames {.unnumbered}
+## Filtering pandas DataFrames
 
 
 
-### Driving right (1) {.unnumbered}
+### Driving right (1)
 
 
 <div class>
@@ -2085,7 +2064,7 @@ print(sel)
 
 <p class="">Great job!</p>
 
-### Driving right (2) {.unnumbered}
+### Driving right (2)
 
 
 <div class><p>The code in the previous example worked fine, but you actually unnecessarily created a new variable <code>dr</code>. You can achieve the same result without this intermediate variable. Put the code that computes <code>dr</code> straight into the square brackets that select observations from <code>cars</code>.</p></div>
@@ -2115,7 +2094,7 @@ print(sel)
 
 <p class="">Nice one! <code>cars</code> contains 7 rows or observations, <code>sel</code> contains 4; so in the majority of the countries in your dataset, people drive on the right side of the road.</p>
 
-### Cars per capita (1) {.unnumbered}
+### Cars per capita (1)
 
 
 <div class>
@@ -2156,7 +2135,7 @@ print(car_maniac)
 
 <p class="">Good job! The output shows that the US, Australia and Japan have a <code>cars_per_cap</code> of over 500.</p>
 
-### Cars per capita (2) {.unnumbered}
+### Cars per capita (2)
 
 
 <div class>
@@ -2198,17 +2177,17 @@ print(medium)
 
 <p class="">Great work!</p>
 
-# Loops {.unnumbered}
+# Loops
 
 <p class="chapter__description">
     There are several techniques you can use to repeatedly execute Python code. While loops are like repeated if statements, the for loop iterates over all kinds of data structures. Learn all about them in this chapter.
   </p>
 
-## while loop {.unnumbered}
+## while loop
 
 
 
-### while: warming up {.unnumbered}
+### while: warming up
 
 
 <div class>
@@ -2232,7 +2211,7 @@ while x &lt; 4 :
 
 <p class="">Correct! After 3 runs, <code>x</code> will be equal to 4, causing <code>x &lt; 4</code> to evaluate to <code>False</code>. This means that the <code>while</code> loop is executed 3 times, giving three printouts.</p>
 
-### Basic while loop {.unnumbered}
+### Basic while loop
 
 
 <div class>
@@ -2292,7 +2271,7 @@ while offset != 0 :
 
 <p class="">Well done!</p>
 
-### Add conditionals {.unnumbered}
+### Add conditionals
 
 
 <div class>
@@ -2356,11 +2335,11 @@ while offset != 0 :
 
 <p class="">Good work! The <code>while</code> loop is not that often used in Data Science, so let's head over to the <code>for</code> loop.</p>
 
-## for loop {.unnumbered}
+## for loop
 
 
 
-### Loop over a list {.unnumbered}
+### Loop over a list
 
 
 <div class>
@@ -2395,7 +2374,7 @@ for area in areas :
 
 <p class="">Great! That wasn't too hard, was it?</p>
 
-### Indexes and values (1) {.unnumbered}
+### Indexes and values (1)
 
 
 <div class>
@@ -2431,7 +2410,7 @@ for index, area in enumerate(areas) :
 
 <p class="">Well done!</p>
 
-### Indexes and values (2) {.unnumbered}
+### Indexes and values (2)
 
 
 <div class><p>For non-programmer folks, <code>room 0: 11.25</code> is strange. Wouldn't it be better if the count started at 1?</p></div>
@@ -2458,7 +2437,7 @@ for index, area in enumerate(areas) :
 
 <p class="">Much better!</p>
 
-### Loop over list of lists {.unnumbered}
+### Loop over list of lists
 
 
 <div class>
@@ -2492,11 +2471,11 @@ for x in house :
 
 <p class="">Off to next video!</p>
 
-## Loop Data Structures Part 1 {.unnumbered}
+## Loop Data Structures Part 1
 
 
 
-### Loop over dictionary {.unnumbered}
+### Loop over dictionary
 
 
 <div class>
@@ -2536,7 +2515,7 @@ for key, value in europe.items() :
 
 <p class="">Great! Notice that the order of the printouts doesn't necessarily correspond with the order used when defining <code>europe</code>. Remember: dictionaries are inherently unordered!</p>
 
-### Loop over NumPy array {.unnumbered}
+### Loop over NumPy array
 
 
 <div class>
@@ -3620,11 +3599,11 @@ for x in np.nditer(np_baseball) :
 
 <p class="">Wow, that's a lot of output! Try to add an additional argument <code>end =</code> to the <code>print()</code> call - the output will be mesmerizing!</p>
 
-## Loop Data Structures Part 2 {.unnumbered}
+## Loop Data Structures Part 2
 
 
 
-### Loop over DataFrame (1) {.unnumbered}
+### Loop over DataFrame (1)
 
 
 <div class>
@@ -3689,7 +3668,7 @@ for lab, row in cars.iterrows() :
 
 <p class="">Well done!</p>
 
-### Loop over DataFrame (2) {.unnumbered}
+### Loop over DataFrame (2)
 
 
 <div class>
@@ -3728,7 +3707,7 @@ for lab, row in cars.iterrows() :
 
 <p class="">Solid!</p>
 
-### Add column (1) {.unnumbered}
+### Add column (1)
 
 
 <div class>
@@ -3771,7 +3750,7 @@ print(cars)
 
 <p class="">Great, but you might remember that there is also an easier way to do this.</p>
 
-### Add column (2) {.unnumbered}
+### Add column (2)
 
 
 <div class>
@@ -3817,17 +3796,17 @@ print(cars)
 
 <p class="">Great job! It's time to blend everything you've learned together in a case-study. Head over to the next chapter!</p>
 
-# Case Study: Hacker Statistics {.unnumbered}
+# Case Study: Hacker Statistics
 
 <p class="chapter__description">
     This chapter will allow you to apply all the concepts you've learned in this course. You will use hacker statistics to calculate your chances of winning a bet. Use random number generators, loops, and Matplotlib to gain a competitive edge!
   </p>
 
-## Random Numbers {.unnumbered}
+## Random Numbers
 
 
 
-### Random float {.unnumbered}
+### Random float
 
 
 <div class>
@@ -3866,7 +3845,7 @@ print(np.random.rand())
 
 <p class="">Great! Now let's simulate a dice.</p>
 
-### Roll the dice {.unnumbered}
+### Roll the dice
 
 
 <div class>
@@ -3910,7 +3889,7 @@ print(np.random.randint(1,7))
 
 <p class="">Alright! Time to actually start coding things up!</p>
 
-### Determine your next move {.unnumbered}
+### Determine your next move
 
 
 <div class>
@@ -3964,11 +3943,11 @@ print(step)
 
 <p class="">Cool! You threw a 6, so the code for the <code>else</code> statement was executed. You threw again, and apparently you threw 3, causing you to take three steps up: you're currently at step 53.</p>
 
-## Random Walk {.unnumbered}
+## Random Walk
 
 
 
-### The next step {.unnumbered}
+### The next step
 
 
 <div class>
@@ -4023,7 +4002,7 @@ print(random_walk)
 
 <p class="">Good job! There's still something wrong: the level at index 15 is negative!</p>
 
-### How low can you go? {.unnumbered}
+### How low can you go?
 
 
 <div class>
@@ -4068,7 +4047,7 @@ print(random_walk)
 
 <p class="">If you look closely at the output, you'll see that around index 15 the step stays at 0. You're not going below zero anymore. Great!</p>
 
-### Visualize the walk {.unnumbered}
+### Visualize the walk
 
 
 <div class>
@@ -4124,11 +4103,11 @@ plt.show()
 
 <p class="">This is pretty cool! You can clearly see how your random walk progressed.</p>
 
-## Distribution {.unnumbered}
+## Distribution
 
 
 
-### Simulate multiple walks {.unnumbered}
+### Simulate multiple walks
 
 
 <div class>
@@ -4181,7 +4160,7 @@ print(all_walks)
 
 <p class="">Well done!</p>
 
-### Visualize all walks {.unnumbered}
+### Visualize all walks
 
 
 <div class>
@@ -4249,7 +4228,7 @@ plt.show()
 
 <p class="">Good job! You can clearly see how the different simulations of the random walk went. Transposing the 2D NumPy array was crucial; otherwise Python misunderstood.</p>
 
-### Implement clumsiness {.unnumbered}
+### Implement clumsiness
 
 
 <div class>
@@ -4296,7 +4275,7 @@ plt.show()
 
 <p class="">Superb! Look at the plot. In some of the 250 simulations you're indeed taking a deep dive down!</p>
 
-### Plot the distribution {.unnumbered}
+### Plot the distribution
 
 
 <div class>
@@ -4357,7 +4336,7 @@ plt.show()
 
 <p class="">Great job! Have a look at a histogram; what do you think your chances are?</p>
 
-### Calculate the odds {.unnumbered}
+### Calculate the odds
 
 
 <div class>
