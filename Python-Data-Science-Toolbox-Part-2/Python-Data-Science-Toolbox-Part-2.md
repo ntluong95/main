@@ -1,20 +1,47 @@
+---
+title: "Python Data Science Toolbox (Part 2)"
+subtitle: "Hugo Bowne-Anderson"
+date: "08 January 2023"
+author:
+  - name: "Dat Tran"
+output:
+  rmdformats::robobook:
+    keep_md: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    use_bookdown: true
+---
+
+<style>
+p {
+  text-align: justify;
+}
+
+div {
+  text-align: justify;
+}
+</style>
+
+
+
 <h3><a href="https://github.com/mclix85/datacamp" target="_blank">View Source Code</a></h3>
 
 <h3>Course Description</h3>
 
 <p class="course__description">In the second Python Data Science Toolbox course, you'll continue to build your Python data science skills. First, you'll learn about iterators, objects you have already encountered in the context of for loops. You'll then learn about list comprehensions, which are extremely handy tools for all data scientists working in Python. You'll end the course by working through a case study in which you'll apply all the techniques you learned in both parts of this course.</p>
 
-# Using iterators in PythonLand {.unnumbered}
+# Using iterators in PythonLand
 
 <p class="chapter__description">
     You'll learn all about iterators and iterables, which you have already worked with when writing for loops. You'll learn some handy functions that will allow you to effectively work with iterators. And you’ll finish the chapter with a use case that is pertinent to the world of data science and dealing with large amounts of data—in this case, data from Twitter that you will load in chunks using iterators.
   </p>
   
-## Introduction to iterators {.unnumbered}
+## Introduction to iterators
 
 
 
-### Iterators vs. Iterables {.unnumbered}
+### Iterators vs. Iterables
 
 
 <div class>
@@ -37,7 +64,7 @@ flash2 = iter(flash1)
 
 <p class="">Correct!</p>
 
-### Iterating over iterables (1) {.unnumbered}
+### Iterating over iterables (1)
 
 
 <div class>
@@ -109,7 +136,7 @@ print(next(superhero))
 
 <p class="">Great work!</p>
 
-### Iterating over iterables (2) {.unnumbered}
+### Iterating over iterables (2)
 
 
 <div class>
@@ -220,7 +247,7 @@ print(next(googol))
 
 <p class="">Great work!</p>
 
-### Iterators as function arguments {.unnumbered}
+### Iterators as function arguments
 
 
 <div class>
@@ -279,11 +306,11 @@ print(values_sum)
 
 <p class="">Great work!</p>
 
-## Playing with iterators {.unnumbered}
+## Playing with iterators
 
 
 
-### Using enumerate {.unnumbered}
+### Using enumerate
 
 
 <div class>
@@ -353,7 +380,7 @@ for index2, value2 in enumerate(mutants, start=1):
 
 <p class="">Great work!</p>
 
-### Using zip {.unnumbered}
+### Using zip
 
 
 <div class>
@@ -397,7 +424,7 @@ print(mutant_zip)
 ```
 
 ```
-## <zip object at 0x7f87f08519c0>
+## <zip object at 0x7f5298fc1ac0>
 ```
 </div>
 <div>
@@ -419,7 +446,7 @@ for value1, value2, value3 in mutant_zip:
 
 <p class="">Great work!</p>
 
-### Using * and zip to 'unzip' {.unnumbered}
+### Using * and zip to 'unzip'
 
 
 <div class>
@@ -480,11 +507,11 @@ print(result2 == powers)
 
 <p class="">Great work!</p>
 
-## Using iterators to load large files into memory {.unnumbered}
+## Using iterators to load large files into memory
 
 
 
-### Processing large amounts of Twitter data {.unnumbered}
+### Processing large amounts of Twitter data
 
 
 <div class>
@@ -529,7 +556,7 @@ print(counts_dict)
 
 <p class="">Great work!</p>
 
-### Extracting information for large amounts of Twitter data {.unnumbered}
+### Extracting information for large amounts of Twitter data
 
 
 <div class>
@@ -581,17 +608,17 @@ print(result_counts)
 
 <p class="">Great work!</p>
 
-# List comprehensions and generators {.unnumbered}
+# List comprehensions and generators
 
 <p class="chapter__description">
     In this chapter, you'll build on your knowledge of iterators and be introduced to list comprehensions, which allow you to create complicated lists—and lists of lists—in one line of code! List comprehensions can dramatically simplify your code and make it more efficient, and will become a vital part of your Python data science toolbox. You'll then learn about generators, which are extremely helpful when working with large sequences of data that you may not want to store in memory, but instead generate on the fly.
   </p>
   
-## List comprehensions {.unnumbered}
+## List comprehensions
 
 
 
-### Write a basic list comprehension {.unnumbered}
+### Write a basic list comprehension
 
 
 <div class>
@@ -608,7 +635,7 @@ print(result_counts)
 
 <p class="">Correct!</p>
 
-### List comprehension over iterables {.unnumbered}
+### List comprehension over iterables
 
 
 <div class>
@@ -634,7 +661,7 @@ valjean = 24601
 
 <p class="">Correct!</p>
 
-### Writing list comprehensions {.unnumbered}
+### Writing list comprehensions
 
 
 <div class><p>You now have all the knowledge necessary to begin writing list comprehensions! Your job in this exercise is to write a list comprehension
@@ -651,7 +678,7 @@ squares = [i**2 for i in range(0,10)]
 
 <p class="">Great work!</p>
 
-### Nested list comprehensions {.unnumbered}
+### Nested list comprehensions
 
 
 <div class>
@@ -692,11 +719,11 @@ for row in matrix:
 
 <p class="">Great work!</p>
 
-## Advanced comprehensions {.unnumbered}
+## Advanced comprehensions
 
 
 
-### Using conditionals in comprehensions (1) {.unnumbered}
+### Using conditionals in comprehensions (1)
 
 
 <div class>
@@ -728,7 +755,7 @@ print(new_fellowship)
 
 <div class="dc-completed__message"><p class="">Great work!</p></div>
 
-### Using conditionals in comprehensions (2) {.unnumbered}
+### Using conditionals in comprehensions (2)
 
 
 <div class>
@@ -757,7 +784,7 @@ print(new_fellowship)
 
 <p class="">Great work!</p>
 
-### Dict comprehensions {.unnumbered}
+### Dict comprehensions
 
 
 <div class>
@@ -787,11 +814,11 @@ print(new_fellowship)
 
 <p class="">Great work!</p>
 
-## Introduction to generator expressions {.unnumbered}
+## Introduction to generator expressions
 
 
 
-### List comprehensions vs. generators {.unnumbered}
+### List comprehensions vs. generators
 
 
 <div class>
@@ -815,7 +842,7 @@ fellow2 = (member for member in fellowship if len(member) &gt;= 7)
 
 <p class="">Correct!</p>
 
-### Write your own generator expressions {.unnumbered}
+### Write your own generator expressions
 
 
 <div class>
@@ -914,7 +941,7 @@ for value in result:
 
 <p class="">Great work!</p>
 
-### Changing the output in generator expressions {.unnumbered}
+### Changing the output in generator expressions
 
 
 <div class>
@@ -950,7 +977,7 @@ for value in lengths:
 
 <p class="">Great work!</p>
 
-### Build a generator {.unnumbered}
+### Build a generator
 
 
 <div class>
@@ -997,11 +1024,11 @@ for value in get_lengths(lannister):
 
 <p class="">Great work!</p>
 
-## Wrapping up comprehensions and generators. {.unnumbered}
+## Wrapping up comprehensions and generators.
 
 
 
-### List comprehensions for time-stamped data {.unnumbered}
+### List comprehensions for time-stamped data
 
 
 <div class>
@@ -1036,7 +1063,7 @@ print(tweet_clock_time)
 
 <p class="">Great work!</p>
 
-### Conditional list comprehensions for time-stamped data {.unnumbered}
+### Conditional list comprehensions for time-stamped data
 
 
 <div class>
@@ -1067,17 +1094,17 @@ print(tweet_clock_time)
 
 <div class="dc-completed__message"><p class="">Great work!</p></div>
 
-# Bringing it all together! {.unnumbered}
+# Bringing it all together!
 
 <p class="chapter__description">
     This chapter will allow you to apply your newly acquired skills toward wrangling and extracting meaningful information from a real-world dataset—the World Bank's World Development Indicators. You'll have the chance to write your own functions and list comprehensions as you work with iterators and generators to solidify your Python data science chops.
   </p>
   
-## Welcome to the case study! {.unnumbered}
+## Welcome to the case study!
 
 
 
-### Dictionaries for data science {.unnumbered}
+### Dictionaries for data science
 
 
 <div class>
@@ -1114,7 +1141,7 @@ print(rs_dict)
 
 <p class="">Great work!</p>
 
-### Writing a function to help you {.unnumbered}
+### Writing a function to help you
 
 
 <div class>
@@ -1157,7 +1184,7 @@ print(rs_fxn)
 
 <p class="">Great work!</p>
 
-### Using a list comprehension {.unnumbered}
+### Using a list comprehension
 
 
 <div class>
@@ -1219,7 +1246,7 @@ print(list_of_dicts[1])
 
 <p class="">Great work!</p>
 
-### Turning this all into a DataFrame {.unnumbered}
+### Turning this all into a DataFrame
 
 
 <div class>
@@ -1264,11 +1291,11 @@ print(df.head())
 
 <p class="">Great work!</p>
 
-## Using Python generators for streaming data {.unnumbered}
+## Using Python generators for streaming data
 
 
 
-### Processing data in chunks (1) {.unnumbered}
+### Processing data in chunks (1)
 
 
 <div class>
@@ -1328,7 +1355,7 @@ print(counts_dict)
 
 <p class="">Great work!</p>
 
-### Writing a generator to load data in chunks (2) {.unnumbered}
+### Writing a generator to load data in chunks (2)
 
 
 <div class>
@@ -1387,7 +1414,7 @@ with open('datasets/Python-Data-Science-Toolbox-Part-2/world_ind_pop_data.csv') 
 
 <p class="">Wonderful work! Note that since a file object is already a generator, you don't have to explicitly create a generator object with your <code>read_large_file()</code> function. However, it is still good to practice how to create generators - well done!</p>
 
-### Writing a generator to load data in chunks (3) {.unnumbered}
+### Writing a generator to load data in chunks (3)
 
 
 <div class>
@@ -1429,11 +1456,11 @@ print(counts_dict)
 
 <p class="">Great work!</p>
 
-## Using pandas' read_csv iterator for streaming data {.unnumbered}
+## Using pandas' read_csv iterator for streaming data
 
 
 
-### Writing an iterator to load data in chunks (1) {.unnumbered}
+### Writing an iterator to load data in chunks (1)
 
 
 <div class>
@@ -1496,7 +1523,7 @@ print(next(df_reader))
 
 <p class="">Great work!</p>
 
-### Writing an iterator to load data in chunks (2) {.unnumbered}
+### Writing an iterator to load data in chunks (2)
 
 
 <div class>
@@ -1559,7 +1586,7 @@ print(pops_list)
 
 <p class="">Great work! Time to step it up a notch!</p>
 
-### Writing an iterator to load data in chunks (3) {.unnumbered}
+### Writing an iterator to load data in chunks (3)
 
 
 <div class>
@@ -1607,7 +1634,7 @@ plt.show()
 
 <p class="">Great work!</p>
 
-### Writing an iterator to load data in chunks (4) {.unnumbered}
+### Writing an iterator to load data in chunks (4)
 
 
 <div class>
@@ -1748,7 +1775,7 @@ plt.show()
 
 <p class="">Great work!</p>
 
-### Writing an iterator to load data in chunks (5) {.unnumbered}
+### Writing an iterator to load data in chunks (5)
 
 
 <div class>
@@ -2002,16 +2029,16 @@ plot_pop(fn, 'ARB')
 
 <p class="">Great work!</p>
 
-## Final thoughts {.unnumbered}
+## Final thoughts
 
-### Final thoughts {.unnumbered}
+### Final thoughts
 
 Wow, you sure have come a long way! Congratulations on making it through the case study, in which you had to apply skills from both of these Data Science toolbox courses.
 
-### You’ve applied your skills in: {.unnumbered}
+### You’ve applied your skills in:
 
 You have just used your new skills of writing user-defined functions, iterators, list comprehensions and generators to explore and extract results from the World Bank World Development Indicators dataset. These are all tools that you'll utilize time and time again in your work as a Data Scientist and you have worked hard to earn your Pythonista stripes.
 
-### Congratulations! {.unnumbered}
+### Congratulations!
 
 Good work and keep on coding in PythonLand!
