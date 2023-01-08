@@ -337,7 +337,7 @@ print(yell2)
 import pandas as pd
 
 # Import Twitter data as DataFrame: df
-df = pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-1)/tweets.csv') # edited/added
+df = pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-1/tweets.csv') # edited/added
 
 # Initialize an empty dictionary: langs_count
 langs_count = {}
@@ -403,7 +403,7 @@ def count_entries(df, col_name):
     return langs_count
   
 # edited/added
-tweets_df = pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-1)/tweets.csv')
+tweets_df = pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-1/tweets.csv')
 
 # Call count_entries(): result
 result = count_entries(tweets_df, 'lang')

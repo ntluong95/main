@@ -1,3 +1,30 @@
+---
+title: "Python Data Science Toolbox (Part 1)"
+subtitle: "Hugo Bowne-Anderson"
+date: "03 January 2023"
+author:
+  - name: "Dat Tran"
+output:
+  rmdformats::robobook:
+    keep_md: true
+    thumbnails: true
+    lightbox: true
+    gallery: true
+    use_bookdown: true
+---
+
+<style>
+p {
+  text-align: justify;
+}
+
+div {
+  text-align: justify;
+}
+</style>
+
+
+
 <h3><a href="https://github.com/mclix85/datacamp" target="_blank">View Source Code</a></h3>
 
 <h3>Course Description</h3>
@@ -356,7 +383,7 @@ print(yell2)
 import pandas as pd
 
 # Import Twitter data as DataFrame: df
-df = pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-1)/tweets.csv') # edited/added
+df = pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-1/tweets.csv') # edited/added
 
 # Initialize an empty dictionary: langs_count
 langs_count = {}
@@ -427,7 +454,7 @@ def count_entries(df, col_name):
     return langs_count
   
 # edited/added
-tweets_df = pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-1)/tweets.csv')
+tweets_df = pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-1/tweets.csv')
 
 # Call count_entries(): result
 result = count_entries(tweets_df, 'lang')
