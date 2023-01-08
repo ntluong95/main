@@ -3,7 +3,7 @@ cycler==0.11.0
 fonttools==4.38.0
 kiwisolver==1.4.4
 matplotlib==3.6.2
-numpy @ file:///home/conda/feedstock_root/build_artifacts/numpy_1672415683067/work
+numpy
 packaging==22.0
 pandas==1.5.2
 Pillow==9.4.0
