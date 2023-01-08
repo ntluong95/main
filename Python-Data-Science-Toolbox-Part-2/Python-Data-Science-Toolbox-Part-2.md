@@ -424,7 +424,7 @@ print(mutant_zip)
 ```
 
 ```
-## <zip object at 0x7f59fb8c6cc0>
+## <zip object at 0x7f87f08519c0>
 ```
 </div>
 <div>
@@ -536,7 +536,7 @@ import pandas as pd
 counts_dict = {}
 
 # Iterate over the file chunk by chunk
-for chunk in pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-2)/tweets.csv', chunksize=10): # edited/added
+for chunk in pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-2/tweets.csv', chunksize=10): # edited/added
 
     # Iterate over the column in DataFrame
     for entry in chunk['lang']:
@@ -595,7 +595,7 @@ def count_entries(csv_file, c_size, colname):
     return counts_dict
 
 # Call count_entries(): result_counts
-result_counts = count_entries('datasets/Python-Data-Science-Toolbox-(Part-2)/tweets.csv', 10, 'lang') # edited/added
+result_counts = count_entries('datasets/Python-Data-Science-Toolbox-Part-2/tweets.csv', 10, 'lang') # edited/added
 
 # Print result_counts
 print(result_counts)
@@ -1044,7 +1044,7 @@ for value in get_lengths(lannister):
 
 ```python
 # edited/added
-df = pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-2)/tweets.csv')
+df = pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-2/tweets.csv')
 
 # Extract the created_at column from df: tweet_time
 tweet_time = df['created_at']
@@ -1311,7 +1311,7 @@ print(df.head())
 
 ```python
 # Open a connection to the file
-with open('datasets/Python-Data-Science-Toolbox-(Part-2)/world_ind_pop_data.csv') as file:
+with open('datasets/Python-Data-Science-Toolbox-Part-2/world_ind_pop_data.csv') as file:
 
     # Skip the column names
     file.readline()
@@ -1392,7 +1392,7 @@ def read_large_file(file_object):
         yield data
         
 # Open a connection to the file
-with open('datasets/Python-Data-Science-Toolbox-(Part-2)/world_ind_pop_data.csv') as file:
+with open('datasets/Python-Data-Science-Toolbox-Part-2/world_ind_pop_data.csv') as file:
 
     # Create a generator object for the file: gen_file
     gen_file = read_large_file(file)
@@ -1432,7 +1432,7 @@ with open('datasets/Python-Data-Science-Toolbox-(Part-2)/world_ind_pop_data.csv'
 counts_dict = {}
 
 # Open a connection to the file
-with open('datasets/Python-Data-Science-Toolbox-(Part-2)/world_ind_pop_data.csv') as file:
+with open('datasets/Python-Data-Science-Toolbox-Part-2/world_ind_pop_data.csv') as file:
 
     # Iterate over the generator from read_large_file()
     for line in read_large_file(file):
@@ -1478,7 +1478,7 @@ print(counts_dict)
 import pandas as pd
 
 # Initialize reader object: df_reader
-df_reader = pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-2)/world_ind_pop_data.csv', chunksize=10)
+df_reader = pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-2/world_ind_pop_data.csv', chunksize=10)
 
 # Print two chunks
 print(next(df_reader))
@@ -1539,7 +1539,7 @@ print(next(df_reader))
 
 ```python
 # Initialize reader object: urb_pop_reader
-urb_pop_reader = pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-2)/world_ind_pop_data.csv', chunksize=1000)
+urb_pop_reader = pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-2/world_ind_pop_data.csv', chunksize=1000)
 
 # Get the first DataFrame chunk: df_urb_pop
 df_urb_pop = next(urb_pop_reader)
@@ -1603,7 +1603,7 @@ print(pops_list)
 
 ```python
 # Code from previous exercise
-urb_pop_reader = pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-2)/world_ind_pop_data.csv', chunksize=1000)
+urb_pop_reader = pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-2/world_ind_pop_data.csv', chunksize=1000)
 df_urb_pop = next(urb_pop_reader)
 df_pop_ceb = df_urb_pop[df_urb_pop['CountryCode'] == 'CEB']
 pops = zip(df_pop_ceb['Total Population'], 
@@ -1650,7 +1650,7 @@ plt.show()
 
 ```python
 # Initialize reader object: urb_pop_reader
-urb_pop_reader = pd.read_csv('datasets/Python-Data-Science-Toolbox-(Part-2)/world_ind_pop_data.csv', chunksize=1000)
+urb_pop_reader = pd.read_csv('datasets/Python-Data-Science-Toolbox-Part-2/world_ind_pop_data.csv', chunksize=1000)
 
 # Initialize empty DataFrame: data
 data = pd.DataFrame()
@@ -1835,7 +1835,7 @@ def plot_pop(filename, country_code):
 
 ```python
 # Set the filename: fn
-fn = 'datasets/Python-Data-Science-Toolbox-(Part-2)/world_ind_pop_data.csv'
+fn = 'datasets/Python-Data-Science-Toolbox-Part-2/world_ind_pop_data.csv'
 
 # Call plot_pop for country code 'CEB'
 plot_pop(fn, 'CEB')
