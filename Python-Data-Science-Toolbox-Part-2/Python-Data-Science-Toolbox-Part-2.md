@@ -1,30 +1,3 @@
----
-title: "Python Data Science Toolbox (Part 2)"
-subtitle: "Hugo Bowne-Anderson"
-date: "08 January 2023"
-author:
-  - name: "Dat Tran"
-output:
-  rmdformats::robobook:
-    keep_md: true
-    thumbnails: true
-    lightbox: true
-    gallery: true
-    use_bookdown: true
----
-
-<style>
-p {
-  text-align: justify;
-}
-
-div {
-  text-align: justify;
-}
-</style>
-
-
-
 <h3><a href="https://github.com/mclix85/datacamp" target="_blank">View Source Code</a></h3>
 
 <h3>Course Description</h3>
