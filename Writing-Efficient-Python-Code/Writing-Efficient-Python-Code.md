@@ -46,6 +46,7 @@ while i &lt; len(names):
 <p>Let's explore some more <em>Pythonic</em> ways of doing this.</p>
 </div>
 <div class="exercise--instructions__content"><p>Print the list, <code>new_list</code>, that was created using a <em>Non-Pythonic</em> approach.</p></div>
+<div>
 
 ```python
 # edited/added
@@ -64,8 +65,10 @@ print(new_list)
 ```
 ## ['Kramer', 'Elaine', 'George', 'Newman']
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>A more <em>Pythonic</em> approach would loop over the contents of <code>names</code>, rather than using an index variable. Print <code>better_list</code>.</p></div>
+<div>
 
 ```python
 # Print the list created by looping over the contents of names
@@ -79,8 +82,10 @@ print(better_list)
 ```
 ## ['Kramer', 'Elaine', 'George', 'Newman']
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>The best <em>Pythonic</em> way of doing this is by using list comprehension. Print <code>best_list</code>.</p></div>
+<div>
 
 ```python
 # Print the list created by using list comprehension
@@ -91,6 +96,7 @@ print(best_list)
 ```
 ## ['Kramer', 'Elaine', 'George', 'Newman']
 ```
+</div>
 
 <p class="">Great work! Don't get too caught up in the coding concepts just yet (you'll practice using lists, for loops, and list comprehensions later on). The important thing to notice here is that following some of Python's guiding principles allows you to write cleaner and more efficient code. <br> <br> Remember, <code>Pythonic code == efficient code</code>. You'll explore these, and other, Pythonic concepts later on in the course, but for now, this is just a taste of things to come!</p>
 
@@ -139,12 +145,10 @@ list(range(2,11,2))
 </code></pre>
 </div>
 
-```python
-# edited/added
-```
 <li>Create a <em>range object</em> that starts at zero and ends at five. Only use a <code>stop</code> argument.</li>
 <li>Convert the <code>nums</code> variable into a list called <code>nums_list</code>.</li>
 <li>Create a new list called <code>nums_list2</code> that starts at <strong>one</strong>, ends at <strong>eleven</strong>, and increments by <strong>two</strong> by unpacking a <em>range object</em> using the star character (<code>*</code>).</li>
+<div>
 
 ```python
 # Create a range object that goes from 0 to 5
@@ -161,15 +165,16 @@ print(type(nums))
 ```python
 nums_list = list(nums)
 print(nums_list)
-
-# Create a new list of odd numbers from 1 to 11 by unpacking a range object
 ```
 
 ```
 ## [0, 1, 2, 3, 4, 5]
 ```
+</div>
+<div>
 
 ```python
+# Create a new list of odd numbers from 1 to 11 by unpacking a range object
 nums_list2 = [*range(1,12,2)]
 print(nums_list2)
 ```
@@ -177,6 +182,7 @@ print(nums_list2)
 ```
 ## [1, 3, 5, 7, 9, 11]
 ```
+</div>
 
 <p class="">Nicely done! Notice that using Python's <code>range()</code> function allows you to create a <em>range object</em> of numbers without explicitly typing them out. You can convert the <em>range object</em> into a list by using the <code>list()</code> function or by unpacking it into a list using the star character (<code>*</code>). Cool!</p>
 
@@ -198,13 +204,11 @@ for i in range(len(names)):
 <p>But, that's not the most efficient solution. Let's explore how to use <code>enumerate()</code> to make this more efficient.</p>
 </div>
 
-```python
-# edited/added
-```
 <li>Instead of using <code>for i in range(len(names))</code>, update the for loop to use <code>i</code> as the index variable and <code>name</code> as the iterator variable and use <code>enumerate()</code>.</li>
 <li>Rewrite the previous for loop using <code>enumerate()</code> and list comprehension to create a new list, <code>indexed_names_comp</code>.</li>
 <li>Create another list (<code>indexed_names_unpack</code>) by using the star character (<code>*</code>) to unpack the <em>enumerate object</em> created from using <code>enumerate()</code> on <code>names</code>. This time, <strong>start the index for</strong> <code>enumerate()</code> <strong>at one instead of zero.</strong>
 </li>
+<div>
 
 ```python
 # Rewrite the for loop to use enumerate
@@ -213,26 +217,28 @@ for i,name in enumerate(names):
     index_name = (i,name)
     indexed_names.append(index_name) 
 print(indexed_names)
-
-# Rewrite the above for loop using list comprehension
 ```
 
 ```
 ## [(0, 'Jerry'), (1, 'Kramer'), (2, 'Elaine'), (3, 'George'), (4, 'Newman')]
 ```
+</div>
+<div>
 
 ```python
+# Rewrite the above for loop using list comprehension
 indexed_names_comp = [(i,name) for i,name in enumerate(names)]
 print(indexed_names_comp)
-
-# Unpack an enumerate object with a starting index of one
 ```
 
 ```
 ## [(0, 'Jerry'), (1, 'Kramer'), (2, 'Elaine'), (3, 'George'), (4, 'Newman')]
 ```
+</div>
+<div>
 
 ```python
+# Unpack an enumerate object with a starting index of one
 indexed_names_unpack = [*enumerate(names, 1)]
 print(indexed_names_unpack)
 ```
@@ -240,6 +246,7 @@ print(indexed_names_unpack)
 ```
 ## [(1, 'Jerry'), (2, 'Kramer'), (3, 'Elaine'), (4, 'George'), (5, 'Newman')]
 ```
+</div>
 
 <p class="">Awesome! Using Python's built-in <code>enumerate()</code> function allows you to create an index for each item in the object you give it. You can use list comprehension, or even unpack the <em>enumerate object</em> directly into a list, to write a nice simple one-liner.</p>
 
@@ -261,13 +268,11 @@ for name in names:
 <p>Let's explore using the <code>map()</code> function to do this more efficiently in one line of code.</p>
 </div>
 
-```python
-# edited/added
-```
 <li>Use <code>map()</code> and the method <code>str.upper()</code> to convert each name in the list <code>names</code> to uppercase. Save this to the variable <code>names_map</code>.</li>
 <li>Print the data type of <code>names_map</code>.</li>
 <li>Unpack the contents of <code>names_map</code> into a list called <code>names_uppercase</code> using the star character (<code>*</code>).</li>
 <li>Print <code>names_uppercase</code> and observe its contents.</li>
+<div>
 
 ```python
 # Use map to apply str.upper to each element in names
@@ -275,15 +280,16 @@ names_map  = map(str.upper, names)
 
 # Print the type of the names_map
 print(type(names_map))
-
-# Unpack names_map into a list
 ```
 
 ```
 ## <class 'map'>
 ```
+</div>
+<div>
 
 ```python
+# Unpack names_map into a list
 names_uppercase = [*names_map]
 
 # Print the list created above
@@ -293,6 +299,7 @@ print(names_uppercase)
 ```
 ## ['JERRY', 'KRAMER', 'ELAINE', 'GEORGE', 'NEWMAN']
 ```
+</div>
 
 <p class="">Well done! You used Python's built-in <code>map()</code> function to apply the <code>str.upper()</code> method to each element in the <code>names</code> object. Later on in the course, you'll explore how using <code>map()</code> can provide some efficiency improvements to your code.</p>
 
@@ -307,16 +314,19 @@ print(names_uppercase)
 <p>Let's practice slicing <code>numpy</code> arrays and using NumPy's broadcasting concept. Remember, broadcasting refers to a <code>numpy</code> array's ability to vectorize operations, so they are performed on all elements of an object at once.</p>
 <p>A two-dimensional <code>numpy</code> array has been loaded into your session (called <code>nums</code>) and printed into the console for your convenience. <code>numpy</code> has been imported into your session as <code>np</code>.</p>
 </div>
+<div>
 
 ```python
 # edited/added
 import numpy as np
 nums = np.array([[ 1,  2,  3,  4,  5], [ 6,  7,  8,  9, 10]])
 ```
+</div>
 <li>Print the second row of <code>nums</code>.</li>
 <li>Print the items of <code>nums</code> that are greater than six.</li>
 <li>Create <code>nums_dbl</code> that doubles each number in <code>nums</code>.</li>
 <li>Replace the third column in <code>nums</code> with a new column that adds <code>1</code> to each item in the original column.</li>
+<div>
 
 ```python
 # Print second row of nums
@@ -331,27 +341,29 @@ print(nums[1,:])
 
 ```python
 print(nums[nums > 6])
-
-# Double every element of nums
 ```
 
 ```
 ## [ 7  8  9 10]
 ```
+</div>
+<div>
 
 ```python
+# Double every element of nums
 nums_dbl = nums * 2
 print(nums_dbl)
-
-# Replace the third column of nums
 ```
 
 ```
 ## [[ 2  4  6  8 10]
 ##  [12 14 16 18 20]]
 ```
+</div>
+<div>
 
 ```python
+# Replace the third column of nums
 nums[:,2] = nums[:,2] + 1
 print(nums)
 ```
@@ -360,6 +372,7 @@ print(nums)
 ## [[ 1  2  4  4  5]
 ##  [ 6  7  9  9 10]]
 ```
+</div>
 
 <div class=""><p>When compared to a list object, what are two advantages of using a <code>numpy</code> array?</p></div>
 
@@ -379,6 +392,7 @@ print(nums)
 <p>We want to write a few simple lines of code, using the built-ins we have covered, to welcome each of your guests and let them know how many minutes late they are to your party. Note that <code>numpy</code> has been imported into your session as <code>np</code> and the <code>names</code> list has been loaded as well.</p>
 <p>Let's welcome your guests!</p>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -400,7 +414,9 @@ def welcome_guest(guest_and_time):
     welcome_string = "Welcome to Festivus {}... You're {} min late.".format(guest,arrival_time)
     return welcome_string
 ```
+</div>
 <li>Use <code>range()</code> to create a list of arrival times (10 through 50 incremented by 10). Create the list <code>arrival_times</code> by unpacking the <em>range object</em>.</li>
+<div>
 
 ```python
 # Create a list of arrival times
@@ -412,8 +428,10 @@ print(arrival_times)
 ```
 ## [10, 20, 30, 40, 50]
 ```
+</div>
 
 <li>You realize your clock is three minutes fast. Convert the <code>arrival_times</code> list into a <code>numpy</code> array (called <code>arrival_times_np</code>) and use NumPy broadcasting to subtract three minutes from each arrival time.</li>
+<div>
 
 ```python
 # Create a list of arrival times
@@ -429,8 +447,10 @@ print(new_times)
 ```
 ## [ 7 17 27 37 47]
 ```
+</div>
 
 <li>Use list comprehension with <code>enumerate()</code> to pair each guest in the <code>names</code> list to their updated arrival time in the <code>new_times</code> array. You'll need to use the index variable created from using <code>enumerate()</code> on <code>new_times</code> to index the <code>names</code> list.</li>
+<div>
 
 ```python
 # Create a list of arrival times
@@ -449,8 +469,10 @@ print(guest_arrivals)
 ```
 ## [('Jerry', 7), ('Kramer', 17), ('Elaine', 27), ('George', 37), ('Newman', 47)]
 ```
+</div>
 
 <li>A function named <code>welcome_guest()</code> has been pre-loaded into your session. Use <code>map()</code> to apply this function to each element of the <code>guest_arrivals</code> list and save it as the variable <code>welcome_map</code>.</li>
+<div>
 
 ```python
 # Create a list of arrival times
@@ -477,6 +499,7 @@ print(*guest_welcomes, sep='\n')
 ## Welcome to Festivus George... You're 37 min late.
 ## Welcome to Festivus Newman... You're 47 min late.
 ```
+</div>
 
 <p class="">Congratulations and happy Festivus! You're using Python built-ins like a pro and well on your way to writing efficient Python code. Believe it or not, there is a way to make these simple lines of code even more efficient! We'll cover this in a future chapter, so continue on to see how!</p>
 
@@ -529,10 +552,8 @@ print(*guest_welcomes, sep='\n')
 </table>
 </div>
 
-```python
-# edited/added
-```
 <li>Use list comprehension and <code>range()</code> to create a list of integers from 0 to 50 called <code>nums_list_comp</code>.</li>
+<div>
 
 ```python
 # Create a list of integers (0-50) using list comprehension
@@ -543,21 +564,24 @@ print(nums_list_comp)
 ```
 ## [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
 ```
+</div>
 <li>Use <code>range()</code> to create a list of integers from 0 to 50 and unpack its contents into a list called <code>nums_unpack</code>.</li>
+<div>
 
 ```python
 # Create a list of integers (0-50) using list comprehension
 nums_list_comp = [num for num in range(51)]
 print(nums_list_comp)
-
-# Create a list of integers (0-50) by unpacking range
 ```
 
 ```
 ## [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
 ```
+</div>
+<div>
 
 ```python
+# Create a list of integers (0-50) by unpacking range
 nums_unpack = [*range(51)]
 print(nums_unpack)
 ```
@@ -565,6 +589,7 @@ print(nums_unpack)
 ```
 ## [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50]
 ```
+</div>
 
 <div class=""><p>Use <code>%timeit</code> <strong>within your IPython console</strong> (i.e. <strong>not</strong> within the script.py window) to compare the runtimes for creating a list of integers from 0 to 50 using list comprehension vs. unpacking the <em>range object</em>. Don't include the <code>print()</code> statements when timing.</p>
 <p><strong>Which method was faster?</strong></p></div>
@@ -621,25 +646,24 @@ print(nums_unpack)
 </table>
 </div>
 
-```python
-# edited/added
-```
 <li>Create an empty list called <code>formal_list</code> using the formal name (<code>list()</code>).</li>
 <li>Create an empty list called <code>literal_list</code> using the literal syntax (<code>[]</code>).</li>
+<div>
 
 ```python
 # Create a list using the formal name
 formal_list = list()
 print(formal_list)
-
-# Create a list using the literal syntax
 ```
 
 ```
 ## []
 ```
+</div>
+<div>
 
 ```python
+# Create a list using the literal syntax
 literal_list = []
 print(literal_list)
 ```
@@ -647,49 +671,55 @@ print(literal_list)
 ```
 ## []
 ```
+</div>
 
 <li>Print out the type of <code>formal_list</code> and <code>literal_list</code> to show that both naming conventions create a list.</li>
+<div>
 
 ```python
 # Create a list using the formal name
 formal_list = list()
 print(formal_list)
-
-# Create a list using the literal syntax
 ```
 
 ```
 ## []
 ```
+</div>
+<div>
 
 ```python
+# Create a list using the literal syntax
 literal_list = []
 print(literal_list)
-
-# Print out the type of formal_list
 ```
 
 ```
 ## []
 ```
+</div>
+<div>
 
 ```python
+# Print out the type of formal_list
 print(type(formal_list))
-
-# Print out the type of literal_list
 ```
 
 ```
 ## <class 'list'>
 ```
+</div>
+<div>
 
 ```python
+# Print out the type of literal_list
 print(type(literal_list))
 ```
 
 ```
 ## <class 'list'>
 ```
+</div>
 
 <div class=""><p>Use <code>%timeit</code> <strong>in your IPython console</strong> to compare runtimes between creating a list using the formal name (<code>list()</code>) and the literal syntax (<code>[]</code>). Don't include the <code>print()</code> statements when timing.</p>
 <p><strong>Which naming convention is faster?</strong></p></div>
@@ -933,6 +963,7 @@ The <code>sample_indices</code> array, <code>hts</code> array, and <code>wts</co
     return desired_heroes
 </code></pre>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -959,7 +990,9 @@ def get_publisher_heroes_np(heroes, publishers, desired_publisher):
 
     return desired_heroes
 ```
+</div>
 <li>Use the <code>get_publisher_heroes()</code> function and the <code>get_publisher_heroes_np()</code> function to collect heroes from the Star Wars universe. The <code>desired_publisher</code> for Star Wars is <code>'George Lucas'</code>.</li>
+<div>
 
 ```python
 # Use get_publisher_heroes() to gather Star Wars heroes
@@ -974,15 +1007,16 @@ print(star_wars_heroes)
 
 ```python
 print(type(star_wars_heroes))
-
-# Use get_publisher_heroes_np() to gather Star Wars heroes
 ```
 
 ```
 ## <class 'list'>
 ```
+</div>
+<div>
 
 ```python
+# Use get_publisher_heroes_np() to gather Star Wars heroes
 star_wars_heroes_np = get_publisher_heroes_np(heroes, publishers, 'George Lucas')
 
 print(star_wars_heroes_np)
@@ -999,6 +1033,7 @@ print(type(star_wars_heroes_np))
 ```
 ## <class 'numpy.ndarray'>
 ```
+</div>
 
 <div class=""><ul>
 <li><strong>Within your IPython console</strong>, load the <code>line_profiler</code> and use <code>%lprun</code> to profile the two functions for line-by-line runtime. When using <code>%lprun</code>, use each function to gather the Star Wars heroes as you did in the previous step. After you've finished profiling, answer the following question:</li>
@@ -1048,6 +1083,7 @@ print(type(star_wars_heroes_np))
 <p>We want to combine each Pokémon's name and types together so that you easily see a description of each Pokémon. Practice using <code>zip()</code> to accomplish this task.</p>
 </div>
 <div class="exercise--instructions__content"><p>Combine the <code>names</code> list and the <code>primary_types</code> list into a new list object (called <code>names_type1</code>).</p></div>
+<div>
 
 ```python
 # edited/added
@@ -1068,8 +1104,10 @@ print(*names_type1[:5], sep='\n')
 ## ('Accelgor', 'Bug')
 ## ('Aerodactyl', 'Rock')
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>Combine <code>names</code>, <code>primary_types</code>, and <code>secondary_types</code> (in that order) using <code>zip()</code> and unpack the <em>zip object</em> into a new list.</p></div>
+<div>
 
 ```python
 # Combine all three lists together
@@ -1085,8 +1123,10 @@ print(*names_types[:5], sep='\n')
 ## ('Accelgor', 'Bug', 'Flying')
 ## ('Aerodactyl', 'Rock', 'Ice')
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>Use <code>zip()</code> to combine the <strong>first five items</strong> from the <code>names</code> list and the <strong>first three items</strong> from the <code>primary_types</code> list.</p></div>
+<div>
 
 ```python
 # Combine five items from names and three items from primary_types
@@ -1100,6 +1140,7 @@ print(*differing_lengths, sep='\n')
 ## ('Abra', 'Psychic')
 ## ('Absol', 'Dark')
 ```
+</div>
 
 <p class="">Good job! You practiced using <code>zip()</code> to combine multiple objects together. This is a nice function that allows you to easily combine two or more objects. <br> <br> Did you notice that if you provide <code>zip()</code> with objects of differing lengths, it will only combine until the smallest lengthed object is exhausted?</p>
 
@@ -1116,6 +1157,7 @@ print(*differing_lengths, sep='\n')
 <p>You want to quickly gather a few counts from these lists to better understand the sample that was generated. Use <code>Counter</code> from the <code>collections</code> module to explore what types of Pokémon are in your sample, what generations they come from, and how many Pokémon have a name that starts with a specific letter.</p>
 <p><code>Counter</code> has already been imported into your session for convenience.</p>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -1124,35 +1166,39 @@ names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU
 primary_types = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=642695943&single=true&output=csv", header = None).iloc[:,0].tolist()
 generations = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1609546095&single=true&output=csv", header = None).iloc[:,0].tolist()
 ```
+</div>
 <li>Collect the count of each primary type from the sample.</li>
 <li>Collect the count of each generation from the sample.</li>
 <li>Use list comprehension to collect the first letter of each Pokémon in the <code>names</code> list. Save this as <code>starting_letters</code>.</li>
 <li>Collect the count of starting letters from the <code>starting_letters</code> list. Save this as <code>starting_letters_count</code>.</li>
+<div>
 
 ```python
 # Collect the count of primary types
 type_count = Counter(primary_types)
 print(type_count, '\n')
-
-# Collect the count of generations
 ```
 
 ```
 ## Counter({'Water': 66, 'Normal': 64, 'Bug': 51, 'Grass': 47, 'Psychic': 31, 'Rock': 29, 'Fire': 27, 'Electric': 25, 'Ground': 23, 'Fighting': 23, 'Poison': 22, 'Steel': 18, 'Ice': 16, 'Fairy': 16, 'Dragon': 16, 'Ghost': 13, 'Dark': 13})
 ```
+</div>
+<div>
 
 ```python
+# Collect the count of generations
 gen_count = Counter(generations)
 print(gen_count, '\n')
-
-# Use list comprehension to get each Pokémon's starting letter
 ```
 
 ```
 ## Counter({5: 122, 3: 103, 1: 99, 4: 78, 2: 51, 6: 47})
 ```
+</div>
+<div>
 
 ```python
+# Use list comprehension to get each Pokémon's starting letter
 starting_letters = [name[0] for name in names]
 
 # Collect the count of Pokémon for each starting_letter
@@ -1163,6 +1209,7 @@ print(starting_letters_count)
 ```
 ## Counter({'S': 83, 'C': 46, 'D': 33, 'M': 32, 'L': 29, 'G': 29, 'B': 28, 'P': 23, 'A': 22, 'K': 20, 'E': 19, 'W': 19, 'T': 19, 'F': 18, 'H': 15, 'R': 14, 'N': 13, 'V': 10, 'Z': 8, 'J': 7, 'I': 4, 'O': 3, 'Y': 3, 'U': 2, 'X': 1})
 ```
+</div>
 
 <p class="">Great job! You used <code>Counter</code> from the <code>collections</code> module to better understand the sample of 500 Pokémon that was generated. The sample's most common Pokémon type was <code>'Water'</code> and the sample's least common Pokémon types were <code>'Ghost'</code> and <code>'Dark'</code>. Did you also notice that most of the Pokémon in the sample came from generation <code>5</code> and had a starting letter of <code>'S'</code>?</p>
 
@@ -1173,15 +1220,18 @@ print(starting_letters_count)
 <p>Ash, a Pokémon trainer, encounters a group of five Pokémon. These Pokémon have been loaded into a list within your session (called <code>pokemon</code>) and printed into the console for your convenience.</p>
 <p>Ash would like to try to catch some of these Pokémon, but his Pokédex can only store <strong>two</strong> Pokémon at a time. Let's use <code>combinations</code> from the <code>itertools</code> module to see what the possible pairs of Pokémon are that Ash could catch.</p>
 </div>
+<div>
 
 ```python
 # edited/added
 pokemon = ['Geodude', 'Cubone', 'Lickitung', 'Persian', 'Diglett']
 ```
+</div>
 <li>Import <code>combinations</code> from <code>itertools</code>.</li>
 <li>Create a <em>combinations object</em> called <code>combos_obj</code> that contains all possible pairs of Pokémon from the <code>pokemon</code> list. A pair has <code>2</code> Pokémon.</li>
 <li>Unpack <code>combos_obj</code> into a list called <code>combos_2</code>.</li>
 <li>Ash upgraded his Pokédex so that it can now store <strong>four</strong> Pokémon. Use <code>combinations</code> to collect all possible combinations of <code>4</code> different Pokémon. Save these combinations <strong>directly into a list</strong> called <code>combos_4</code> using the star character (<code>*</code>).</li>
+<div>
 
 ```python
 # Import combinations from itertools
@@ -1190,26 +1240,28 @@ from itertools import combinations
 # Create a combination object with pairs of Pokémon
 combos_obj = combinations(pokemon, 2)
 print(type(combos_obj), '\n')
-
-# Convert combos_obj to a list by unpacking
 ```
 
 ```
 ## <class 'itertools.combinations'>
 ```
+</div>
+<div>
 
 ```python
+# Convert combos_obj to a list by unpacking
 combos_2 = [*combos_obj]
 print(combos_2, '\n')
-
-# Collect all possible combinations of 4 Pokémon directly into a list
 ```
 
 ```
 ## [('Geodude', 'Cubone'), ('Geodude', 'Lickitung'), ('Geodude', 'Persian'), ('Geodude', 'Diglett'), ('Cubone', 'Lickitung'), ('Cubone', 'Persian'), ('Cubone', 'Diglett'), ('Lickitung', 'Persian'), ('Lickitung', 'Diglett'), ('Persian', 'Diglett')]
 ```
+</div>
+<div>
 
 ```python
+# Collect all possible combinations of 4 Pokémon directly into a list
 combos_4 = [*combinations(pokemon, 4)]
 print(combos_4)
 ```
@@ -1217,6 +1269,7 @@ print(combos_4)
 ```
 ## [('Geodude', 'Cubone', 'Lickitung', 'Persian'), ('Geodude', 'Cubone', 'Lickitung', 'Diglett'), ('Geodude', 'Cubone', 'Persian', 'Diglett'), ('Geodude', 'Lickitung', 'Persian', 'Diglett'), ('Cubone', 'Lickitung', 'Persian', 'Diglett')]
 ```
+</div>
 
 <p class="">Awesome! You used <code>combinations()</code> from <code>itertools</code> to collect various combination-tuples from a list. <code>combinations()</code> allows you to specify any size of combinations by passing an integer as the second argument. Ash has <code>10</code> combination options when his Pokédex can store only two Pokémon. He has <code>5</code> combination options when his Pokédex can store four Pokémon.</p>
 
@@ -1231,16 +1284,19 @@ print(combos_4)
 <p>Two Pokémon trainers, Ash and Misty, would like to compare their individual collections of Pokémon. Let's see what Pokémon they have in common and what Pokémon Ash has that Misty does not.</p>
 <p>Both Ash and Misty's Pokédex (their collection of Pokémon) have been loaded into your session as lists called <code>ash_pokedex</code> and <code>misty_pokedex</code>. They have been printed into the console for your convenience.</p>
 </div>
+<div>
 
 ```python
 # edited/added
 ash_pokedex = ['Pikachu', 'Bulbasaur', 'Koffing', 'Spearow', 'Vulpix', 'Wigglytuff', 'Zubat', 'Rattata', 'Psyduck', 'Squirtle'] 
 misty_pokedex = ['Krabby', 'Horsea', 'Slowbro', 'Tentacool', 'Vaporeon', 'Magikarp', 'Poliwag', 'Starmie', 'Psyduck', 'Squirtle']
 ```
+</div>
 <li>Convert both lists (<code>ash_pokedex</code> and <code>misty_pokedex</code>) to sets called <code>ash_set</code> and <code>misty_set</code> respectively.</li>
 <li>Find the Pokémon that both Ash and Misty have in common using a set method.</li>
 <li>Find the Pokémon that are within Ash's Pokédex but <strong>are not</strong> within Misty's Pokédex with a set method.</li>
 <li>Use a set method to find the Pokémon that are unique to <strong>either</strong> Ash or Misty (i.e., the Pokémon that exist in <strong>exactly one</strong> of the Pokédexes but not both).</li>
+<div>
 
 ```python
 # Convert both lists to sets
@@ -1250,33 +1306,36 @@ misty_set = set(misty_pokedex)
 # Find the Pokémon that exist in both sets
 both = ash_set.intersection(misty_set)
 print(both)
-
-# Find the Pokémon that Ash has, and Misty does not have
 ```
 
 ```
 ## {'Squirtle', 'Psyduck'}
 ```
+</div>
+<div>
 
 ```python
+# Find the Pokémon that Ash has, and Misty does not have
 ash_only = ash_set.difference(misty_set)
 print(ash_only)
-
-# Find the Pokémon that are in only one set (not both)
 ```
 
 ```
-## {'Koffing', 'Wigglytuff', 'Spearow', 'Rattata', 'Bulbasaur', 'Vulpix', 'Zubat', 'Pikachu'}
+## {'Vulpix', 'Koffing', 'Zubat', 'Spearow', 'Pikachu', 'Wigglytuff', 'Rattata', 'Bulbasaur'}
 ```
+</div>
+<div>
 
 ```python
+# Find the Pokémon that are in only one set (not both)
 unique_to_set = ash_set.symmetric_difference(misty_set)
 print(unique_to_set)
 ```
 
 ```
-## {'Slowbro', 'Krabby', 'Vaporeon', 'Tentacool', 'Koffing', 'Spearow', 'Wigglytuff', 'Poliwag', 'Rattata', 'Bulbasaur', 'Vulpix', 'Magikarp', 'Starmie', 'Zubat', 'Pikachu', 'Horsea'}
+## {'Krabby', 'Slowbro', 'Horsea', 'Vulpix', 'Poliwag', 'Koffing', 'Zubat', 'Spearow', 'Pikachu', 'Wigglytuff', 'Vaporeon', 'Tentacool', 'Starmie', 'Rattata', 'Magikarp', 'Bulbasaur'}
 ```
+</div>
 
 <p class="">Great work! Using sets lets you do some cool comparisons between objects without the need to write a for loop. With a few lines of code, you were able to see that both Ash and Misty have <code>'Psyduck'</code> and <code>'Squirtle'</code> in their Pokédex. You were also able to see that Ash has <code>8</code> Pokémon that Misty does not have.</p>
 
@@ -1288,12 +1347,15 @@ print(unique_to_set)
 <p>You'd like to see if certain Pokémon are members of either Ash or Brock's Pokédex.</p>
 <p>Let's compare using a <code>set</code> versus using a <code>list</code> when performing this membership testing.</p>
 </div>
+<div>
 
 ```python
 # edited/added
 brock_pokedex = ['Onix', 'Geodude', 'Zubat', 'Golem', 'Vulpix', 'Tauros', 'Kabutops', 'Omastar', 'Machop', 'Dugtrio']
 ```
+</div>
 <li>Convert Brock's Pokédex list (<code>brock_pokedex</code>) to a set called <code>brock_pokedex_set</code>.</li>
+<div>
 
 ```python
 # Convert Brock's Pokédex to a set
@@ -1302,23 +1364,26 @@ print(brock_pokedex_set)
 ```
 
 ```
-## {'Golem', 'Tauros', 'Geodude', 'Vulpix', 'Onix', 'Machop', 'Dugtrio', 'Kabutops', 'Omastar', 'Zubat'}
+## {'Omastar', 'Tauros', 'Vulpix', 'Machop', 'Zubat', 'Kabutops', 'Geodude', 'Golem', 'Dugtrio', 'Onix'}
 ```
+</div>
 <li>Check if <code>'Psyduck'</code> is in Ash's Pokédex list (<code>ash_pokedex</code>) and if <code>'Psyduck'</code> is in Brock's Pokédex <strong>set</strong> (<code>brock_pokedex_set</code>).</li>
+<div>
 
 ```python
 # Convert Brock's Pokédex to a set
 brock_pokedex_set = set(brock_pokedex)
 print(brock_pokedex_set)
-
-# Check if Psyduck is in Ash's list and Brock's set
 ```
 
 ```
-## {'Golem', 'Tauros', 'Geodude', 'Vulpix', 'Onix', 'Machop', 'Dugtrio', 'Kabutops', 'Omastar', 'Zubat'}
+## {'Omastar', 'Tauros', 'Vulpix', 'Machop', 'Zubat', 'Kabutops', 'Geodude', 'Golem', 'Dugtrio', 'Onix'}
 ```
+</div>
+<div>
 
 ```python
+# Check if Psyduck is in Ash's list and Brock's set
 print('Psyduck' in ash_pokedex)
 ```
 
@@ -1333,21 +1398,24 @@ print('Psyduck' in brock_pokedex_set)
 ```
 ## False
 ```
+</div>
 <li>Check if <code>'Machop'</code> is in Ash's Pokédex list (<code>ash_pokedex</code>) and if <code>'Machop'</code> is in Brock's Pokédex <strong>set</strong> (<code>brock_pokedex_set</code>).</li>
+<div>
 
 ```python
 # Convert Brock's Pokédex to a set
 brock_pokedex_set = set(brock_pokedex)
 print(brock_pokedex_set)
-
-# Check if Psyduck is in Ash's list and Brock's set
 ```
 
 ```
-## {'Golem', 'Tauros', 'Geodude', 'Vulpix', 'Onix', 'Machop', 'Dugtrio', 'Kabutops', 'Omastar', 'Zubat'}
+## {'Omastar', 'Tauros', 'Vulpix', 'Machop', 'Zubat', 'Kabutops', 'Geodude', 'Golem', 'Dugtrio', 'Onix'}
 ```
+</div>
+<div>
 
 ```python
+# Check if Psyduck is in Ash's list and Brock's set
 print('Psyduck' in ash_pokedex)
 ```
 
@@ -1357,15 +1425,16 @@ print('Psyduck' in ash_pokedex)
 
 ```python
 print('Psyduck' in brock_pokedex_set)
-
-# Check if Machop is in Ash's list and Brock's set
 ```
 
 ```
 ## False
 ```
+</div>
+<div>
 
 ```python
+# Check if Machop is in Ash's list and Brock's set
 print('Machop' in ash_pokedex)
 ```
 
@@ -1380,6 +1449,7 @@ print('Machop' in brock_pokedex_set)
 ```
 ## True
 ```
+</div>
 
 <div class=""><p><strong>Within your IPython console</strong>, use <code>%timeit</code> to compare membership testing for <code>'Psyduck'</code> in <code>ash_pokedex</code>, <code>'Psyduck'</code> in <code>brock_pokedex_set</code>, <code>'Machop'</code> in <code>ash_pokedex</code>, and <code>'Machop'</code> in <code>brock_pokedex_set</code> (a total of <strong>four different timings</strong>).</p>
 <p>Don't include the <code>print()</code> function. Only time the commands that you wrote <strong>inside</strong> the <code>print()</code> function in the previous steps. </p>
@@ -1414,6 +1484,7 @@ print('Machop' in brock_pokedex_set)
 </code></pre>
 <p>Let's compare the above function to using the <code>set</code> data type for collecting unique items.</p>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -1431,7 +1502,9 @@ def find_unique_items(data):
 
     return uniques
 ```
+</div>
 <li>Use the provided function to collect the unique Pokémon in the <code>names</code> list. Save this as <code>uniq_names_func</code>.</li>
+<div>
 
 ```python
 # Use the provided function to collect unique Pokémon names
@@ -1442,38 +1515,43 @@ print(len(uniq_names_func))
 ```
 ## 368
 ```
+</div>
 <li>Use a <code>set</code> data type to collect the unique Pokémon in the <code>names</code> list. Save this as <code>uniq_names_set</code>.</li>
+<div>
 
 ```python
 # Use find_unique_items() to collect unique Pokémon names
 uniq_names_func = find_unique_items(names)
 print(len(uniq_names_func))
-
-# Convert the names list to a set to collect unique Pokémon names
 ```
 
 ```
 ## 368
 ```
+</div>
+<div>
 
 ```python
+# Convert the names list to a set to collect unique Pokémon names
 uniq_names_set = set(names)
 print(len(uniq_names_set))
-
-# Check that both unique collections are equivalent
 ```
 
 ```
 ## 368
 ```
+</div>
+<div>
 
 ```python
+# Check that both unique collections are equivalent
 print(sorted(uniq_names_func) == sorted(uniq_names_set))
 ```
 
 ```
 ## True
 ```
+</div>
 
 <div class=""><p><strong>Within your IPython console</strong>, use <code>%timeit</code> to compare the <code>find_unique_items()</code> function with using a <code>set</code> data type to collect unique Pokémon character names in <code>names</code>.</p>
 <p><strong>Which membership testing was faster?</strong></p></div>
@@ -1483,50 +1561,55 @@ print(sorted(uniq_names_func) == sorted(uniq_names_set))
 - [ ] Both approaches have the same runtime.
 
 <li>Use the most efficient approach for gathering unique items to collect the unique Pokémon types (from the <code>primary_types</code> list) and Pokémon generations (from the <code>generations</code> list).</li>
+<div>
 
 ```python
 # Use find_unique_items() to collect unique Pokémon names
 uniq_names_func = find_unique_items(names)
 print(len(uniq_names_func))
-
-# Convert the names list to a set to collect unique Pokémon names
 ```
 
 ```
 ## 368
 ```
+</div>
+<div>
 
 ```python
+# Convert the names list to a set to collect unique Pokémon names
 uniq_names_set = set(names)
 print(len(uniq_names_set))
-
-# Check that both unique collections are equivalent
 ```
 
 ```
 ## 368
 ```
+</div>
+<div>
 
 ```python
+# Check that both unique collections are equivalent
 print(sorted(uniq_names_func) == sorted(uniq_names_set))
-
-# Use the best approach to collect unique primary types and generations
 ```
 
 ```
 ## True
 ```
+</div>
+<div>
 
 ```python
+# Use the best approach to collect unique primary types and generations
 uniq_types = set(primary_types) 
 uniq_gens = set(generations)
 print(uniq_types, uniq_gens, sep='\n') 
 ```
 
 ```
-## {'Ice', 'Dark', 'Fire', 'Electric', 'Ghost', 'Poison', 'Fighting', 'Ground', 'Steel', 'Rock', 'Normal', 'Grass', 'Bug', 'Fairy', 'Water', 'Dragon', 'Psychic'}
+## {'Ghost', 'Rock', 'Water', 'Psychic', 'Fire', 'Normal', 'Dragon', 'Dark', 'Electric', 'Ice', 'Grass', 'Steel', 'Fairy', 'Bug', 'Fighting', 'Poison', 'Ground'}
 ## {1, 2, 3, 4, 5, 6}
 ```
+</div>
 
 <p class="">Nice work! Using a <code>set</code> data type to collect unique values is much faster than using a for loop (like in the <code>find_unique_items()</code> function). Since a set is defined as a collection of distinct elements, it is an efficient way to collect unique items from an existing object. Here you took advantage of a <code>set</code> to find the distinct Pokémon from the sample (eliminating duplicate Pokémon) and saw what unique Pokémon types and generations were included in the sample.</p>
 
@@ -1549,6 +1632,7 @@ for name,gen in zip(poke_names, poke_gens):
         gen1_gen2_name_lengths_loop.append(poke_tuple)
 </code></pre>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -1556,14 +1640,15 @@ poke_names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJe
 poke_gens = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1561338519&single=true&output=csv", header = None).iloc[:,0].tolist()
 gen1_gen2_name_lengths_loop = []
 ```
-<li>
-<p>Eliminate the above for loop using list comprehension and the <code>map()</code> function:</p>
+</div>
+<li>Eliminate the above for loop using list comprehension and the <code>map()</code> function:
 <ul>
 <li>Use list comprehension to collect each Pokémon that belongs to generation 1 or generation 2. Save this as <code>gen1_gen2_pokemon</code>.</li>
 <li>Use the <code>map()</code> function to collect the number of letters in each Pokémon's name within the <code>gen1_gen2_pokemon</code> list. Save this <em>map object</em> as <code>name_lengths_map</code>.</li>
 <li>Combine <code>gen1_gen2_pokemon</code> and <code>name_length_map</code> into a list called <code>gen1_gen2_name_lengths</code>.</li>
 </ul>
 </li>
+<div>
 
 ```python
 # Collect Pokémon that belong to generation 1 or generation 2
@@ -1589,6 +1674,7 @@ print(gen1_gen2_name_lengths[:5])
 ```
 ## [('Abra', 4), ('Aerodactyl', 10), ('Aipom', 5), ('Alakazam', 8), ('Ampharos', 8)]
 ```
+</div>
 
 <p class="">Great job! You successfully used list comprehension and the <code>map()</code> function to eliminate a for loop. If you compared runtimes between the for loop and using list comprehension with a <code>map()</code> function, you'd see that the for loop took quite a bit longer. <br> <br> If you're an experienced Pythonista, you may have noticed that you could replace the entire for loop with one list comprehension: <code>[(name, len(name)) for name,gen in zip(poke_names, poke_gens) if gen &lt; 3]</code></p>
 
@@ -1607,6 +1693,7 @@ for pokemon,row in zip(names, stats):
     poke_list.append((pokemon, total_stats, avg_stats))
 </code></pre>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -1620,12 +1707,14 @@ for pokemon,row in zip(names, stats):
     avg_stats = np.mean(row)
     poke_list.append((pokemon, total_stats, avg_stats))
 ```
+</div>
 <li>Replace the above for loop using NumPy:<ul>
 <li>Create a total stats array (<code>total_stats_np</code>) using the <code>.sum()</code> method and specifying the correct axis.</li>
 <li>Create an average stats array (<code>avg_stats_np</code>) using the <code>.mean()</code> method and specifying the correct axis.</li>
 <li>Create a final output list (<code>poke_list_np</code>) by combining the <code>names</code> list, the <code>total_stats_np</code> array, and the <code>avg_stats_np</code> array.</li>
 </ul>
 </li>
+<div>
 
 ```python
 # Create a total stats array
@@ -1669,6 +1758,7 @@ print('3 strongest Pokémon:\n{}'.format(top_3))
 ## 3 strongest Pokémon:
 ## [('GroudonPrimal Groudon', 770, 128.33333333333334), ('KyogrePrimal Kyogre', 770, 128.33333333333334), ('KyuremBlack Kyurem', 700, 116.66666666666667)]
 ```
+</div>
 
 <p class="">Great work! You used NumPy's <code>.sum()</code> and <code>.mean()</code> methods with a specific axis to eliminate a for loop. With this approach, you were able to quickly see that 'GroudonPrimal Groudon', 'KyogrePrimal Kyogre', and 'Arceus' were the strongest Pokémon in your list based on total stats. <br><br> If you were to gather run times, the for loop would have taken <em>milliseconds</em> to execute while the NumPy approach would have taken <em>microseconds</em> to execute. This is quite an improvement!</p>
 
@@ -1693,12 +1783,10 @@ print('3 strongest Pokémon:\n{}'.format(top_3))
 <p>Let's make this loop more efficient by moving a one-time calculation outside the loop.</p>
 </div>
 
-```python
-# edited/added
-```
 <li>Import <code>Counter</code> from the <code>collections</code> module.</li>
 <li>Use <code>Counter()</code> to collect the count of each generation from the <code>generations</code> list. Save this as <code>gen_counts</code>.</li>
 <li>Write a better for loop that places a <strong>one-time</strong> calculation outside (above) the loop. Use the exact same syntax as the original for loop (simply copy and paste the one-time calculation above the loop).</li>
+<div>
 
 ```python
 # Import Counter
@@ -1724,6 +1812,7 @@ for gen,count in gen_counts.items():
 ## generation 1: count =  96 percentage = 19.2
 ## generation 6: count =  49 percentage = 9.8
 ```
+</div>
 
 <p class="">Well done! You spotted a calculation that could be moved outside a loop to make the loop more efficient. Since the total count is now calculated just once (and not with each loop iteration), you can expect to see an efficiency gain with your new loop. When writing a loop is unavoidable, be sure to analyze the loop and move any one-time calculations outside.</p>
 
@@ -1743,16 +1832,19 @@ for i,pair in enumerate(possible_pairs, 1):
 </code></pre>
 <p>Let's make this loop more efficient using a holistic conversion.</p>
 </div>
+<div>
 
 ```python
 # edited/added
 pokemon_types = ['Bug', 'Dark', 'Dragon', 'Electric', 'Fairy', 'Fighting', 'Fire', 'Flying', 'Ghost', 'Grass', 'Ground', 'Ice', 'Normal', 'Poison', 'Psychic', 'Rock', 'Steel', 'Water']
 ```
+</div>
 <li>
 <code>combinations</code> from the <code>itertools</code> module has been loaded into your session. Use it to create a list called <code>possible_pairs</code> that contains all possible pairs of Pokémon types (each pair has <code>2</code> Pokémon types).</li>
 <li>Create an empty list called <code>enumerated_tuples</code> above the for loop.</li>
 <li>Within the for loop, append each <code>enumerated_pair_tuple</code> to the empty list you created in the above step. </li>
 <li>Use a built-in function to convert each tuple in <code>enumerated_tuples</code> to a list.</li>
+<div>
 
 ```python
 # Collect all possible pairs using combinations()
@@ -1774,6 +1866,7 @@ print(enumerated_pairs)
 ```
 ## [[1, 'Bug', 'Dark'], [2, 'Bug', 'Dragon'], [3, 'Bug', 'Electric'], [4, 'Bug', 'Fairy'], [5, 'Bug', 'Fighting'], [6, 'Bug', 'Fire'], [7, 'Bug', 'Flying'], [8, 'Bug', 'Ghost'], [9, 'Bug', 'Grass'], [10, 'Bug', 'Ground'], [11, 'Bug', 'Ice'], [12, 'Bug', 'Normal'], [13, 'Bug', 'Poison'], [14, 'Bug', 'Psychic'], [15, 'Bug', 'Rock'], [16, 'Bug', 'Steel'], [17, 'Bug', 'Water'], [18, 'Dark', 'Dragon'], [19, 'Dark', 'Electric'], [20, 'Dark', 'Fairy'], [21, 'Dark', 'Fighting'], [22, 'Dark', 'Fire'], [23, 'Dark', 'Flying'], [24, 'Dark', 'Ghost'], [25, 'Dark', 'Grass'], [26, 'Dark', 'Ground'], [27, 'Dark', 'Ice'], [28, 'Dark', 'Normal'], [29, 'Dark', 'Poison'], [30, 'Dark', 'Psychic'], [31, 'Dark', 'Rock'], [32, 'Dark', 'Steel'], [33, 'Dark', 'Water'], [34, 'Dragon', 'Electric'], [35, 'Dragon', 'Fairy'], [36, 'Dragon', 'Fighting'], [37, 'Dragon', 'Fire'], [38, 'Dragon', 'Flying'], [39, 'Dragon', 'Ghost'], [40, 'Dragon', 'Grass'], [41, 'Dragon', 'Ground'], [42, 'Dragon', 'Ice'], [43, 'Dragon', 'Normal'], [44, 'Dragon', 'Poison'], [45, 'Dragon', 'Psychic'], [46, 'Dragon', 'Rock'], [47, 'Dragon', 'Steel'], [48, 'Dragon', 'Water'], [49, 'Electric', 'Fairy'], [50, 'Electric', 'Fighting'], [51, 'Electric', 'Fire'], [52, 'Electric', 'Flying'], [53, 'Electric', 'Ghost'], [54, 'Electric', 'Grass'], [55, 'Electric', 'Ground'], [56, 'Electric', 'Ice'], [57, 'Electric', 'Normal'], [58, 'Electric', 'Poison'], [59, 'Electric', 'Psychic'], [60, 'Electric', 'Rock'], [61, 'Electric', 'Steel'], [62, 'Electric', 'Water'], [63, 'Fairy', 'Fighting'], [64, 'Fairy', 'Fire'], [65, 'Fairy', 'Flying'], [66, 'Fairy', 'Ghost'], [67, 'Fairy', 'Grass'], [68, 'Fairy', 'Ground'], [69, 'Fairy', 'Ice'], [70, 'Fairy', 'Normal'], [71, 'Fairy', 'Poison'], [72, 'Fairy', 'Psychic'], [73, 'Fairy', 'Rock'], [74, 'Fairy', 'Steel'], [75, 'Fairy', 'Water'], [76, 'Fighting', 'Fire'], [77, 'Fighting', 'Flying'], [78, 'Fighting', 'Ghost'], [79, 'Fighting', 'Grass'], [80, 'Fighting', 'Ground'], [81, 'Fighting', 'Ice'], [82, 'Fighting', 'Normal'], [83, 'Fighting', 'Poison'], [84, 'Fighting', 'Psychic'], [85, 'Fighting', 'Rock'], [86, 'Fighting', 'Steel'], [87, 'Fighting', 'Water'], [88, 'Fire', 'Flying'], [89, 'Fire', 'Ghost'], [90, 'Fire', 'Grass'], [91, 'Fire', 'Ground'], [92, 'Fire', 'Ice'], [93, 'Fire', 'Normal'], [94, 'Fire', 'Poison'], [95, 'Fire', 'Psychic'], [96, 'Fire', 'Rock'], [97, 'Fire', 'Steel'], [98, 'Fire', 'Water'], [99, 'Flying', 'Ghost'], [100, 'Flying', 'Grass'], [101, 'Flying', 'Ground'], [102, 'Flying', 'Ice'], [103, 'Flying', 'Normal'], [104, 'Flying', 'Poison'], [105, 'Flying', 'Psychic'], [106, 'Flying', 'Rock'], [107, 'Flying', 'Steel'], [108, 'Flying', 'Water'], [109, 'Ghost', 'Grass'], [110, 'Ghost', 'Ground'], [111, 'Ghost', 'Ice'], [112, 'Ghost', 'Normal'], [113, 'Ghost', 'Poison'], [114, 'Ghost', 'Psychic'], [115, 'Ghost', 'Rock'], [116, 'Ghost', 'Steel'], [117, 'Ghost', 'Water'], [118, 'Grass', 'Ground'], [119, 'Grass', 'Ice'], [120, 'Grass', 'Normal'], [121, 'Grass', 'Poison'], [122, 'Grass', 'Psychic'], [123, 'Grass', 'Rock'], [124, 'Grass', 'Steel'], [125, 'Grass', 'Water'], [126, 'Ground', 'Ice'], [127, 'Ground', 'Normal'], [128, 'Ground', 'Poison'], [129, 'Ground', 'Psychic'], [130, 'Ground', 'Rock'], [131, 'Ground', 'Steel'], [132, 'Ground', 'Water'], [133, 'Ice', 'Normal'], [134, 'Ice', 'Poison'], [135, 'Ice', 'Psychic'], [136, 'Ice', 'Rock'], [137, 'Ice', 'Steel'], [138, 'Ice', 'Water'], [139, 'Normal', 'Poison'], [140, 'Normal', 'Psychic'], [141, 'Normal', 'Rock'], [142, 'Normal', 'Steel'], [143, 'Normal', 'Water'], [144, 'Poison', 'Psychic'], [145, 'Poison', 'Rock'], [146, 'Poison', 'Steel'], [147, 'Poison', 'Water'], [148, 'Psychic', 'Rock'], [149, 'Psychic', 'Steel'], [150, 'Psychic', 'Water'], [151, 'Rock', 'Steel'], [152, 'Rock', 'Water'], [153, 'Steel', 'Water']]
 ```
+</div>
 
 <p class="">Great job! Rather than converting each tuple to a list <em>within</em> the loop, you used the <code>map()</code> function to convert tuples to lists all at once outside of a loop. You're getting the hang of writing efficient loops! Remember, you want to avoid looping as much as possible when writing Python code. In cases where looping is unavoidable, be sure to check your loops for one-time calculations and holistic conversions to make them more efficient.</p>
 
@@ -1798,6 +1891,7 @@ for name,hp,zscore in poke_zscores:
         highest_hp_pokemon.append((name, hp, zscore))
 </code></pre>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -1808,8 +1902,10 @@ len(hps)
 ```
 ## 720
 ```
+</div>
 <li>Use NumPy to eliminate the for loop used to create the z-scores.</li>
 <li>Then, combine the <code>names</code>, <code>hps</code>, and <code>z_scores</code> objects together into a list called <code>poke_zscores2</code>.</li>
+<div>
 
 ```python
 # Calculate the total HP avg and total HP standard deviation
@@ -1829,7 +1925,9 @@ print(*poke_zscores2[:3], sep='\n')
 ## ('Abra', 25, -1.673706811393817)
 ## ('Absol', 65, -0.12482482919074096)
 ```
+</div>
 <li>Use list comprehension to replace the for loop used to collect Pokémon with the highest HPs based on their z-score.</li>
+<div>
 
 ```python
 # Calculate the total HP avg and total HP standard deviation
@@ -1842,8 +1940,6 @@ z_scores = (hps - hp_avg)/hp_std
 # Combine names, hps, and z_scores
 poke_zscores2 = [*zip(names, hps, z_scores)]
 print(*poke_zscores2[:3], sep='\n')
-
-# Use list comprehension with the same logic as the highest_hp_pokemon code block
 ```
 
 ```
@@ -1851,8 +1947,11 @@ print(*poke_zscores2[:3], sep='\n')
 ## ('Abra', 25, -1.673706811393817)
 ## ('Absol', 65, -0.12482482919074096)
 ```
+</div>
+<div>
 
 ```python
+# Use list comprehension with the same logic as the highest_hp_pokemon code block
 highest_hp_pokemon2 = [(name, hp, zscore) for name,hp,zscore in poke_zscores2 if zscore > 2]
 print(*highest_hp_pokemon2, sep='\n')
 ```
@@ -1884,6 +1983,7 @@ print(*highest_hp_pokemon2, sep='\n')
 ## ('Xerneas', 126, 2.23722019366895)
 ## ('Yveltal', 126, 2.23722019366895)
 ```
+</div>
 
 <div class=""><p>Use <code>%%timeit</code> (<em>cell magic mode</em>) <strong>within your IPython console</strong> to compare the runtimes between the original code blocks and the new code you developed using NumPy and list comprehension.</p>
 <p><strong>Don't include the <code>print()</code> statements when timing.</strong> You should include <strong>ten lines of code</strong> when timing the original code blocks and <strong>five lines of code</strong> when timing the new code you developed. You may need to press <code>SHIFT+ENTER</code> after entering <code>%%timeit</code> to get to a new line within your IPython console.</p>
@@ -1911,6 +2011,7 @@ print(*highest_hp_pokemon2, sep='\n')
 <p>A <code>pandas</code> DataFrame has been loaded into your session called <code>pit_df</code>. This DataFrame contains the stats for the Major League Baseball team named the Pittsburgh Pirates (abbreviated as <code>'PIT'</code>) from the year 2008 to the year 2012. It has been printed into your console for convenience.</p>
 </div>
 <div class="exercise--instructions__content"><p>Use <code>.iterrows()</code> to loop over <code>pit_df</code> and print each row. Save the first item from <code>.iterrows()</code> as <code>i</code> and the second as <code>row</code>.</p></div>
+<div>
 
 ```python
 # edited/added
@@ -2676,8 +2777,10 @@ for i,row in pit_df.iterrows():
 ## OSLG              NaN
 ## Name: 1228, dtype: object
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>Add <strong>two</strong> lines to the loop: one <em>before</em> <code>print(row)</code> to print each index variable and one <em>after</em> to print each row's type.</p></div>
+<div>
 
 ```python
 # Iterate over pit_df and print each index variable, row, and row type
@@ -3535,8 +3638,10 @@ for i,row in pit_df.iterrows():
 ## Name: 1228, dtype: object
 ## <class 'pandas.core.series.Series'>
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>Instead of using <code>i</code> and <code>row</code> in the for statement to store the output of <code>.iterrows()</code>, use <strong>one</strong> variable named <code>row_tuple</code>.</p></div>
+<div>
 
 ```python
 # Use one variable instead of two to store the result of .iterrows()
@@ -4298,8 +4403,10 @@ for row_tuple in pit_df.iterrows():
 ## OSLG              NaN
 ## Name: 1228, dtype: object)
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>Add a line in the for loop to print the type of each <code>row_tuple</code>.</p></div>
+<div>
 
 ```python
 # Print the row and type of each row
@@ -5109,6 +5216,7 @@ for row_tuple in pit_df.iterrows():
 ## Name: 1228, dtype: object)
 ## <class 'tuple'>
 ```
+</div>
 
 <p class="">Nice work! Since <code>.iterrows()</code> returns each DataFrame row as a tuple of (index, <code>pandas</code> Series) pairs, you can either split this tuple and use the index and row-values separately (as you did with <code>for i,row in pit_df.iterrows()</code>), or you can keep the result of <code>.iterrows()</code> in the tuple form (as you did with <code>for row_tuple in pit_df.iterrows()</code>).<br><br>If using <code>i,row</code>, you can access things from the row using square brackets (i.e., <code>row['Team']</code>). If using <code>row_tuple</code>, you would have to specify which element of the tuple you'd like to access before grabbing the team name (i.e., <code>row_tuple[1]['Team']</code>). <br><br> With either approach, using <code>.iterrows()</code> will still be substantially faster than using <code>.iloc</code> as you saw in the video.</p>
 
@@ -5126,6 +5234,7 @@ for row_tuple in pit_df.iterrows():
 </code></pre>
 <p>A DataFrame has been loaded into your session as <code>giants_df</code> and printed into the console. Let's practice using <code>.iterrows()</code> to add a <em>run differential</em> column to this DataFrame.</p>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -5137,13 +5246,17 @@ def calc_run_diff(runs_scored, runs_allowed):
 
     return run_diff
 ```
+</div>
 <li>Create an empty list called <code>run_diffs</code> that will be used to store the <em>run differentials</em> you will calculate.</li>
+<div>
 
 ```python
 # Create an empty list to store run differentials
 run_diffs = []
 ```
+</div>
 <li>Write a for loop that uses <code>.iterrows()</code> to loop over <code>giants_df</code> and collects each row's runs scored and runs allowed.</li>
+<div>
 
 ```python
 # Create an empty list to store run differentials
@@ -5154,7 +5267,9 @@ for i,row in giants_df.iterrows():
     runs_scored = row['RS']
     runs_allowed = row['RA']
 ```
+</div>
 <li>Add a line to the for loop that uses the provided function to calculate each row's <em>run differential</em>.</li>
+<div>
 
 ```python
 # Create an empty list to store run differentials
@@ -5168,7 +5283,9 @@ for i,row in giants_df.iterrows():
     # Use the provided function to calculate run_diff for each row
     run_diff = calc_run_diff(runs_scored, runs_allowed)
 ```
+</div>
 <li>Add a line to the loop that appends each row's <em>run differential</em> to the <code>run_diffs</code> list.</li>
+<div>
 
 ```python
 # Create an empty list to store run differentials
@@ -5197,6 +5314,7 @@ print(giants_df)
 ## 114  SFG     NL  2009  657  611  88  162         0   46
 ## 144  SFG     NL  2008  640  759  72  162         0 -119
 ```
+</div>
 
 <p class="">Great job! Take a look at the <code>giants_df</code> DataFrame with the new run differential column (<code>'RD'</code>) you created (it has been printed in the console).<br><br>The <code>'Playoffs'</code> column tells you if a team made the playoffs for a given season. A <code>1</code> means that the team made the playoffs in that season and a <code>0</code> means the team did not make the playoffs in that season.<br><br>Did you notice that in the seasons with the highest run differentials the Giants made the playoffs? In fact, in both of these seasons (2010 and 2012), the San Francisco Giants not only made the playoffs but also won the World Series! Cool!</p>
 
@@ -5212,6 +5330,7 @@ print(giants_df)
 <p>A <code>pandas</code> DataFrame has been loaded into your session called <code>rangers_df</code>. This DataFrame contains the stats (<code>'Team'</code>, <code>'League'</code>, <code>'Year'</code>, <code>'RS'</code>, <code>'RA'</code>, '<code>W'</code>, <code>'G'</code>, and <code>'Playoffs'</code>) for the Major League baseball team named the Texas Rangers (abbreviated as <code>'TEX'</code>).</p>
 </div>
 <div class="exercise--instructions__content"><p>Use <code>.itertuples()</code> to loop over <code>rangers_df</code> and print each row.</p></div>
+<div>
 
 ```python
 # edited/added
@@ -5261,8 +5380,10 @@ for row in rangers_df.itertuples():
 ## Pandas(Index=995, Team='TEX', League='AL', Year=1974, RS=690, RA=698, W=83, G=161, Playoffs=0)
 ## Pandas(Index=1019, Team='TEX', League='AL', Year=1973, RS=619, RA=844, W=57, G=162, Playoffs=0)
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>Loop over <code>rangers_df</code> with <code>.itertuples()</code> and save each row's <code>Index</code>, <code>Year</code>, and Wins (<code>W</code>) attribute as <code>i</code>, <code>year</code>, and <code>wins</code>.</p></div>
+<div>
 
 ```python
 # Loop over the DataFrame and print each row's Index, Year and Wins (W)
@@ -5312,8 +5433,10 @@ for row in rangers_df.itertuples():
 ## 995 1974 83
 ## 1019 1973 57
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>Now, loop over <code>rangers_df</code> and print these values <strong>only for those rows</strong> where the Rangers made the playoffs.</p></div>
+<div>
 
 ```python
 # Loop over the DataFrame and print each row's Index, Year and Wins (W)
@@ -5335,6 +5458,7 @@ for row in rangers_df.itertuples():
 ## 448 1998 88
 ## 504 1996 90
 ```
+</div>
 
 <p class="">Awesome! You're getting the hang of using <code>.itertuples()</code>. Remember, you need to use the <em>dot</em> syntax for referencing an attribute in a <strong>namedtuple</strong>.<br><br> You can create a new variable using a row's dot reference (as you did when storing <code>row.Index</code> as the variable <code>i</code>). Or you can use the row's dot reference directly to perform calculations and checks. Notice that you did not have to save <code>row.Playoffs</code> to a new variable in your check statement (you were able to use <code>row.Playoffs</code> directly in your check).<br><br> Did you notice the pattern in the Texas Rangers playoff appearances? Only six appearances and two distinct sets of groupings (one from 2010 - 2012 and one from 1996 - 1999).</p>
 
@@ -5352,12 +5476,15 @@ for row in rangers_df.itertuples():
 </code></pre>
 <p>Let's use <code>.itertuples()</code> to loop over the <code>yankees_df</code> DataFrame (which has been loaded into your session) and calculate <em>run differentials</em>.</p>
 </div>
+<div>
 
 ```python
 # edited/added
 yankees_df = baseball_df[(baseball_df.Team == 'NYY') & (baseball_df.Year.between(1962,2012))][['Team', 'League', 'Year', 'RS', 'RA', 'W', 'G', 'Playoffs']]
 ```
+</div>
 <li>Use <code>.itertuples()</code> to loop over <code>yankees_df</code> and grab each row's runs scored and runs allowed values.</li>
+<div>
 
 ```python
 run_diffs = []
@@ -5368,7 +5495,9 @@ for row in yankees_df.itertuples():
     runs_scored = row.RS
     runs_allowed = row.RA
 ```
+</div>
 <li>Now, calculate each row's <em>run differential</em> using <code>calc_run_diff()</code>. Be sure to append each row's <em>run differential</em> to <code>run_diffs</code>.</li>
+<div>
 
 ```python
 run_diffs = []
@@ -5383,7 +5512,9 @@ for row in yankees_df.itertuples():
     
     run_diffs.append(run_diff)
 ```
+</div>
 <li>Append a new column called <code>'RD'</code> to the <code>yankees_df</code> DataFrame that contains the <em>run differentials</em> you calculated.</li>
+<div>
 
 ```python
 run_diffs = []
@@ -5453,6 +5584,7 @@ print(yankees_df)
 ## 1206  NYY     AL  1963  714  547  104  161         1  167
 ## 1226  NYY     AL  1962  817  680   96  162         1  137
 ```
+</div>
 
 <div class=""><ul>
 <li>In what year within your DataFrame did the New York Yankees have the highest <em>run differential</em>?</li>
@@ -5491,6 +5623,7 @@ print(yankees_df)
 <p>Use <code>.apply()</code> to get these metrics. A DataFrame (<code>rays_df</code>) has been loaded and printed to the console. This DataFrame is indexed on the <code>'Year'</code> column.</p>
 </div>
 <div class="exercise--instructions__content"><p>Apply <code>sum()</code> to each <strong>column</strong> of <code>rays_df</code> to collect the sum of each column. Be sure to specify the correct <code>axis</code>.</p></div>
+<div>
 
 ```python
 # edited/added
@@ -5515,8 +5648,10 @@ print(stat_totals)
 ## Playoffs       3
 ## dtype: int64
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>Apply <code>sum()</code> to each <strong>row</strong> of <code>rays_df</code>, only looking at the <code>'RS'</code> and <code>'RA'</code> columns, and specify the correct <code>axis</code>.</p></div>
+<div>
 
 ```python
 # Gather total runs scored in all games per year
@@ -5532,8 +5667,10 @@ print(total_runs_scored)
 ## 2008    1445
 ## dtype: int64
 ```
+</div>
 
 <div class="exercise--instructions__content"><p>Use <code>.apply()</code> and a <code>lambda</code> function to apply <code>text_playoffs()</code> to each <strong>row</strong>'s <code>'Playoffs'</code> value of the <code>rays_df</code> DataFrame.</p></div>
+<div>
 
 ```python
 # Convert numeric playoffs to text by applying text_playoffs()
@@ -5549,6 +5686,7 @@ print(textual_playoffs)
 ## 2008    Yes
 ## dtype: object
 ```
+</div>
 
 <p class="">Great work! The <code>.apply()</code> method let's you apply functions to all rows or columns of a DataFrame by specifying an axis.<br><br>If you've been using <code>pandas</code> for some time, you may have noticed that a better way to find these stats would use the <code>pandas</code> built-in <code>.sum()</code> method.<br><br> You could have used <code>rays_df.sum(axis=0)</code> to get columnar sums and <code>rays_df[['RS', 'RA']].sum(axis=1)</code> to get row sums.<br><br> You could have also used <code>.apply()</code> <strong>directly</strong> on a Series (or column) of the DataFrame. For example, you could use <code>rays_df['Playoffs'].apply(text_playoffs)</code> to convert the <code>'Playoffs'</code> column to text.</p>
 
@@ -5564,6 +5702,7 @@ print(textual_playoffs)
 </code></pre>
 <p>A DataFrame named <code>dbacks_df</code> has been loaded into your session.</p>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -5573,7 +5712,9 @@ def calc_win_perc(wins, games_played):
   
 dbacks_df = baseball_df[(baseball_df.Team == 'ARI') & (baseball_df.Year.between(1998,2012))][['Team', 'League', 'Year', 'RS', 'RA', 'W', 'G', 'Playoffs']]
 ```
+</div>
 <li>Print the first five rows of the <code>dbacks_df</code> DataFrame to see what the data looks like.</li>
+<div>
 
 ```python
 # Display the first five rows of the DataFrame
@@ -5588,13 +5729,13 @@ print(dbacks_df.head())
 ## 90   ARI     NL  2009  720  782  70  162         0
 ## 120  ARI     NL  2008  720  706  82  162         0
 ```
+</div>
 <li>Create a <code>pandas</code> Series called <code>win_percs</code> by <em>applying</em> the <code>calc_win_perc()</code> function to each <strong>row</strong> of the DataFrame with a <code>lambda</code> function.</li>
+<div>
 
 ```python
 # Display the first five rows of the DataFrame
 print(dbacks_df.head())
-
-# Create a win percentage Series 
 ```
 
 ```
@@ -5605,8 +5746,11 @@ print(dbacks_df.head())
 ## 90   ARI     NL  2009  720  782  70  162         0
 ## 120  ARI     NL  2008  720  706  82  162         0
 ```
+</div>
+<div>
 
 ```python
+# Create a win percentage Series 
 win_percs = dbacks_df.apply(lambda row: calc_win_perc(row['W'], row['G']), axis=1)
 print(win_percs, '\n')
 ```
@@ -5629,13 +5773,13 @@ print(win_percs, '\n')
 ## 421    0.40
 ## dtype: float64
 ```
+</div>
 <li>Create a new column in <code>dbacks_df</code> called <code>WP</code> that contains the win percentages you calculated in the above step.</li>
+<div>
 
 ```python
 # Display the first five rows of the DataFrame
 print(dbacks_df.head())
-
-# Create a win percentage Series 
 ```
 
 ```
@@ -5646,12 +5790,13 @@ print(dbacks_df.head())
 ## 90   ARI     NL  2009  720  782  70  162         0
 ## 120  ARI     NL  2008  720  706  82  162         0
 ```
+</div>
+<div>
 
 ```python
+# Create a win percentage Series 
 win_percs = dbacks_df.apply(lambda row: calc_win_perc(row['W'], row['G']), axis=1)
 print(win_percs, '\n')
-
-# Append a new column to dbacks_df
 ```
 
 ```
@@ -5672,12 +5817,13 @@ print(win_percs, '\n')
 ## 421    0.40
 ## dtype: float64
 ```
+</div>
+<div>
 
 ```python
+# Append a new column to dbacks_df
 dbacks_df['WP'] = win_percs
 print(dbacks_df, '\n')
-
-# Display dbacks_df where WP is greater than 0.50
 ```
 
 ```
@@ -5698,8 +5844,11 @@ print(dbacks_df, '\n')
 ## 391  ARI     NL  1999  908  676  100  162         1  0.62
 ## 421  ARI     NL  1998  665  812   65  162         0  0.40
 ```
+</div>
+<div>
 
 ```python
+# Display dbacks_df where WP is greater than 0.50
 print(dbacks_df[dbacks_df['WP'] >= 0.50])
 ```
 
@@ -5715,14 +5864,15 @@ print(dbacks_df[dbacks_df['WP'] >= 0.50])
 ## 361  ARI     NL  2000  792  754   85  162         0  0.52
 ## 391  ARI     NL  1999  908  676  100  162         1  0.62
 ```
+</div>
 
 <div class=""><ul>
 <li>Which manager was correct in their claim?</li>
 </ul></div>
 
-- [ ] 
-- [x] 
-- [ ] 
+- [ ] The manager who claimed the team <strong>made</strong> the playoffs every year they've had a win percentage of <code>0.50</code> or greater.
+- [x] The manager who claimed the team <strong>has not made</strong> the playoffs every year they've had a win percentage of <code>0.50</code> or greater.
+- [ ] Both managers are crazy! The Arizona Diamondbacks have never made the playoffs.
 
 <p class="">Nicely done! Using the <code>.apply()</code> method with a <code>lambda</code> function allows you to apply a function to a DataFrame without the need to write a for loop.<br><br>Sadly, the second manager was correct. In the year 2012, 2008, 2003, and 2000 the Arizona Diamondbacks had a win percentage greater than or equal to 0.50, but still <strong>did not</strong> make the playoffs.</p>
 
@@ -5756,16 +5906,16 @@ baseball_df['WP'] = win_percs_list
 <p>Let's update this analysis to use arrays instead of the <code>.iloc</code> method. A DataFrame (<code>baseball_df</code>) has been loaded into your session.</p>
 </div>
 
-```python
-# edited/added
-```
 <li>Use <em>the right method</em> to collect the underlying <code>'W'</code> and <code>'G'</code> arrays of <code>baseball_df</code> and pass them <strong>directly into</strong> the <code>calc_win_perc()</code> function. Store the result as a variable called <code>win_percs_np</code>.</li>
+<div>
 
 ```python
 # Use the W array and G array to calculate win percentages
 win_percs_np = calc_win_perc(baseball_df['W'].values, baseball_df['G'].values)
 ```
+</div>
 <li>Create a new column in <code>baseball_df</code> called <code>'WP'</code> that contains the win percentages you just calculated.</li>
+<div>
 
 ```python
 # Use the W array and G array to calculate win percentages
@@ -5787,15 +5937,16 @@ print(baseball_df.head())
 ## 
 ## [5 rows x 16 columns]
 ```
+</div>
 
 <div class=""><p>Use <code>timeit</code> in <em>cell magic mode</em> <strong>within your IPython console</strong> to compare the runtimes between the old code block using <code>.iloc</code> and the new code you developed using NumPy arrays.</p>
 <p><strong>Don't include the code that defines the <code>calc_win_perc()</code> function or the <code>print()</code> statements or when timing</strong>.</p>
 <p>You should include <strong>eight lines of code</strong> when timing the old code block and <strong>two lines of code</strong> when timing the new code you developed. You may need to press <code>SHIFT+ENTER</code> when using <code>timeit</code> in <em>cell magic mode</em> to get to a new line within your IPython console.</p>
 <p><strong>Which approach was the faster?</strong></p></div>
 
-- [ ] <div class="dc-input-radio__text">The original code with <code>.iloc</code> is much faster than using NumPy arrays</div>
-- [ ] <div class="dc-input-radio__text">The old code block with <code>.iloc</code> and the new code with NumPy arrays have similar runtimes.</div>
-- [x] <div class="dc-input-radio__text">The NumPy array approach is faster than the <code>.iloc</code> approach.</div>
+- [ ] The original code with <code>.iloc</code> is much faster than using NumPy arrays
+- [ ] The old code block with <code>.iloc</code> and the new code with NumPy arrays have similar runtimes.
+- [x] The NumPy array approach is faster than the <code>.iloc</code> approach.
 
 <p class="">Great job! You're knocking it out of the park! Using a DataFrame's underlying arrays to perform calculations can really speed up your code and yields some significant efficiency gains. Did you notice that the NumPy array approach was not just faster, but that it also used fewer lines of code and was easier to read?</p>
 
@@ -5811,6 +5962,7 @@ print(baseball_df.head())
 </code></pre>
 <p>Let's compare the approaches you've learned to calculate a <em>predicted win percentage</em> for each season (or row) in your DataFrame.</p>
 </div>
+<div>
 
 ```python
 # edited/added
@@ -5818,7 +5970,9 @@ def predict_win_perc(RS, RA):
     prediction = RS ** 2 / (RS ** 2 + RA ** 2)
     return np.round(prediction, 2)
 ```
+</div>
 <li>Use a for loop and <code>.itertuples()</code> to predict the win percentage for each row of <code>baseball_df</code> with the <code>predict_win_perc()</code> function. Save each row's predicted win percentage as <code>win_perc_pred</code> and append each to the <code>win_perc_preds_loop</code> list.</li>
+<div>
 
 ```python
 win_perc_preds_loop = []
@@ -5830,7 +5984,9 @@ for row in baseball_df.itertuples():
     win_perc_pred = predict_win_perc(runs_scored, runs_allowed)
     win_perc_preds_loop.append(win_perc_pred)
 ```
+</div>
 <li>Apply <code>predict_win_perc()</code> to each row of the <code>baseball_df</code> DataFrame using a <code>lambda</code> function. Save the predicted win percentage as <code>win_perc_preds_apply</code>.</li>
+<div>
 
 ```python
 win_perc_preds_loop = []
@@ -5845,7 +6001,9 @@ for row in baseball_df.itertuples():
 # Apply predict_win_perc to each row of the DataFrame
 win_perc_preds_apply = baseball_df.apply(lambda row: predict_win_perc(row['RS'], row['RA']), axis=1)
 ```
+</div>
 <li>Calculate the predicted win percentages by passing the underlying <code>'RS'</code> and <code>'RA'</code> <strong>arrays</strong> from <code>baseball_df</code> into <code>predict_win_perc()</code>. Save these predictions as <code>win_perc_preds_np</code>.</li>
+<div>
 
 ```python
 win_perc_preds_loop = []
@@ -5876,16 +6034,17 @@ print(baseball_df.head())
 ## 
 ## [5 rows x 17 columns]
 ```
+</div>
 
 <div class=""><p>Compare runtimes <strong>within your IPython console</strong> between <strong>all three</strong> approaches used to calculate the predicted win percentages.</p>
 <p>Use <strong><code>%%timeit</code></strong> (<em>cell magic mode</em>) to time the <strong>six lines of code</strong> (not including comment lines) for the <code>.itertuples()</code> approach. You may need to press <code>SHIFT+ENTER</code> after entering <code>%%timeit</code> to get to a new line within your IPython console.</p>
 <p>Use <strong><code>%timeit</code></strong> (<em>line magic mode</em>) to time the <code>.apply()</code> approach and the NumPy array approach separately. Each has only <strong>one line of code</strong> (not including comment lines). </p>
 <p><strong>What is the order of approaches from fastest to slowest?</strong></p></div>
 
-- [ ] <div class="dc-input-radio__text">The <code>.apply()</code> with a <code>lambda</code> function was the <strong>fastest</strong>, followed by the <code>.itertuples()</code> approach, and the array approach was <strong>slowest</strong>.</div>
-- [x] <div class="dc-input-radio__text">Using NumPy arrays was the <strong>fastest</strong> approach, followed by the <code>.itertuples()</code> approach, and the <code>.apply()</code> approach was <strong>slowest</strong>.</div>
-- [ ] <div class="dc-input-radio__text">The <code>.itertuples()</code> approach was <strong>fastest</strong>, followed by the array approach, and the <code>.apply()</code> approach was <strong>slowest</strong>.</div>
-- [ ] <div class="dc-input-radio__text">All three approaches had comparable runtimes.</div>
+- [ ] The <code>.apply()</code> with a <code>lambda</code> function was the <strong>fastest</strong>, followed by the <code>.itertuples()</code> approach, and the array approach was <strong>slowest</strong>.
+- [x] Using NumPy arrays was the <strong>fastest</strong> approach, followed by the <code>.itertuples()</code> approach, and the <code>.apply()</code> approach was <strong>slowest</strong>.
+- [ ] The <code>.itertuples()</code> approach was <strong>fastest</strong>, followed by the array approach, and the <code>.apply()</code> approach was <strong>slowest</strong>.
+- [ ] All three approaches had comparable runtimes.
 
 <p class="">Great job! That's a home run! You practiced using three different approaches to iterate over a <code>pandas</code> DataFrame and perform calculations. Did you notice that the <code>.itertuples()</code> approach beat the <code>.apply()</code> approach? Even though both these implementations can be useful, you should default to using a DataFrame's underlying arrays to perform calculations.<br><br>Take a look at your win percentage predictions (column <code>'WP_preds'</code>) and compare them to the actual win percentages (column <code>'WP'</code>). Not bad!<br><br>You've done a great job throughout the course! Now, you are well on your way to writing efficient Python and <code>pandas</code> code!</p>
 
