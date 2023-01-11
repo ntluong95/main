@@ -1,0 +1,2300 @@
+<h3><a href="https://github.com/mclix85/datacamp" target="_blank">View Source Code</a></h3>
+
+<h3>Course Description</h3>
+
+<p class="course__description">You've done your analysis, built your report, and trained a model. What's next? Well, if you want to deploy your model into production, your code will need to be more reliable than exploratory scripts in a Jupyter notebook. Writing Functions in Python will give you a strong foundation in writing complex and beautiful functions so that you can contribute research and engineering skills to your team. You'll learn useful tricks, like how to write context managers and decorators. You'll also learn best practices around how to write maintainable reusable functions with good documentation. They say that people who can do good research and write high-quality code are unicorns. Take this course and discover the magic!</p>
+
+# Best Practices
+
+<p class="chapter__description">
+    The goal of this course is to transform you into a Python expert, and so the first chapter starts off with best practices when writing functions. You'll cover docstrings and why they matter and how to know when you need to turn a chunk of code into a function. You will also learn the details of how Python passes arguments to functions, as well as some common gotchas that can cause debugging headaches when calling functions.
+  </p>
+
+## Docstrings
+
+
+
+### Crafting a docstring
+
+
+<div class>
+<p>You've decided to write the world's greatest open-source natural language processing Python package. It will revolutionize working with free-form text, the way <code>numpy</code> did for arrays, <code>pandas</code> did for tabular data, and <code>scikit-learn</code> did for machine learning.</p>
+<p>The first function you write is <code>count_letter()</code>. It takes a string and a single letter and returns the number of times the letter appears in the string. You want the users of your open-source package to be able to understand how this function works easily, so you will need to give it a docstring. Build up a Google Style docstring for this function by following these steps.</p>
+</div>
+
+<li>Copy the following string and add it as the docstring for the function: <code>Count the number of times `letter` appears in `content`.</code>
+</li>
+<li>Now add the arguments section, using the Google style for docstrings. Use <code>str</code> to indicate a string.</li>
+<li>Add a returns section that informs the user the return value is an <code>int</code>.</li>
+<li>Finally, add some information about the <code>ValueError</code> that gets raised when the arguments aren't correct.</li>
+
+<div>
+
+
+```python
+def count_letter(content, letter):
+  """Count the number of times `letter` appears in `content`.
+
+  Args:
+    content (str): The string to search.
+    letter (str): The letter to search for.
+
+  Returns:
+    int
+
+  # Add a section detailing what errors might be raised
+  Raises:
+    ValueError: If `letter` is not a one-character string.
+  """
+  if (not isinstance(letter, str)) or len(letter) != 1:
+    raise ValueError('`letter` must be a single character string.')
+  return len([char for char in content if char == letter])
+```
+
+</div>
+
+<p class="">What a delightful docstring! While it does require a bit more typing, the information presented here will make it very easy for others to use this code in the future. Remember that even though computers execute it, code is actually written for humans to read (otherwise you'd just be writing the 1s and 0s that the computer operates on).</p>
+
+### Retrieving docstrings
+
+
+<div class>
+<p>You and a group of friends are working on building an amazing new Python IDE (integrated development environment -- like PyCharm, Spyder, Eclipse, Visual Studio, etc.). The team wants to add a feature that displays a tooltip with a function's docstring whenever the user starts typing the function name. That way, the user doesn't have to go elsewhere to look up the documentation for the function they are trying to use. You've been asked to complete the <code>build_tooltip()</code> function that retrieves a docstring from an arbitrary function.</p>
+<p>You will be reusing the <code>count_letter()</code> function that you developed in the last exercise to show that we can properly extract its docstring.</p>
+</div>
+<div class="exercise--instructions__content"><p>Begin by getting the docstring for the function <code>count_letter()</code>. Use an attribute of the <code>count_letter()</code> function.</p></div>
+
+<div>
+
+
+```python
+# Get the "count_letter" docstring by using an attribute of the function
+docstring = count_letter.__doc__
+
+border = '#' * 28
+print('{}\n{}\n{}'.format(border, docstring, border))
+```
+
+```
+## ############################
+## Count the number of times `letter` appears in `content`.
+## 
+##   Args:
+##     content (str): The string to search.
+##     letter (str): The letter to search for.
+## 
+##   Returns:
+##     int
+## 
+##   # Add a section detailing what errors might be raised
+##   Raises:
+##     ValueError: If `letter` is not a one-character string.
+##   
+## ############################
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Now use a function from the <code>inspect</code> module to get a better-formatted version of <code>count_letter()</code>'s docstring.</p></div>
+
+<div>
+
+
+```python
+import inspect
+
+# Inspect the count_letter() function to get its docstring
+docstring = inspect.getdoc(count_letter)
+
+border = '#' * 28
+print('{}\n{}\n{}'.format(border, docstring, border))
+```
+
+```
+## ############################
+## Count the number of times `letter` appears in `content`.
+## 
+## Args:
+##   content (str): The string to search.
+##   letter (str): The letter to search for.
+## 
+## Returns:
+##   int
+## 
+## # Add a section detailing what errors might be raised
+## Raises:
+##   ValueError: If `letter` is not a one-character string.
+## ############################
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Now create a <code>build_tooltip()</code> function that can extract the docstring from <em>any</em> function that we pass to it.</p></div>
+
+<div>
+
+
+```python
+import inspect
+
+def build_tooltip(function):
+  """Create a tooltip for any function that shows the
+  function's docstring.
+
+  Args:
+    function (callable): The function we want a tooltip for.
+
+  Returns:
+    str
+  """
+  # Get the docstring for the "function" argument by using inspect
+  docstring = inspect.getdoc(function)
+  border = '#' * 28
+  return '{}\n{}\n{}'.format(border, docstring, border)
+
+print(build_tooltip(count_letter))
+```
+
+```
+## ############################
+## Count the number of times `letter` appears in `content`.
+## 
+## Args:
+##   content (str): The string to search.
+##   letter (str): The letter to search for.
+## 
+## Returns:
+##   int
+## 
+## # Add a section detailing what errors might be raised
+## Raises:
+##   ValueError: If `letter` is not a one-character string.
+## ############################
+```
+
+```python
+print(build_tooltip(range))
+```
+
+```
+## ############################
+## range(stop) -> range object
+## range(start, stop[, step]) -> range object
+## 
+## Return an object that produces a sequence of integers from start (inclusive)
+## to stop (exclusive) by step.  range(i, j) produces i, i+1, i+2, ..., j-1.
+## start defaults to 0, and stop is omitted!  range(4) produces 0, 1, 2, 3.
+## These are exactly the valid indices for a list of 4 elements.
+## When step is given, it specifies the increment (or decrement).
+## ############################
+```
+
+```python
+print(build_tooltip(print))
+```
+
+```
+## ############################
+## print(value, ..., sep=' ', end='\n', file=sys.stdout, flush=False)
+## 
+## Prints the values to a stream, or to sys.stdout by default.
+## Optional keyword arguments:
+## file:  a file-like object (stream); defaults to the current sys.stdout.
+## sep:   string inserted between values, default a space.
+## end:   string appended after the last value, default a newline.
+## flush: whether to forcibly flush the stream.
+## ############################
+```
+
+</div>
+
+<p class="">This IDE is going to be an incredibly delightful experience for your users now! Notice how the <code>count_letter.__doc__</code> version of the docstring had strange whitespace at the beginning of all but the first line. That's because the docstring is indented to line up visually when reading the code. But when we want to print the docstring, removing those leading spaces with <code>inspect.getdoc()</code> will look much better.</p>
+
+### Docstrings to the rescue!
+
+
+<div class>
+<p>Some maniac has corrupted your installation of <code>numpy</code>! All of the functions still exist, but they've been given random names. You desperately need to call the <code>numpy.histogram()</code> function and you don't have time to reinstall the package. Fortunately for you, the maniac didn't think to alter the docstrings, and you know how to access them. <code>numpy</code> has a lot of functions in it, so we've narrowed it down to four possible functions that could be <code>numpy.histogram()</code> in disguise: <code>numpy.leyud()</code>, <code>numpy.uqka()</code>, <code>numpy.fywdkxa()</code> or <code>numpy.jinzyxq()</code>.</p>
+<p>Examine each of these functions' docstrings in the IPython shell to determine which of them is actually <code>numpy.histogram()</code>.</p>
+</div>
+
+- [ ] <code>numpy.leyud()</code>
+- [ ] <code>numpy.uqka()</code>
+- [x] <code>numpy.fywdkxa()</code>
+- [ ] <code>numpy.jinzyxq()</code>
+
+<p class="">You found it! <code>numpy.fywdkxa()</code> is actually <code>numpy.histogram()</code> in disguise. If you've spent any time browsing numpy's online documentation, you will notice that it is built directly from the docstrings. There are some wonderful tools like <code>sphinx</code> and <code>pydoc</code> that will automatically generate online documentation for you based off of your docstrings.</p>
+
+## DRY and &quot;Do One Thing&quot;
+
+
+
+### Extract a function
+
+
+<div class>
+<p>While you were developing a model to predict the likelihood of a student graduating from college, you wrote this bit of code to get the z-scores of students' yearly GPAs. Now you're ready to turn it into a production-quality system, so you need to do something about the repetition. Writing a function to calculate the z-scores would improve this code.</p>
+<pre><code># Standardize the GPAs for each year
+df['y1_z'] = (df.y1_gpa - df.y1_gpa.mean()) / df.y1_gpa.std()
+df['y2_z'] = (df.y2_gpa - df.y2_gpa.mean()) / df.y2_gpa.std()
+df['y3_z'] = (df.y3_gpa - df.y3_gpa.mean()) / df.y3_gpa.std()
+df['y4_z'] = (df.y4_gpa - df.y4_gpa.mean()) / df.y4_gpa.std()
+</code></pre>
+<p><em>Note: <code>df</code> is a pandas DataFrame where each row is a student with 4 columns of yearly student GPAs: <code>y1_gpa</code>, <code>y2_gpa</code>, <code>y3_gpa</code>, <code>y4_gpa</code></em></p>
+</div>
+
+<div>
+
+
+```python
+# edited/added
+import pandas as pd
+df = pd.read_csv("datasets/Writing-Functions-in-Python/students.csv")
+```
+
+</div>
+<li>Finish the function so that it returns the z-scores of a column.</li>
+<li>Use the function to calculate the z-scores for each year (<code>df['y1_z']</code>, <code>df['y2_z']</code>, etc.) from the raw GPA scores (<code>df.y1_gpa</code>, <code>df.y2_gpa</code>, etc.).</li>
+
+<div>
+
+
+```python
+def standardize(column):
+  """Standardize the values in a column.
+
+  Args:
+    column (pandas Series): The data to standardize.
+
+  Returns:
+    pandas Series: the values as z-scores
+  """
+  # Finish the function so that it returns the z-scores
+  z_score = (column - column.mean()) / column.std()
+  return z_score
+
+# Use the standardize() function to calculate the z-scores
+df['y1_z'] = standardize(df.y1_gpa)
+df['y2_z'] = standardize(df.y2_gpa)
+df['y3_z'] = standardize(df.y3_gpa)
+df['y4_z'] = standardize(df.y4_gpa)
+```
+
+</div>
+
+<p class="">That's a fantastic function! <code>standardize()</code> will probably be useful in other places in your code, and now it is easy to use, test, and update if you need to. It's also easier to tell what the code is doing because of the docstring and the name of the function.</p>
+
+### Split up a function
+
+
+<div class>
+<p>Another engineer on your team has written this function to calculate the mean and median of a sorted list. You want to show them how to split it into two simpler functions: <code>mean()</code> and <code>median()</code></p>
+<pre><code>def mean_and_median(values):
+  """Get the mean and median of a sorted list of `values`
+
+  Args:
+    values (iterable of float): A list of numbers
+
+  Returns:
+    tuple (float, float): The mean and median
+  """
+  mean = sum(values) / len(values)
+  midpoint = int(len(values) / 2)
+  if len(values) % 2 == 0:
+    median = (values[midpoint - 1] + values[midpoint]) / 2
+  else:
+    median = values[midpoint]
+
+  return mean, median
+</code></pre>
+</div>
+<div class="exercise--instructions__content"><p>Write the <code>mean()</code> function.</p></div>
+
+<div>
+
+
+```python
+def mean(values):
+  """Get the mean of a sorted list of values
+
+  Args:
+    values (iterable of float): A list of numbers
+
+  Returns:
+    float
+  """
+  # Write the mean() function
+  mean = sum(values) / len(values)
+  return mean
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Write the <code>median()</code> function.</p></div>
+
+<div>
+
+
+```python
+def median(values):
+  """Get the median of a sorted list of values
+
+  Args:
+    values (iterable of float): A list of numbers
+
+  Returns:
+    float
+  """
+  # Write the median() function
+  midpoint = int(len(values) / 2)
+  if len(values) % 2 == 0:
+    median = (values[midpoint - 1] + values[midpoint]) / 2
+  else:
+    median = values[midpoint]
+  return median
+```
+
+</div>
+
+<p class="">A perfect split! Each function does one thing and does it well. Using, testing, and maintaining these will be a breeze (although you'll probably just use <code>numpy.mean()</code> and <code>numpy.median()</code> for this in real life).</p>
+
+## Pass by assignment
+
+
+
+### Mutable or immutable?
+
+<div class=""><p>The following function adds a mapping between a string and the lowercase version of that string to a dictionary. What do you expect the values of <code>d</code> and <code>s</code> to be after the function is called?</p>
+<pre><code>def store_lower(_dict, _string):
+  """Add a mapping between `_string` and a lowercased version of `_string` to `_dict`
+
+  Args:
+    _dict (dict): The dictionary to update.
+    _string (str): The string to add.
+  """
+  orig_string = _string
+  _string = _string.lower()
+  _dict[orig_string] = _string
+
+d = {}
+s = 'Hello'
+
+store_lower(d, s)
+</code></pre></div>
+
+- [ ] <code>d = {}</code>, <code>s = 'Hello'</code>
+- [ ] <code>d = {}</code>, <code>s = 'hello'</code>
+- [x] <code>d = {'Hello': 'hello'}</code>, <code>s = 'Hello'</code>
+- [ ] <code>d = {'Hello': 'hello'}</code>, <code>s = 'hello'</code>
+- [ ] <code>d = {'hello': 'hello'}</code>, <code>s = 'hello'</code>
+
+<p class="dc-completion-pane__message dc-u-maxw-100pc">Correct! Dictionaries are mutable objects in Python, so the function can directly change it in the <code>_dict[_orig_string] = _string</code> statement. Strings, on the other hand, are immutable. When the function creates the lowercase version, it has to <em>assign</em> it to the <code>_string</code> variable. This disconnects what happens to <code>_string</code> from the external <code>s</code> variable.</p>
+
+### Best practice for default arguments
+
+
+<div class>
+<p>One of your co-workers (who obviously didn't take this course) has written this function for adding a column to a pandas DataFrame. Unfortunately, they used a mutable variable as a default argument value! Please show them a better way to do this so that they don't get unexpected behavior.</p>
+<pre><code>def add_column(values, df=pandas.DataFrame()):
+  """Add a column of `values` to a DataFrame `df`.
+  The column will be named "col_&lt;n&gt;" where "n" is
+  the numerical index of the column.
+
+  Args:
+    values (iterable): The values of the new column
+    df (DataFrame, optional): The DataFrame to update.
+      If no DataFrame is passed, one is created by default.
+
+  Returns:
+    DataFrame
+  """
+  df['col_{}'.format(len(df.columns))] = values
+  return df
+</code></pre>
+</div>
+
+<li>Change the default value of <code>df</code> to an immutable value to follow best practices.</li>
+<li>Update the code of the function so that a new DataFrame is created if the caller didn't pass one.</li>
+
+<div>
+
+
+```python
+# Use an immutable variable for the default argument
+def better_add_column(values, df=None):
+  """Add a column of `values` to a DataFrame `df`.
+  The column will be named "col_<n>" where "n" is
+  the numerical index of the column.
+
+  Args:
+    values (iterable): The values of the new column
+    df (DataFrame, optional): The DataFrame to update.
+      If no DataFrame is passed, one is created by default.
+
+  Returns:
+    DataFrame
+  """
+  # Update the function to create a default DataFrame
+  if df is None:
+    df = pandas.DataFrame()
+  df['col_{}'.format(len(df.columns))] = values
+  return df
+```
+
+</div>
+
+<p class="">Beautiful and best practice! When you need to set a mutable variable as a default argument, always use <code>None</code> and then set the value in the body of the function. This prevents unexpected behavior like adding multiple columns if you call the function more than once.</p>
+
+# Context Managers
+
+<p class="chapter__description">
+    If you've ever seen the "with" keyword in Python and wondered what its deal was, then this is the chapter for you! Context managers are a convenient way to provide connections in Python and guarantee that those connections get cleaned up when you are done using them. This chapter will show you how to use context managers, as well as how to write your own.
+  </p>
+  
+## Using context managers
+
+
+
+### The number of cats
+
+
+<div class><p>You are working on a natural language processing project to determine what makes great writers so great. Your current hypothesis is that great writers talk about cats <em>a lot</em>. To prove it, you want to count the number of times the word "cat" appears in "Alice's Adventures in Wonderland" by Lewis Carroll. You have already downloaded a text file, <code>alice.txt</code>, with the entire contents of this great book.</p></div>
+
+<li>Use the <code>open()</code> context manager to open <code>alice.txt</code> and assign the file to the <code>file</code> variable.</li>
+
+<div>
+
+
+```python
+# Open "alice.txt" and assign the file to "file"
+with open('datasets/Writing-Functions-in-Python/alice.txt') as file:
+  text = file.read()
+
+n = 0
+for word in text.split():
+  if word.lower() in ['cat', 'cats']:
+    n += 1
+
+print('Lewis Carroll uses the word "cat" {} times'.format(n))
+```
+
+```
+## Lewis Carroll uses the word "cat" 24 times
+```
+
+</div>
+
+<p class="">Cool cat counting! By opening the file using the <code>with open()</code> statement, you were able to read in the text of the file. More importantly, when you were done reading the text, the context manager closed the file for you.</p>
+
+### The speed of cats
+
+
+<div class>
+<p>You're working on a new web service that processes Instagram feeds to identify which pictures contain cats (don't ask why -- it's the internet). The code that processes the data is slower than you would like it to be, so you are working on tuning it up to run faster. Given an image, <code>image</code>, you have two functions that can process it:</p>
+<ul>
+<li><code>process_with_numpy(image)</code></li>
+<li><code>process_with_pytorch(image)</code></li>
+</ul>
+<p>Your colleague wrote a context manager, <code>timer()</code>, that will print out how long the code inside the context block takes to run. She is suggesting you use it to see which of the two options is faster. Time each function to determine which one to use in your web service.</p>
+</div>
+
+<div>
+
+
+
+</div>
+<li>Use the <code>timer()</code> context manager to time how long <code>process_with_numpy(image)</code> takes to run.</li>
+<li>Use the <code>timer()</code> context manager to time how long <code>process_with_pytorch(image)</code> takes to run.</li>
+
+<div>
+
+
+```python
+# edited/added
+import numpy as np
+import time
+import contextlib
+def get_image_from_instagram():
+  return np.random.rand(84, 84)
+def _process_pic(n_sec):
+  print('Processing', end='', flush=True)
+  for i in range(10):
+    print('.', end='' if i < 9 else 'done!\n', flush=True)
+    time.sleep(n_sec)
+def process_with_pytorch(p):
+  _process_pic(0.0328)
+def process_with_numpy(p):
+  _process_pic(0.1521)
+@contextlib.contextmanager
+def timer():
+  """Time how long code in the context block takes to run."""
+  t0 = time.time()
+  try:
+      yield
+  except:
+    raise
+  finally:
+    t1 = time.time()
+    print('Elapsed: {:.2f} seconds'.format(t1 - t0))
+    
+image = get_image_from_instagram()
+
+# Time how long process_with_numpy(image) takes to run
+with timer():
+  print('Numpy version')
+  process_with_numpy(image)
+```
+
+```
+## Numpy version
+## Processing..........done!
+## Elapsed: 1.52 seconds
+```
+
+</div>
+
+<div>
+
+
+```python
+# Time how long process_with_pytorch(image) takes to run
+with timer():
+  print('Pytorch version')
+  process_with_pytorch(image)
+```
+
+```
+## Pytorch version
+## Processing..........done!
+## Elapsed: 0.33 seconds
+```
+
+</div>
+
+<p class="">Terrific timing! Now that you know the <code>pytorch</code> version is faster, you can use it in your web service to ensure your users get the rapid response time they expect. <br><br> You may have noticed there was no <code>as &lt;variable name&gt;</code> at the end of the <code>with</code> statement in <code>timer()</code> context manager. That is because <code>timer()</code> is a context manager that does not return a value, so the <code>as &lt;variable name&gt;</code> at the end of the <code>with</code> statement isn't necessary. In the next lesson, you'll learn how to write your own context managers like <code>timer()</code>.</p>
+
+## Writing context managers
+
+
+
+### The timer() context manager
+
+
+<div class><p>A colleague of yours is working on a web service that processes Instagram photos. Customers are complaining that the service takes too long to identify whether or not an image has a cat in it, so your colleague has come to you for help. You decide to write a context manager that they can use to time how long their functions take to run.</p></div>
+
+<li>Add a decorator from the <code>contextlib</code> module to the <code>timer()</code> function that will make it act like a context manager.</li>
+<li>Send control from the <code>timer()</code> function to the context block.</li>
+
+<div>
+
+
+```python
+# Add a decorator that will make timer() a context manager
+@contextlib.contextmanager
+def timer():
+  """Time the execution of a context block.
+
+  Yields:
+    None
+  """
+  start = time.time()
+  # Send control back to the context block
+  yield
+  end = time.time()
+  print('Elapsed: {:.2f}s'.format(end - start))
+
+with timer():
+  print('This should take approximately 0.25 seconds')
+  time.sleep(0.25)
+```
+
+```
+## This should take approximately 0.25 seconds
+## Elapsed: 0.25s
+```
+
+</div>
+
+<p class="">You're managing context like a boss! And your colleague can now use your <code>timer()</code> context manager to figure out which of their functions is running too slow. Notice that the three elements of a context manager are all here: a function definition, a yield statement, and the <code>@contextlib.contextmanager</code> decorator. It's also worth noticing that <code>timer()</code> is a context manager that does not return an explicit value, so <code>yield</code> is written by itself without specifying anything to return.</p>
+
+### A read-only open() context manager
+
+
+<div class>
+<p>You have a bunch of data files for your next deep learning project that took you months to collect and clean. It would be <em>terrible</em> if you accidentally overwrote one of those files when trying to read it in for training, so you decide to create a read-only version of the <code>open()</code> context manager to use in your project.</p>
+<p>The regular <code>open()</code> context manager:</p>
+<ul>
+<li>takes a filename and a mode (<code>'r'</code> for read, <code>'w'</code> for write, or <code>'a'</code> for append)</li>
+<li>opens the file for reading, writing, or appending</li>
+<li>yields control back to the context, along with a reference to the file</li>
+<li>waits for the context to finish</li>
+<li>and then closes the file before exiting</li>
+</ul>
+<p>Your context manager will do the same thing, except it will <em>only</em> take the filename as an argument and it will only open the file for reading.</p>
+</div>
+
+<li>Yield control from <code>open_read_only()</code> to the context block, ensuring that the <code>read_only_file</code> object gets assigned to <code>my_file</code>.</li>
+<li>Use <code>read_only_file</code>'s <code>.close()</code> method to ensure that you don't leave open files lying around.</li>
+
+<div>
+
+
+```python
+@contextlib.contextmanager
+def open_read_only(filename):
+  """Open a file in read-only mode.
+
+  Args:
+    filename (str): The location of the file to read
+
+  Yields:
+    file object
+  """
+  read_only_file = open(filename, mode='r')
+  # Yield read_only_file so it can be assigned to my_file
+  yield read_only_file
+  # Close read_only_file
+  read_only_file.close()
+
+with open_read_only('datasets/Writing-Functions-in-Python/my_file.txt') as my_file:
+  print(my_file.read())
+```
+
+```
+##     Congratulations! You wrote a context manager that acts like "open()" but operates in read-only mode!
+```
+
+</div>
+
+<p class="">That is a radical read-only context manager! Now you can relax, knowing that every time you use <code>with open_read_only()</code> your files are safe from being accidentally overwritten. This function is an example of a context manager that <em>does</em> return a value, so we write <code>yield read_only_file</code> instead of just <code>yield</code>. Then the <code>read_only_file</code> object gets assigned to <code>my_file</code> in the <code>with</code> statement so that whoever is using your context can call its <code>.read()</code> method in the context block.</p>
+
+## Advanced topics
+
+
+
+### Context manager use cases
+
+<div class=""><p>Which of the following would <strong>NOT</strong> be a good opportunity to use a context manager?</p></div>
+
+- [ ] A function that starts a timer that keeps track of how long some block of code takes to run.
+- [x] A function that prints all of the prime numbers between 2 and some value <code>n</code>.
+- [ ] A function that connects to a smart thermostat so that it can be programmed remotely.
+- [ ] A function that prevents multiple users from updating an online spreadsheet at the same time by locking access to the spreadsheet before every operation.
+
+<p class="dc-completion-pane__message dc-u-maxw-100pc">Correct! While you <em>might</em> be able to do this with a context manager, it would make much more sense just to do it with a normal function.</p>
+
+### Scraping the NASDAQ
+
+
+<div class>
+<p>Training deep neural nets is expensive! You might as well invest in NVIDIA stock since you're spending so much on GPUs. To pick the best time to invest, you are going to collect and analyze some data on how their stock is doing. The context manager <code>stock('NVDA')</code> will connect to the NASDAQ and return an object that you can use to get the latest price by calling its <code>.price()</code> method.</p>
+<p>You want to connect to <code>stock('NVDA')</code> and record 10 timesteps of price data by writing it to the file <code>NVDA.txt</code>.</p>
+<p>You will notice the use of an underscore when iterating over the for loop. If this is confusing to you, don't worry. It could easily be replaced with <code>i</code>, if we planned to do something with it, like use it as an index. Since we won't be using it, we can use a dummy operator, <code>_</code>, which doesn't use any additional memory.</p>
+</div>
+
+<div>
+
+
+
+</div>
+<li>Use the <code>stock('NVDA')</code> context manager and assign the result to <code>nvda</code>.</li>
+<li>Open a file for writing with <code>open('NVDA.txt', 'w')</code> and assign the file object to <code>f_out</code> so you can record the price over time.</li>
+
+<div>
+
+
+```python
+# edited/added
+class MockStock:
+    def __init__(self, loc, scale):
+        self.loc = loc
+        self.scale = scale
+        self.recent = list(np.random.laplace(loc, scale, 2))
+    def price(self):
+        sign = np.sign(self.recent[1] - self.recent[0])
+        # 70% chance of going same direction
+        sign = 1 if sign == 0 else (sign if np.random.rand() > 0.3 else -1 * sign)
+        new = self.recent[1] + sign * np.random.rand() / 10.0
+        self.recent = [self.recent[1], new]
+        return new
+@contextlib.contextmanager
+def stock(symbol):
+    base = 140.00
+    scale = 1.0
+    mock = MockStock(base, scale)
+    print('Opening stock ticker for {}'.format(symbol))
+    yield mock
+    print('Closing stock ticker')
+    
+# Use the "stock('NVDA')" context manager
+# and assign the result to the variable "nvda"
+with stock('outputs/NVDA') as nvda:
+  # Open 'NVDA.txt' for writing as f_out
+  with open('datasets/Writing-Functions-in-Python/NVDA.txt', 'w') as f_out:
+    for _ in range(10):
+      value = nvda.price()
+      print('Logging ${:.2f} for NVDA'.format(value))
+      f_out.write('{:.2f}\n'.format(value))
+```
+
+```
+## Opening stock ticker for outputs/NVDA
+## Logging $140.83 for NVDA
+## 7
+## Logging $140.79 for NVDA
+## 7
+## Logging $140.75 for NVDA
+## 7
+## Logging $140.69 for NVDA
+## 7
+## Logging $140.63 for NVDA
+## 7
+## Logging $140.59 for NVDA
+## 7
+## Logging $140.68 for NVDA
+## 7
+## Logging $140.63 for NVDA
+## 7
+## Logging $140.61 for NVDA
+## 7
+## Logging $140.53 for NVDA
+## 7
+## Closing stock ticker
+```
+
+</div>
+
+<p class="">Super stock scraping! Now you can monitor the NVIDIA stock price and decide when is the exact right time to buy. Nesting context managers like this allows you to connect to the stock market (the <strong>CONNECT/DISCONNECT</strong> pattern) and write to a file (the <strong>OPEN/CLOSE</strong> pattern) at the same time.</p>
+
+### Changing the working directory
+
+
+<div class>
+<p>You are using an open-source library that lets you train deep neural networks on your data. Unfortunately, during training, this library writes out checkpoint models (i.e., models that have been trained on a portion of the data) to the current working directory. You find that behavior frustrating because you don't want to have to launch the script from the directory where the models will be saved.</p>
+<p>You decide that one way to fix this is to write a context manager that changes the current working directory, lets you build your models, and then resets the working directory to its original location. You'll want to be sure that any errors that occur during model training don't prevent you from resetting the working directory to its original location.</p>
+</div>
+
+<li>Add a statement that lets you handle any errors that might occur inside the context.</li>
+<li>Add a statement that ensures <code>os.chdir(current_dir)</code> will be called, whether there was an error or not.</li>
+
+<div>
+
+
+```python
+# edited/added
+import os
+
+def in_dir(directory):
+  """Change current working directory to `directory`,
+  allow the user to run some code, and change back.
+  Args:
+    directory (str): The path to a directory to work in.
+  """
+  current_dir = os.getcwd()
+  os.chdir(directory)
+  # Add code that lets you handle errors
+  try:
+    yield
+  # Ensure the directory is reset,
+  # whether there was an error or not
+  finally:
+    os.chdir(current_dir)
+```
+
+</div>
+
+<p class="">Excellent error handling! Now, even if someone writes buggy code when using your context manager, you will be sure to change the current working directory back to what it was when they called <code>in_dir()</code>. This is important to do because your users might be relying on their working directory being what it was when they started the script. <code>in_dir()</code> is a great example of the <strong>CHANGE/RESET</strong> pattern that indicates you should use a context manager.</p>
+
+# Decorators
+
+<p class="chapter__description">
+    Decorators are an extremely powerful concept in Python. They allow you to modify the behavior of a function without changing the code of the function itself. This chapter will lay the foundational concepts needed to thoroughly understand decorators (functions as objects, scope, and closures), and give you a good introduction into how decorators are used and defined. This deep dive into Python internals will set you up to be a superstar Pythonista.
+  </p>
+
+## Functions are objects
+
+
+
+### Building a command line data app
+
+
+<div class>
+<p>You are building a command line tool that lets a user interactively explore a dataset. We've defined four functions: <code>mean()</code>, <code>std()</code>, <code>minimum()</code>, and <code>maximum()</code> that users can call to analyze their data. Help finish this section of the code so that your users can call any of these functions by typing the function name at the input prompt.</p>
+<p><strong>Note</strong>: The function <code>get_user_input()</code> in this exercise is a mock version of asking the user to enter a command. It randomly returns one of the four function names. In real life, you would ask for input and wait until the user entered a value.</p>
+</div>
+
+<div>
+
+
+
+</div>
+<li>Add the functions <code>std()</code>, <code>minimum()</code>, and <code>maximum()</code> to the <code>function_map</code> dictionary, like we did with <code>mean()</code>.</li>
+<li>The name of the function the user wants to call is stored in <code>func_name</code>. Use the dictionary of functions, <code>function_map</code>, to call the chosen function and pass <code>data</code> as an argument.</li>
+
+<div>
+
+
+```python
+# edited/added
+import random
+def get_user_input(prompt='Type a command: '):
+    command = random.choice(['mean', 'std', 'minimum', 'maximum'])
+    print(prompt)
+    print('> {}'.format(command))
+    return command
+def mean(data):
+    print(data.mean())
+def std(data):
+    print(data.std())
+def minimum(data):
+    print(data.min())
+def maximum(data):
+    print(data.max())
+def load_data():
+    df = pd.DataFrame()
+    df['height'] = [72.1, 69.8, 63.2, 64.7]
+    df['weight'] = [198, 204, 164, 238]
+    return df
+  
+# Add the missing function references to the function map
+function_map = {
+  'mean': mean,
+  'std': std,
+  'minimum': minimum,
+  'maximum': maximum
+}
+
+data = load_data()
+print(data)
+```
+
+```
+##    height  weight
+## 0    72.1     198
+## 1    69.8     204
+## 2    63.2     164
+## 3    64.7     238
+```
+
+```python
+func_name = get_user_input()
+
+# Call the chosen function and pass "data" as an argument
+```
+
+```
+## Type a command: 
+## > maximum
+```
+
+```python
+function_map[func_name](data)
+```
+
+```
+## height     72.1
+## weight    238.0
+## dtype: float64
+```
+
+</div>
+
+<p class="">Phenomenal function referencing! By adding the functions to a dictionary, you can select the function based on the user's input. You could have also used a series of if/else statements, but putting them in a dictionary like this is much easier to read and maintain.</p>
+
+### Reviewing your co-worker's code
+
+
+<div class>
+<p>Your co-worker is asking you to review some code that they've written and give them some tips on how to get it ready for production. You know that having a docstring is considered best practice for maintainable, reusable functions, so as a sanity check you decide to run this <code>has_docstring()</code> function on all of their functions.</p>
+<pre><code>def has_docstring(func):
+  """Check to see if the function 
+  `func` has a docstring.
+
+  Args:
+    func (callable): A function.
+
+  Returns:
+    bool
+  """
+  return func.__doc__ is not None
+</code></pre>
+</div>
+<div class="exercise--instructions__content"><p>Call <code>has_docstring()</code> on your co-worker's <code>load_and_plot_data()</code> function.</p></div>
+
+<div>
+
+
+```python
+# edited/added
+def has_docstring(func):
+    """Check to see if the function 
+    `func` has a docstring.
+    Args:
+        func (callable): A function.
+    Returns:
+        bool
+    """
+    return func.__doc__ is not None
+def load_and_plot_data(filename):
+    """Load a data frame and plot each column.
+    Args:
+        filename (str): Path to a CSV file of data.
+    Returns:
+        pandas.DataFrame
+    """
+    df = pd.load_csv(filename, index_col=0)
+    df.hist()
+    return df
+  
+# Call has_docstring() on the load_and_plot_data() function
+ok = has_docstring(load_and_plot_data)
+
+if not ok:
+  print("load_and_plot_data() doesn't have a docstring!")
+else:
+  print("load_and_plot_data() looks ok")
+```
+
+```
+## load_and_plot_data() looks ok
+```
+
+</div>
+
+<li>Check if the function <code>as_2D()</code> has a docstring.</li>
+
+<div>
+
+
+```python
+# edited/added
+def as_2D(arr):
+    """Reshape an array to 2 dimensions"""
+    return np.array(arr).reshape(1, -1)
+  
+# Call has_docstring() on the as_2D() function
+ok = has_docstring(as_2D)
+
+if not ok:
+  print("as_2D() doesn't have a docstring!")
+else:
+  print("as_2D() looks ok")
+```
+
+```
+## as_2D() looks ok
+```
+
+</div>
+<li>Check if the function <code>log_product()</code> has a docstring.</li>
+
+<div>
+
+
+```python
+# edited/added
+def log_product(arr):
+    return np.exp(np.sum(np.log(arr)))
+  
+# Call has_docstring() on the log_product() function
+ok = has_docstring(log_product)
+
+if not ok:
+  print("log_product() doesn't have a docstring!")
+else:
+  print("log_product() looks ok")
+```
+
+```
+## log_product() doesn't have a docstring!
+```
+
+</div>
+
+<p class="">Awesome job writing functions as arguments! You have discovered that your co-worker forgot to write a docstring for <code>log_product()</code>. You have learned enough about best practices to tell them how to fix it. <br><br> To pass a function as an argument to another function, you had to determine which one you were calling and which one you were referencing. Keeping those straight will be important as we dig deeper into this chapter. From the function names can you think of any other advice you might give your co-worker about their functions?</p>
+
+### Returning functions for a math game
+
+
+<div class><p>You are building an educational math game where the player enters a math term, and your program returns a function that matches that term. For instance, if the user types "add", your program returns a function that adds two numbers. So far you've only implemented the "add" function. Now you want to include a "subtract" function.</p></div>
+
+<li>Define the <code>subtract()</code> function. It should take two arguments and return the first argument minus the second argument.</li>
+
+<div>
+
+
+```python
+def create_math_function(func_name):
+  if func_name == 'add':
+    def add(a, b):
+      return a + b
+    return add
+  elif func_name == 'subtract':
+    # Define the subtract() function
+    def subtract(a, b):
+      return a - b
+    return subtract
+  else:
+    print("I don't know that one")
+    
+add = create_math_function('add')
+print('5 + 2 = {}'.format(add(5, 2)))
+```
+
+```
+## 5 + 2 = 7
+```
+
+```python
+subtract = create_math_function('subtract')
+print('5 - 2 = {}'.format(subtract(5, 2)))
+```
+
+```
+## 5 - 2 = 3
+```
+
+</div>
+
+<p class="">Nice nested function! Now that you've implemented the <code>subtract()</code> function, you can keep going to include <code>multiply()</code> and <code>divide()</code>. I predict this game is going to be even bigger than Fortnite! <br><br> Notice how we assign the return value from <code>create_math_function()</code> to the <code>add</code> and <code>subtract</code> variables in the script. Since <code>create_math_function()</code> returns a function, we can then call <em>those variables</em> as functions.</p>
+
+## Scope
+
+
+
+### Understanding scope
+
+<div class=""><p>What four values does this script print?</p>
+<pre><code>x = 50
+
+def one():
+  x = 10
+
+def two():
+  global x
+  x = 30
+
+def three():
+  x = 100
+  print(x)
+
+for func in [one, two, three]:
+  func()
+  print(x)
+</code></pre></div>
+
+- [ ] 50, 30, 100, 50
+- [ ] 10, 30, 30, 30
+- [x] 50, 30, 100, 30
+- [ ] 10, 30, 100, 50
+- [ ] 50, 50, 50, 50
+
+<p class="dc-completion-pane__message dc-u-maxw-100pc">Good job! <code>one()</code> doesn't change the global <code>x</code>, so the first <code>print()</code> statement prints <code>50</code>. <br><br> <code>two()</code> <em>does</em> change the global <code>x</code> so the second <code>print()</code> statement prints <code>30</code>. <br><br> The <code>print()</code> statement inside the function <code>three()</code> is referencing the <code>x</code> value that is local to <code>three()</code>, so it prints <code>100</code>. <br><br> But <code>three()</code> does not change the global <code>x</code> value so the last <code>print()</code> statement prints <code>30</code> again.</p>
+
+### Modifying variables outside local scope
+
+
+<div class><p>Sometimes your functions will need to modify a variable that is outside of the local scope of that function. While it's generally not best practice to do so, it's still good to know how in case you need to do it. Update these functions so they can modify variables that would usually be outside of their scope.</p></div>
+<div class="exercise--instructions__content"><p>Add a keyword that lets us update <code>call_count</code> from inside the function.</p></div>
+
+<div>
+
+
+```python
+call_count = 0
+
+def my_function():
+  # Use a keyword that lets us update call_count 
+  global call_count
+  call_count += 1
+  
+  print("You've called my_function() {} times!".format(
+    call_count
+  ))
+  
+for _ in range(20):
+  my_function()
+```
+
+```
+## You've called my_function() 1 times!
+## You've called my_function() 2 times!
+## You've called my_function() 3 times!
+## You've called my_function() 4 times!
+## You've called my_function() 5 times!
+## You've called my_function() 6 times!
+## You've called my_function() 7 times!
+## You've called my_function() 8 times!
+## You've called my_function() 9 times!
+## You've called my_function() 10 times!
+## You've called my_function() 11 times!
+## You've called my_function() 12 times!
+## You've called my_function() 13 times!
+## You've called my_function() 14 times!
+## You've called my_function() 15 times!
+## You've called my_function() 16 times!
+## You've called my_function() 17 times!
+## You've called my_function() 18 times!
+## You've called my_function() 19 times!
+## You've called my_function() 20 times!
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Add a keyword that lets us modify <code>file_contents</code> from inside <code>save_contents()</code>.</p></div>
+
+<div>
+
+
+```python
+def read_files():
+  file_contents = None
+  
+  def save_contents(filename):
+    # Add a keyword that lets us modify file_contents
+    nonlocal file_contents
+    if file_contents is None:
+      file_contents = []
+    with open(filename) as fin:
+      file_contents.append(fin.read())
+      
+  for filename in ['datasets/Writing-Functions-in-Python/1984.txt', 'datasets/Writing-Functions-in-Python/MobyDick.txt', 'datasets/Writing-Functions-in-Python/CatsEye.txt']:
+    save_contents(filename)
+    
+  return file_contents
+
+print('\n'.join(read_files()))
+```
+
+```
+## It was a bright day in April, and the clocks were striking thirteen.
+## Call me Ishmael.
+## Time is not a line but a dimension, like the dimensions of space.
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Add a keyword to <code>done</code> in <code>check_is_done()</code> so that <code>wait_until_done()</code> eventually stops looping.</p></div>
+
+<div>
+
+
+```python
+def wait_until_done():
+  def check_is_done():
+    # Add a keyword so that wait_until_done() 
+    # doesn't run forever
+    global done
+    if random.random() < 0.1:
+      done = True
+      
+  while not done:
+    check_is_done()
+
+done = False
+wait_until_done()
+
+print('Work done? {}'.format(done))
+```
+
+```
+## Work done? True
+```
+
+</div>
+
+<p class="">Stellar scoping! By adding <code>global done</code> in <code>check_is_done()</code>, you ensure that the <code>done</code> being referenced is the one that was set to <code>False</code> before <code>wait_until_done()</code> was called. Without this keyword, <code>wait_until_done()</code> would loop forever because the <code>done = True</code> in <code>check_is_done()</code> would only be changing a variable that is local to <code>check_is_done()</code>. Understanding what scope your variables are in will help you debug tricky situations like this one.</p>
+
+## Closures
+
+
+
+### Checking for closure
+
+
+<div class><p>You're teaching your niece how to program in Python, and she is working on returning nested functions. She thinks she has written the code correctly, but she is worried that the returned function won't have the necessary information when called. Show her that all of the nonlocal variables she needs are in the new function's closure.</p></div>
+
+<li>Use an attribute of the <code>my_func()</code> function to show that it has a closure that is not <code>None</code>.</li>
+
+<div>
+
+
+
+</div>
+<li>Show that there are two variables in the closure.</li>
+
+<div>
+
+
+
+</div>
+<li>Get the values of the variables in the closure so you can show that they are equal to <code>[2, 17]</code>, the arguments passed to <code>return_a_func()</code>.</li>
+
+<div>
+
+
+```python
+def return_a_func(arg1, arg2):
+  def new_func():
+    print('arg1 was {}'.format(arg1))
+    print('arg2 was {}'.format(arg2))
+  return new_func
+    
+my_func = return_a_func(2, 17)
+
+# Show that my_func()'s closure is not None
+print(my_func.__closure__ is not None)
+```
+
+```
+## True
+```
+
+</div>
+
+<div>
+
+
+```python
+# Show that there are two variables in the closure
+print(len(my_func.__closure__) == 2)
+```
+
+```
+## True
+```
+
+</div>
+
+<div>
+
+
+```python
+# Get the values of the variables in the closure
+closure_values = [
+  my_func.__closure__[i].cell_contents for i in range(2)
+]
+print(closure_values == [2, 17])
+```
+
+```
+## True
+```
+
+</div>
+
+<p class="">Case closed! Your niece is relieved to see that the values she passed to <code>return_a_func()</code> are still accessible to the new function she returned, even after the program has left the scope of <code>return_a_func()</code>. <br><br> Values get added to a function's closure in the order they are defined in the enclosing function (in this case, <code>arg1</code> and then <code>arg2</code>), but only if they are used in the nested function. That is, if <code>return_a_func()</code> took a third argument (e.g., <code>arg3</code>) that wasn't used by <code>new_func()</code>, then it would not be captured in <code>new_func()</code>'s closure.</p>
+
+### Closures keep your values safe
+
+
+<div class>
+<p>You are still helping your niece understand closures. You have written the function <code>get_new_func()</code> that returns a nested function. The nested function <code>call_func()</code> calls whatever function was passed to <code>get_new_func()</code>. You've also written <code>my_special_function()</code> which simply prints a message that states that you are executing <code>my_special_function()</code>. </p>
+<p>You want to show your niece that no matter what you do to <code>my_special_function()</code> after passing it to <code>get_new_func()</code>, the new function still mimics the behavior of the original <code>my_special_function()</code> because it is in the new function's closure.</p>
+</div>
+<div class="exercise--instructions__content"><p>Show that you still get the original message even if you redefine <code>my_special_function()</code> to only print "hello".</p></div>
+
+<div>
+
+
+```python
+def my_special_function():
+  print('You are running my_special_function()')
+  
+def get_new_func(func):
+  def call_func():
+    func()
+  return call_func
+
+new_func = get_new_func(my_special_function)
+
+# Redefine my_special_function() to just print "hello"
+def my_special_function():
+  print("hello")
+
+new_func()
+```
+
+```
+## You are running my_special_function()
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Show that even if you delete <code>my_special_function()</code>, you can still call <code>new_func()</code> without any problems.</p></div>
+
+<div>
+
+
+```python
+def my_special_function():
+  print('You are running my_special_function()')
+  
+def get_new_func(func):
+  def call_func():
+    func()
+  return call_func
+
+new_func = get_new_func(my_special_function)
+
+# Delete my_special_function()
+del(my_special_function)
+
+new_func()
+```
+
+```
+## You are running my_special_function()
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Show that you still get the original message even if you overwrite <code>my_special_function()</code> with the new function.</p></div>
+
+<div>
+
+
+```python
+def my_special_function():
+  print('You are running my_special_function()')
+  
+def get_new_func(func):
+  def call_func():
+    func()
+  return call_func
+
+# Overwrite `my_special_function` with the new function
+my_special_function = get_new_func(my_special_function)
+
+my_special_function()
+```
+
+```
+## You are running my_special_function()
+```
+
+</div>
+
+<p class="">Well done! Your niece feels like she understands closures now. She has seen that you can modify, delete, or overwrite the values needed by the nested function, but the nested function can still access those values because they are stored safely in the function's closure. She even realized that you could run into memory issues if you wound up adding a very large array or object to the closure, and has resolved to keep her eye out for that sort of problem.</p>
+
+## Decorators
+
+
+
+### Using decorator syntax
+
+
+<div class><p>You have written a decorator called <code>print_args</code> that prints out all of the arguments and their values any time a function that it is decorating gets called.</p></div>
+<div class="exercise--instructions__content"><p>Decorate <code>my_function()</code> with the <code>print_args()</code> decorator by redefining the <code>my_function</code> variable.</p></div>
+
+<div>
+
+
+```python
+# edited/added
+def print_args(func):
+    sig = inspect.signature(func)
+    def wrapper(*args, **kwargs):
+        bound = sig.bind(*args, **kwargs).arguments
+        str_args = ', '.join(['{}={}'.format(k, v) for k, v in bound.items()])
+        print('{} was called with {}'.format(func.__name__, str_args))
+        return func(*args, **kwargs)
+    return wrapper
+  
+def my_function(a, b, c):
+  print(a + b + c)
+
+# Decorate my_function() with the print_args() decorator
+my_function = print_args(my_function)
+
+my_function(1, 2, 3)
+```
+
+```
+## my_function was called with a=1, b=2, c=3
+## 6
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Decorate <code>my_function()</code> with the <code>print_args()</code> decorator using decorator syntax.</p></div>
+
+<div>
+
+
+```python
+# Decorate my_function() with the print_args() decorator
+@print_args
+def my_function(a, b, c):
+  print(a + b + c)
+
+my_function(1, 2, 3)
+```
+
+```
+## my_function was called with a=1, b=2, c=3
+## 6
+```
+
+</div>
+
+<p class="">What a delightful decorator! Note that <code>@print_args</code> before the definition of <code>my_function</code> is exactly equivalent to <code>my_function = print_args(my_function)</code>. Remember, even though decorators are functions themselves, when you use decorator syntax with the <code>@</code> symbol you do not include the parentheses after the decorator name.</p>
+
+### Defining a decorator
+
+
+<div class><p>Your buddy has been working on a decorator that prints a "before" message before the decorated function is called and prints an "after" message after the decorated function is called. They are having trouble remembering how wrapping the decorated function is supposed to work. Help them out by finishing their <code>print_before_and_after()</code> decorator.</p></div>
+
+<li>Call the function being decorated and pass it the positional arguments <code>*args</code>.</li>
+<li>Return the new decorated function.</li>
+
+<div>
+
+
+```python
+def print_before_and_after(func):
+  def wrapper(*args):
+    print('Before {}'.format(func.__name__))
+    # Call the function being decorated with *args
+    func(*args)
+    print('After {}'.format(func.__name__))
+  # Return the nested function
+  return wrapper
+
+@print_before_and_after
+def multiply(a, b):
+  print(a * b)
+
+multiply(5, 10)
+```
+
+```
+## Before multiply
+## 50
+## After multiply
+```
+
+</div>
+
+<p class="">What a darling decorator! The decorator <code>print_before_and_after()</code> defines a nested function <code>wrapper()</code> that calls whatever function gets passed to <code>print_before_and_after()</code>. <code>wrapper()</code> adds a little something else to the function call by printing one message before the decorated function is called and another right afterwards. Since <code>print_before_and_after()</code> returns the new <code>wrapper()</code> function, we can use it as a decorator to decorate the <code>multiply()</code> function.</p>
+
+# More on Decorators
+
+<p class="chapter__description">
+    Now that you understand how decorators work under the hood, this chapter gives you a bunch of real-world examples of when and how you would write decorators in your own code. You will also learn advanced decorator concepts like how to preserve the metadata of your decorated functions and how to write decorators that take arguments.
+  </p>
+
+## Real-world examples
+
+
+
+### Print the return type
+
+
+<div class><p>You are debugging a package that you've been working on with your friends. Something weird is happening with the data being returned from one of your functions, but you're not even sure which function is causing the trouble. You know that sometimes bugs can sneak into your code when you are expecting a function to return one thing, and it returns something different. For instance, if you expect a function to return a numpy array, but it returns a list, you can get unexpected behavior. To ensure this is not what is causing the trouble, you decide to write a decorator, <code>print_return_type()</code>, that will print out the type of the variable that gets returned from every call of any function it is decorating.</p></div>
+
+<li>Create a nested function, <code>wrapper()</code>, that will become the new decorated function.</li>
+<li>Call the function being decorated.</li>
+<li>Return the new decorated function.</li>
+
+<div>
+
+
+```python
+def print_return_type(func):
+  # Define wrapper(), the decorated function
+  def wrapper(*args, **kwargs):
+    # Call the function being decorated
+    result = func(*args, **kwargs)
+    print('{}() returned type {}'.format(
+      func.__name__, type(result)
+    ))
+    return result
+  # Return the decorated function
+  return wrapper
+  
+@print_return_type
+def foo(value):
+  return value
+  
+print(foo(42))
+```
+
+```
+## foo() returned type <class 'int'>
+## 42
+```
+
+```python
+print(foo([1, 2, 3]))
+```
+
+```
+## foo() returned type <class 'list'>
+## [1, 2, 3]
+```
+
+```python
+print(foo({'a': 42}))
+```
+
+```
+## foo() returned type <class 'dict'>
+## {'a': 42}
+```
+
+</div>
+
+<p class="">Righteous return types! Your new decorator helps you examine the results of your functions at runtime. Now you can apply this decorator to every function in the package you are developing and run your scripts. Being able to examine the types of your return values will help you understand what is happening and will hopefully help you find the bug.</p>
+
+### Counter
+
+
+<div class><p>You're working on a new web app, and you are curious about how many times each of the functions in it gets called. So you decide to write a decorator that adds a counter to each function that you decorate. You could use this information in the future to determine whether there are sections of code that you could remove because they are no longer being used by the app.</p></div>
+
+<li>Call the function being decorated and return the result.</li>
+<li>Return the new decorated function.</li>
+<li>Decorate <code>foo()</code> with the <code>counter()</code> decorator.</li>
+
+<div>
+
+
+```python
+def counter(func):
+  def wrapper(*args, **kwargs):
+    wrapper.count += 1
+    # Call the function being decorated and return the result
+    return func(*args, **kwargs)
+  wrapper.count = 0
+  # Return the new decorated function
+  return wrapper
+
+# Decorate foo() with the counter() decorator
+@counter
+def foo():
+  print('calling foo()')
+  
+foo()
+```
+
+```
+## calling foo()
+```
+
+```python
+foo()
+```
+
+```
+## calling foo()
+```
+
+```python
+print('foo() was called {} times.'.format(foo.count))
+```
+
+```
+## foo() was called 2 times.
+```
+
+</div>
+
+<p class="">Cool counting! Now you can go decorate a bunch of functions with the <code>counter()</code> decorator, let your program run for a while, and then print out how many times each function was called. <br><br> It seems a little magical that you can reference the <code>wrapper()</code> function from <em>inside</em> the definition of <code>wrapper()</code> as we do here on line 3. That's just one of the many neat things about functions in Python -- any function, not just decorators.</p>
+
+## Decorators and metadata
+
+
+
+### Preserving docstrings when decorating functions
+
+
+<div class><p>Your friend has come to you with a problem. They've written some nifty decorators and added them to the functions in the open-source library they've been working on. However, they were running some tests and discovered that all of the docstrings have mysteriously disappeared from their decorated functions. Show your friend how to preserve docstrings and other metadata when writing decorators.</p></div>
+
+<li>Decorate <code>print_sum()</code> with the <code>add_hello()</code> decorator to replicate the issue that your friend saw - that the docstring disappears.</li>
+<li>To show your friend that they are printing the <code>wrapper()</code> function's docstring, not the <code>print_sum()</code> docstring, add the following docstring to <code>wrapper()</code>: </li>
+<li>Import a function that will allow you to add the metadata from <code>print_sum()</code> to the decorated version of <code>print_sum()</code>.</li>
+<li>Finally, decorate <code>wrapper()</code> so that the metadata from <code>func()</code> is preserved in the new decorated function.</li>
+
+<div>
+
+
+```python
+from functools import wraps
+
+def add_hello(func):
+  # Decorate wrapper() so that it keeps func()'s metadata
+  @wraps(func)
+  def wrapper(*args, **kwargs):
+    """Print 'hello' and then call the decorated function."""
+    print('Hello')
+    return func(*args, **kwargs)
+  return wrapper
+  
+@add_hello
+def print_sum(a, b):
+  """Adds two numbers and prints the sum"""
+  print(a + b)
+  
+print_sum(10, 20)
+```
+
+```
+## Hello
+## 30
+```
+
+```python
+print_sum_docstring = print_sum.__doc__
+print(print_sum_docstring)
+```
+
+```
+## Adds two numbers and prints the sum
+```
+
+</div>
+
+<p class="">That's a wrap! Your friend was concerned that they couldn't print the docstrings of their functions. They now realize that the strange behavior they were seeing was caused by the fact that they were accidentally printing the <code>wrapper()</code> docstring instead of the docstring of the original function. After adding <code>@wraps(func)</code> to all of their decorators, they see that the docstrings are back where they expect them to be.</p>
+
+### Measuring decorator overhead
+
+
+<div class>
+<p>Your boss wrote a decorator called <code>check_everything()</code> that they think is amazing, and they are insisting you use it on your function. However, you've noticed that when you use it to decorate your functions, it makes them run <em>much</em> slower. You need to convince your boss that the decorator is adding too much processing time to your function. To do this, you are going to measure how long the decorated function takes to run and compare it to how long the undecorated function would have taken to run. This is the decorator in question:</p>
+<pre><code>def check_everything(func):
+  @wraps(func)
+  def wrapper(*args, **kwargs):
+    check_inputs(*args, **kwargs)
+    result = func(*args, **kwargs)
+    check_outputs(result)
+    return result
+  return wrapper
+</code></pre>
+</div>
+
+<div>
+
+
+
+</div>
+<li>Call the original function instead of the decorated version by using an attribute of the function that the <code>wraps()</code> statement in your boss's decorator added to the decorated function.</li>
+
+<div>
+
+
+```python
+# edited/added
+def check_inputs(a, *args, **kwargs):
+  for value in a:
+    time.sleep(0.01)
+  print('Finished checking inputs')
+def check_outputs(a, *args, **kwargs):
+  for value in a:
+    time.sleep(0.01)
+  print('Finished checking outputs')
+def check_everything(func):
+  @wraps(func)
+  def wrapper(*args, **kwargs):
+    check_inputs(*args, **kwargs)
+    result = func(*args, **kwargs)
+    check_outputs(result)
+    return result
+  return wrapper
+
+@check_everything
+def duplicate(my_list):
+  """Return a new list that repeats the input twice"""
+  return my_list + my_list
+
+t_start = time.time()
+duplicated_list = duplicate(list(range(50)))
+```
+
+```
+## Finished checking inputs
+## Finished checking outputs
+```
+
+```python
+t_end = time.time()
+decorated_time = t_end - t_start
+
+t_start = time.time()
+# Call the original function instead of the decorated one
+duplicated_list = duplicate.__wrapped__(list(range(50)))
+t_end = time.time()
+undecorated_time = t_end - t_start
+
+print('Decorated time: {:.5f}s'.format(decorated_time))
+```
+
+```
+## Decorated time: 1.52713s
+```
+
+```python
+print('Undecorated time: {:.5f}s'.format(undecorated_time))
+```
+
+```
+## Undecorated time: 0.01312s
+```
+
+</div>
+
+<p class="">Wow! Your function ran approximately 10,000 times faster without your boss's decorator. At least they were smart enough to add <code>@wraps(func)</code> to the nested <code>wrapper()</code> function so that you were able to access the original function. You should show them the results of this test. Be sure to ask for a raise while you're at it!</p>
+
+## Decorators that take arguments
+
+
+
+### Run_n_times()
+
+
+<div class>
+<p>In the video exercise, I showed you an example of a decorator that takes an argument: <code>run_n_times()</code>. The code for that decorator is repeated below to remind you how it works. Practice different ways of applying the decorator to the function <code>print_sum()</code>. Then I'll show you a funny prank you can play on your co-workers.</p>
+<pre><code>def run_n_times(n):
+  """Define and return a decorator"""
+  def decorator(func):
+    def wrapper(*args, **kwargs):
+      for i in range(n):
+        func(*args, **kwargs)
+    return wrapper
+  return decorator
+</code></pre>
+</div>
+<div class="exercise--instructions__content"><p>Add the <code>run_n_times()</code> decorator to <code>print_sum()</code> using decorator syntax so that <code>print_sum()</code> runs 10 times.</p></div>
+
+<div>
+
+
+```python
+# edited/added
+def run_n_times(n):
+  """Define and return a decorator"""
+  def decorator(func):
+    def wrapper(*args, **kwargs):
+      for i in range(n):
+        func(*args, **kwargs)
+    return wrapper
+  return decorator
+
+# Make print_sum() run 10 times with the run_n_times() decorator
+@run_n_times(10)
+def print_sum(a, b):
+  print(a + b)
+  
+print_sum(15, 20)
+```
+
+```
+## 35
+## 35
+## 35
+## 35
+## 35
+## 35
+## 35
+## 35
+## 35
+## 35
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Use <code>run_n_times()</code> to create a decorator <code>run_five_times()</code> that will run any function five times.</p></div>
+
+<div>
+
+
+```python
+# Use run_n_times() to create the run_five_times() decorator
+run_five_times = run_n_times(5)
+
+@run_five_times
+def print_sum(a, b):
+  print(a + b)
+  
+print_sum(4, 100)
+```
+
+```
+## 104
+## 104
+## 104
+## 104
+## 104
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Here's the prank: use <code>run_n_times()</code> to modify the built-in <code>print()</code> function so that it always prints 20 times!</p></div>
+
+<div>
+
+
+```python
+# Modify the print() function to always run 20 times
+print = run_n_times(20)(print)
+
+print('What is happening?!?!')
+```
+
+```
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+## What is happening?!?!
+```
+
+</div>
+
+<p class="">Good job!<br>Good job!<br>Good job!<br><br>You've become an expert at using decorators. Notice how when you use decorator syntax for a decorator that takes arguments, you need to call the decorator by adding parentheses, but you don't add parenthesis for decorators that don't take arguments.<br><br><em>Warning: overwriting commonly used functions is probably not a great idea, so think twice before using these powers for evil.</em></p>
+
+### HTML Generator
+
+
+<div class>
+<p>You are writing a script that generates HTML for a webpage on the fly. So far, you have written two decorators that will add bold or italics tags to any function that returns a string. You notice, however, that these two decorators look very similar. Instead of writing a bunch of other similar looking decorators, you want to create one decorator, <code>html()</code>, that can take any pair of opening and closing tags.</p>
+<pre><code>def bold(func):
+  @wraps(func)
+  def wrapper(*args, **kwargs):
+    msg = func(*args, **kwargs)
+    return '&lt;b&gt;{}&lt;/b&gt;'.format(msg)
+  return wrapper
+</code></pre>
+<pre><code>def italics(func):
+  @wraps(func)
+  def wrapper(*args, **kwargs):
+    msg = func(*args, **kwargs)
+    return '&lt;i&gt;{}&lt;/i&gt;'.format(msg)
+  return wrapper
+</code></pre>
+</div>
+<div class="exercise--instructions__content"><p>Return the decorator and the decorated function from the correct places in the new <code>html()</code> decorator.</p></div>
+
+<div>
+
+
+```python
+def html(open_tag, close_tag):
+  def decorator(func):
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+      msg = func(*args, **kwargs)
+      return '{}{}{}'.format(open_tag, msg, close_tag)
+    # Return the decorated function
+    return wrapper
+  # Return the decorator
+  return decorator
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Use the <code>html()</code> decorator to wrap the return value of <code>hello()</code> in the strings <code>&lt;b&gt;</code> and <code>&lt;/b&gt;</code> (the HTML tags that mean "bold").</p></div>
+
+<div>
+
+
+```python
+# Make hello() return bolded text
+@html('<b>', '</b>')
+def hello(name):
+  return 'Hello {}!'.format(name)
+
+print(hello('Alice'))
+```
+
+```
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+## <b>Hello Alice!</b>
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Use <code>html()</code> to wrap the return value of <code>goodbye()</code> in the strings <code>&lt;i&gt;</code> and <code>&lt;/i&gt;</code> (the HTML tags that mean "italics").</p></div>
+
+<div>
+
+
+```python
+# Make goodbye() return italicized text
+@html('<i>', '</i>')
+def goodbye(name):
+  return 'Goodbye {}.'.format(name)
+  
+print(goodbye('Alice'))
+```
+
+```
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+## <i>Goodbye Alice.</i>
+```
+
+</div>
+
+<div class="exercise--instructions__content"><p>Use <code>html()</code> to wrap <code>hello_goodbye()</code> in a DIV, which is done by adding the strings <code>&lt;div&gt;</code> and <code>&lt;/div&gt;</code> tags around a string.</p></div>
+
+<div>
+
+
+```python
+# Wrap the result of hello_goodbye() in <div> and </div>
+@html('<div>', '</div>')
+def hello_goodbye(name):
+  return '\n{}\n{}\n'.format(hello(name), goodbye(name))
+  
+print(hello_goodbye('Alice'))
+```
+
+```
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+## <div>
+## <b>Hello Alice!</b>
+## <i>Goodbye Alice.</i>
+## </div>
+```
+
+</div>
+
+<p class="">That's some HTML hotness! With the new <code>html()</code> decorator you can focus on writing simple functions that return the information you want to display on the webpage and let the decorator take care of wrapping them in the appropriate HTML tags.</p>
+
+## Timeout(): a real world example
+
+
+
+### Tag your functions
+
+
+<div class>
+<p>Tagging something means that you have given that thing one or more strings that act as labels. For instance, we often tag emails or photos so that we can search for them later. You've decided to write a decorator that will let you tag your functions with an arbitrary list of tags. You could use these tags for many things:</p>
+<ul>
+<li>Adding information about who has worked on the function, so a user can look up who to ask if they run into trouble using it.</li>
+<li>Labeling functions as "experimental" so that users know that the inputs and outputs might change in the future.</li>
+<li>Marking any functions that you plan to remove in a future version of the code.</li>
+<li>Etc.</li>
+</ul>
+</div>
+
+<li>Define a new decorator, named <code>decorator()</code>, to return.</li>
+<li>Ensure the decorated function keeps its metadata.</li>
+<li>Call the function being decorated and return the result.</li>
+<li>Return the new decorator.</li>
+
+<div>
+
+
+```python
+def tag(*tags):
+  # Define a new decorator, named "decorator", to return
+  def decorator(func):
+    # Ensure the decorated function keeps its metadata
+    @wraps(func)
+    def wrapper(*args, **kwargs):
+      # Call the function being decorated and return the result
+      return func(*args, **kwargs)
+    wrapper.tags = tags
+    return wrapper
+  # Return the new decorator
+  return decorator
+
+@tag('test', 'this is a tag')
+def foo():
+  pass
+
+print(foo.tags)
+```
+
+```
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+## ('test', 'this is a tag')
+```
+
+</div>
+
+<p class="">Terrific tagging! With this new decorator, you can do some really interesting things. For instance, you could tag a bunch of image transforming functions, and then write code that searches for all of the functions that transform images and apply them, one after the other, on a given input image. What other neat uses can you come up with for this decorator?</p>
+
+### Check the return type
+
+
+<div class>
+<p>Python's flexibility around data types is usually cited as one of the benefits of the language. It can sometimes cause problems though if incorrect data types go unnoticed. You've decided that in order to ensure your code is doing exactly what you want it to do, you will explicitly check the return types in all of your functions and make sure they're returning what you expect. To do that, you are going to create a decorator that checks if the return type of the decorated function is correct.</p>
+<p><em>Note</em>: <code>assert</code> is a keyword that you can use to test whether something is true. If you type <code>assert condition</code> and <code>condition</code> is <code>True</code>, this function doesn't do anything. If <code>condition</code> is <code>False</code>, this function raises an error. The type of error that it raises is called an <code>AssertionError</code>.</p>
+</div>
+
+<li>Start by completing the <code>returns_dict()</code> decorator so that it raises an <code>AssertionError</code> if the return type of the decorated function is not a dictionary.</li>
+
+<div>
+
+
+```python
+def returns_dict(func):
+  # Complete the returns_dict() decorator
+  def wrapper(*args, **kwargs):
+    result = func(*args, **kwargs)
+    assert type(result) == dict
+    return result
+  return wrapper
+
+@returns_dict
+def foo(value):
+  return value
+
+try:
+  print(foo([1,2,3]))
+except AssertionError:
+  print('foo() did not return a dict!')
+```
+
+```
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+```
+
+</div>
+<li>Now complete the <code>returns()</code> decorator, which takes the expected return type as an argument.</li>
+
+<div>
+
+
+```python
+def returns(return_type):
+  # Write a decorator that raises an AssertionError if the
+  # decorated function returns a value that is not return_type
+  def decorator(func):
+    def wrapper(*args, **kwargs):
+      result = func(*args, **kwargs)
+      assert type(result) == return_type
+      return result
+    return wrapper
+  return decorator
+  
+@returns(dict)
+def foo(value):
+  return value
+
+try:
+  print(foo([1,2,3]))
+except AssertionError:
+  print('foo() did not return a dict!')
+```
+
+```
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+## foo() did not return a dict!
+```
+
+</div>
+
+<p class="">You did it! We took the training wheels off on this exercise, and you still did a great job. You know how to write your own decorators now, but even more importantly, you know why they work the way they do.</p>
+
+## Great job!
+
+### Great job!
+
+Great job! You've covered a lot in this course.
+
+### Chapter 1 - Best Practices
+
+In the first chapter, you learned how to make high-quality functions by giving them docstrings and by making sure that they only do one thing. Remembering the acronym DRY, or "Don't Repeat Yourself", helped you notice when you needed to pull part of your code into a reusable function. You also learned about how Python passes arguments to functions and the difference between mutable and immutable variables.
+
+### Chapter 2 - Context Managers
+
+In the chapter on context managers, you learned how to use the keyword "with" to enter and then exit a context. You also learned how to write your own context managers by using the contextmanager() decorator.
+
+### Chapter 3 - Decorators
+
+You also spent a lot of time in this course understanding decorators: how they work, how to use them, and how to write decorators of your own.
+
+### Chapter 4 - More on Decorators
+
+Finally, in chapter 4, you learned how to use functools.wraps() to make sure your decorated functions maintain their metadata.
+
+### Chapter 4 - More on Decorators
+
+And you learned how to write decorators that take arguments.
+
+### Thank you!
+
+It has been an honor to spend this time with you. I wanted to let you know that I'll be donating a portion of the proceeds from this course to WiMLDS, a non-profit that helps support and promote women in the fields of machine learning and data science. I'll be looking forward to hearing about all of the amazing things you do with Python in the future!
