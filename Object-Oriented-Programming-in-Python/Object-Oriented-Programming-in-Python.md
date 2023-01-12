@@ -1,0 +1,2747 @@
+<h3><a href="https://github.com/mclix85/datacamp" target="_blank">View Source Code</a></h3>
+
+<h3>Course Description</h3>
+
+<p class="course__description">You've done your analysis, built your report, and trained a model. What's next? Well, if you want to deploy your model into production, your code will need to be more reliable than exploratory scripts in a Jupyter notebook. Writing Functions in Python will give you a strong foundation in writing complex and beautiful functions so that you can contribute research and engineering skills to your team. You'll learn useful tricks, like how to write context managers and decorators. You'll also learn best practices around how to write maintainable reusable functions with good documentation. They say that people who can do good research and write high-quality code are unicorns. Take this course and discover the magic!</p>
+
+Object-oriented programming (OOP) is a widely used programming paradigm that reduces development times—making it easier to read, reuse, and maintain your code. OOP shifts the focus from thinking about code as a sequence of actions to looking at your program as a collection of objects that interact with each other. In this course, you’ll learn how to create classes, which act as the blueprints for every object in Python. You’ll then leverage principles called inheritance and polymorphism to reuse and optimize code. Dive in and learn how to create beautiful code that’s clean and efficient!
+
+# OOP Fundamentals
+
+<p class="chapter__description">
+    In this chapter, you'll learn what object-oriented programming (OOP) is, how it differs from procedural-programming, and how it can be applied. You'll then define your own classes, and learn how to create methods, attributes, and constructors.
+  </p>
+  
+## What is OOP?
+
+
+
+### OOP termininology
+
+<p>That was a lot of terminology at once -- classes, objects, methods, attributes… Before you start writing your own object-oriented code, make sure you have a solid grasp on the main concepts of OOP.</p>
+
+<li>Classify the cards into the correct buckets. Are the statements true or false?</li>
+
+<div>
+**True**:
+
+- <p><strong>Encapsulation</strong> is a software design practice of bundling the data and the methods that operate on that data.</p>
+- <p><strong>Methods</strong> encode behavior of an object and are represented by functions.</p>
+- <p><strong>Attributes</strong> encode the state of an object and are represented by variables.</p>
+
+**False**:
+
+- <p>A programming language can be either object-oriented or procedural, but not both.</p>
+- <p><em>Object</em> and <em>class</em> are different terms describing the same concept.</p>
+- <p><code>.columns</code> is an example of a method of a DataFrame object.</p>
+- <p><strong>Object</strong> is an abstract template describing the general states and behaviors.</p>
+</div>
+
+<p>Great job! Classes and objects both have attributes and methods, but the difference is that a class is an abstract template, while an object is a concrete representation of a class.</p>
+
+### Exploring object interface
+
+
+<div class>
+<p>The best way to learn how to write object-oriented code is to study the design of existing classes. 
+You've already learned about exploration tools like <code>type()</code> and <code>dir()</code>. </p>
+<p>Another important function is <code>help()</code>: calling <code>help(x)</code> in the console will show the documentation for the object or class <code>x</code>. </p>
+<p>Most real world classes have many methods and attributes, and it is easy to get lost, so in this exercise, you will start with something simpler. We have defined a class, and created an object of that class called <code>mystery</code>. Explore the object in the console using the tools that you learned.</p>
+</div>
+
+<p>What class does the <code>mystery</code> object have?</p>
+
+
+
+<div>
+
+
+```python
+class Employee:
+  
+    def __init__(self, name, salary=30000):
+        self.name = name
+        self.salary = salary
+        
+    def give_raise(self, amount):
+        self.salary += amount
+
+mystery = Employee(name = "Natasha Ting", salary = 73500)
+type(mystery)
+```
+
+```
+## <class '__main__.Employee'>
+```
+
+</div>
+
+- [ ] <code>numpy.ndarray</code>
+- [x] <code>\_\_main\_\_.Employee</code>
+- [ ] <code>pandas.core.DataFrame</code>
+- [ ] <code>salesforce.Customer</code>
+- [ ] It doesn't have a class
+
+
+<p>So the <code>mystery</code> object is an <code>Employee</code>! Explore it in the console further to find out what attributes it has.</p>
+<ul>
+<li>Print the <code>mystery</code> employee's <code>name</code> attribute.</li>
+<li>Print the employee's salary.</li>
+</ul>
+
+<p>Natasha -- our <code>mystery</code> employee -- has their salary stored in the attribute <code>.salary</code>.</p>
+<ul>
+<li>Give Natasha a raise of $2500 by using a suitable method (use <code>help()</code> again if you need to!).</li>
+<li>Print the salary again.</li>
+</ul>
+
+
+<div>
+
+
+```python
+# Print the mystery employee's name
+print(mystery.name)
+```
+
+```
+## Natasha Ting
+```
+
+</div>
+
+<div>
+
+
+```python
+# Print the mystery employee's salary
+print(mystery.salary)
+```
+
+```
+## 73500
+```
+
+</div>
+
+<div>
+
+
+```python
+# Give the mystery employee a raise of $2500
+mystery.give_raise(2500)
+
+# Print the salary again
+print(mystery.salary)
+```
+
+```
+## 76000
+```
+
+</div>
+
+<p class="">Great start! You can use <code>help()</code> to explore an unfamiliar object. Notice how descriptive names of attributes and methods, together with the methods' docstrings, helped you figure out class functionality even when you didn't know how it was implemented. Keep this in mind when writing your own classes!</p>
+
+## Class anatomy: attributes and methods
+
+
+
+### Understanding class definitions
+
+<div class="">
+<p>Objects and classes consist of attributes (storing the state) and methods (storing the behavior).</p>
+<p>Before you get to writing your own classes, you need to understand the basic structure of the class, and how attributes in the class definition relate to attributes in the object. In this exercise, you have a class with one method and one attribute, as well as the object of that class.</p></div>
+
+<div class="">
+<ul>
+<li>Arrange the code blocks in the order that will produce the output <code>6</code> when run.</li>
+</ul>
+<p><em>Don't forget to indent the blocks correctly using the <code>&lt;&gt;</code> buttons to the left of the ☰ icon!</em></p></div>
+
+
+<div>
+
+
+```python
+class MyCounter:
+  
+  def set_count(self, n):
+    self.count = n
+
+mc = MyCounter()
+mc.set_count(5)
+mc.count = mc.count + 1
+print(mc.count)
+```
+
+```
+## 6
+```
+
+</div>
+
+<p>Well done! Notice how you used <code>self.count</code> to refer to the <code>count</code> attribute inside a class definition, and <code>mc.count</code> to refer to the <code>count</code> attribute of an object. Make sure you understand the difference, and when to use which form (review the video if necessary)!</p>
+
+### Create your first class
+
+
+<div class>
+<p>Time to write your first class! In this exercise, you'll start building the <code>Employee</code> class you briefly explored in the previous lesson. You'll start by creating methods that set attributes, and then add a few methods that manipulate them.</p>
+<p>As mentioned in the first video, an object-oriented approach is most useful when your code involves complex interactions of many objects. In real production code, classes can have dozens of attributes and methods with complicated logic, but the underlying structure is the same as with the most simple class. </p>
+<p>Your classes in this course will only have a few attributes and short methods, but the organizational principles behind the them will be directly translatable to more complicated code.</p>
+</div>
+
+<ul>
+
+<li>Create an empty class <code>Employee</code>.</li>
+<li>Create an object <code>emp</code> of the class <code>Employee</code> by calling <code>Employee()</code>.</li>
+</ul>
+<p><em>Try printing the <code>.name</code> attribute of <code>emp</code> object in the console. What happens?</em></p>
+
+
+
+<div>
+
+
+```python
+# Create an empty class Employee
+class Employee:
+    pass
+
+# Create an object emp of class Employee  
+emp = Employee()
+```
+
+</div>
+
+
+<ul>
+<li>Modify the <code>Employee</code> class to include a <code>.set_name()</code> method that takes a <code>new_name</code> argument, and assigns <code>new_name</code> to the <code>.name</code> attribute of the class.</li>
+<li>Use the <code>set_name()</code> method on <code>emp</code> to set the name to <code>'Korel Rossi'</code>.</li>
+<li>Print <code>emp.name</code>.</li>
+</ul>
+
+
+<div>
+
+
+```python
+# Include a set_name method
+class Employee:
+  
+  def set_name(self, new_name):
+    self.name = new_name
+  
+# Create an object emp of class Employee  
+emp = Employee()
+
+# Use set_name() on emp to set the name of emp to 'Korel Rossi'
+emp.set_name('Korel Rossi')
+
+# Print the name of emp
+print(emp.name)
+```
+
+```
+## Korel Rossi
+```
+
+</div>
+
+
+<ul>
+<li>Follow the pattern to add another method - <code>set_salary()</code> - that will set the <code>salary</code> attribute of the class to the parameter <code>new_salary</code> passed to method.</li>
+<li>Set the salary of <code>emp</code> to 50000.</li>
+</ul>
+<p><em>Try printing <code>emp.salary</code> before and after calling <code>set_salary()</code>.</em></p>
+
+
+<div>
+
+
+```python
+class Employee:
+  
+  def set_name(self, new_name):
+    self.name = new_name
+  
+  # Add set_salary() method  
+  def set_salary(self, new_salary):
+    self.salary = new_salary 
+  
+  
+# Create an object emp of class Employee  
+emp = Employee()
+
+# Use set_name to set the name of emp to 'Korel Rossi'
+emp.set_name('Korel Rossi')
+
+# Set the salary of emp to 50000
+emp.set_salary(50000)
+```
+
+</div>
+
+<p class="">Fantastic! You created your first class with two methods and two attributes. Try running <code>dir(emp)</code> in the console and see if you can find where these attributes and methods pop up!</p>
+
+### Using attributes in class definition
+
+
+<div class>
+<p>In the previous exercise, you defined an <code>Employee</code> class with two attributes and two methods setting those attributes. This kind of method, aptly called a <em>setter</em> method, is far from the only possible kind. <em>Methods are functions</em>, so anything you can do with a function, you can also do with a method. For example, you can use methods to print, return values, make plots, and raise exceptions, as long as it makes sense as the behavior of the objects described by the class (an <code>Employee</code> probably wouldn't have a <code>pivot_table()</code> method).</p>
+<p>In this exercise, you'll go beyond the setter methods and learn how to use existing class attributes to define new methods. The <code>Employee</code> class and the <code>emp</code> object from the previous exercise are in your script pane.</p>
+</div>
+
+<li>Print the <code>salary</code> attribute of <code>emp</code>.</li>
+<li>Attributes aren't read-only: use assignment (equality sign) to increase the <code>salary</code> attribute of <code>emp</code> by 1500, and print it again.</li>
+
+
+
+<div>
+
+
+```python
+class Employee:
+    def set_name(self, new_name):
+        self.name = new_name
+
+    def set_salary(self, new_salary):
+        self.salary = new_salary 
+  
+emp = Employee()
+emp.set_name('Korel Rossi')
+emp.set_salary(50000)
+
+# Print the salary attribute of emp
+print(emp.salary)
+```
+
+```
+## 50000
+```
+
+</div>
+
+
+
+<div>
+
+
+```python
+# Increase salary of emp by 1500
+emp.salary = emp.salary + 1500
+
+# Print the salary attribute of emp again
+print(emp.salary)
+```
+
+```
+## 51500
+```
+
+</div>
+
+<p>Raising a salary for an employee is a <em>common pattern of behavior</em>, so it should be part of the class definition instead.</p>
+<ul>
+<li>Add a method <code>give_raise()</code> to <code>Employee</code> that increases the salary by the amount passed to <code>give_raise()</code> as a parameter.</li>
+</ul>
+
+
+<div>
+
+
+```python
+class Employee:
+    def set_name(self, new_name):
+        self.name = new_name
+
+    def set_salary(self, new_salary):
+        self.salary = new_salary 
+
+    # Add a give_raise() method with raise amount as a parameter
+    def give_raise(self, amount):
+        self.salary = self.salary + amount
+
+emp = Employee()
+emp.set_name('Korel Rossi')
+emp.set_salary(50000)
+
+print(emp.salary)
+```
+
+```
+## 50000
+```
+
+```python
+emp.give_raise(1500)
+print(emp.salary)
+```
+
+```
+## 51500
+```
+
+</div>
+
+<p>Methods don't have to just modify the attributes - they can return values as well! </p>
+<ul>
+<li>Add a method <code>monthly_salary()</code> that <code>return</code>s the value of the <code>.salary</code> attribute divided by 12.</li>
+<li>Call <code>.monthly_salary()</code> on <code>emp</code>, assign it to <code>mon_sal</code>, and print.</li>
+</ul>
+
+
+<div>
+
+
+```python
+class Employee:
+    def set_name(self, new_name):
+        self.name = new_name
+
+    def set_salary(self, new_salary):
+        self.salary = new_salary 
+
+    def give_raise(self, amount):
+        self.salary = self.salary + amount
+
+    # Add monthly_salary method that returns 1/12th of salary attribute
+    def monthly_salary(self):
+        return self.salary / 12
+    
+emp = Employee()
+emp.set_name('Korel Rossi')
+emp.set_salary(50000)
+
+# Get monthly salary of emp and assign to mon_sal
+mon_sal = emp.monthly_salary()
+
+# Print mon_sal
+print(mon_sal)
+```
+
+```
+## 4166.666666666667
+```
+
+</div>
+
+<p class="">You are doing great! You might be wondering: why did we write these methods when all the same operations could have been performed on object attributes directly? Our code was very simple, but methods that deal only with attribute values often have pre-processing and checks built in: for example, maybe the company has a maximal allowable raise amount. Then it would be prudent to add a clause to the <code>give_raise()</code> method that checks whether the raise amount is within limits.</p>
+
+## Class anatomy: the __init__ constructor
+
+
+
+### Correct use of __init__
+
+<div class=""><p>Python allows you to run custom code - for example, initializing attributes - any time an object is created: you just need to define a special method called <code>__init__()</code>. Use this exercise to check your understanding of <code>__init__()</code> mechanics!</p>
+<p>Which of the code blocks will <strong>NOT</strong> return an error when run?</p>
+<p><img src="https://assets.datacamp.com/production/repositories/5748/datasets/b86dfcfce0ba2c0c3b26d7c25881863ca48bb640/constructors.png" width="800," alt="4 code blocks"></p>
+</div>
+
+- [ ] 1
+- [x] 2
+- [ ] 3
+- [ ] 4
+
+<p class="dc-completion-pane__message dc-u-maxw-100pc">Exactly right! The printout, however, will be 5, while the person writing the code likely expected 0. That's why documentation is important!</p>
+
+### Add a class constructor
+
+
+<div class>
+<p>In this exercise, you'll continue working on the <code>Employee</code> class. Instead of using the methods like <code>set_salary()</code> that you wrote in the previous lesson, you will introduce a constructor that assigns name and salary to the employee at the moment when the object is created. </p>
+<p>You'll also create a new attribute -- <code>hire_date</code> -- which will <strong>not</strong> be initialized through parameters, but instead will contain the current date.</p>
+<p>Initializing attributes in the constructor is a good idea, because this ensures that the object has all the necessary attributes the moment it is created.</p>
+</div>
+
+<p>Define the class <code>Employee</code> with a constructor <code>__init__()</code> that:</p>
+<ul>
+<li>accepts two arguments, <code>name</code> and <code>salary</code> (with default value<code>0</code>),</li>
+<li>creates two attributes, also called <code>name</code> and <code>salary</code>,  </li>
+<li>sets their values to the corresponding arguments.</li>
+</ul>
+
+
+
+<div>
+
+
+```python
+class Employee:
+    # Create __init__() method
+    def __init__(self, name, salary=0):
+        # Create the name and salary attributes
+        self.name = name
+        self.salary = salary
+    
+    # From the previous lesson
+    def give_raise(self, amount):
+        self.salary += amount
+
+    def monthly_salary(self):
+        return self.salary/12
+        
+emp = Employee("Korel Rossi")
+print(emp.name)
+```
+
+```
+## Korel Rossi
+```
+
+```python
+print(emp.salary)
+```
+
+```
+## 0
+```
+
+</div>
+
+<p>The <code>__init__()</code> method is a great place to do preprocessing.</p>
+<ul>
+<li>Modify <code>__init__()</code> to check whether the <code>salary</code> parameter is positive:<ul>
+<li>if yes, assign it to the <code>salary</code> attribute,</li>
+<li>if not, assign <code>0</code> to the attribute and print <code>"Invalid salary!"</code>.</li></ul></li>
+</ul>
+
+
+<div>
+
+
+```python
+class Employee:
+    
+    def __init__(self, name, salary=0):
+        self.name = name
+        # Modify code below to check if salary is positive
+        if salary >= 0:
+          self.salary = salary
+        else:
+          self.salary = 0
+          print("Invalid salary!")
+        
+   
+   # ...Other methods omitted for brevity ... 
+      
+emp = Employee("Korel Rossi", -1000)
+```
+
+```
+## Invalid salary!
+```
+
+```python
+print(emp.name)
+```
+
+```
+## Korel Rossi
+```
+
+```python
+print(emp.salary)
+```
+
+```
+## 0
+```
+
+</div>
+
+<ul>
+<li>Import <code>datetime</code> from the <code>datetime</code> module. This contains the function that returns current date.</li>
+<li>Add an attribute <code>hire_date</code> and set it to <code>datetime.today()</code>.</li>
+</ul>
+
+
+<div>
+
+
+```python
+# Import datetime from datetime
+from datetime import datetime
+
+class Employee:
+    
+    def __init__(self, name, salary=0):
+        self.name = name
+        if salary > 0:
+          self.salary = salary
+        else:
+          self.salary = 0
+          print("Invalid salary!")
+          
+        # Add the hire_date attribute and set it to today's date
+        self.hire_date = datetime.today()
+        
+   # ...Other methods omitted for brevity ...
+      
+emp = Employee("Korel Rossi")
+```
+
+```
+## Invalid salary!
+```
+
+```python
+print(emp.name)
+```
+
+```
+## Korel Rossi
+```
+
+```python
+print(emp.hire_date)
+```
+
+```
+## 2023-01-12 13:48:01.218758
+```
+
+</div>
+
+<p class="">You're doing great! Notice how you had to add the <code>import</code> statement to use the <code>today()</code> function. You can use functions from other modules in your class definition, but you need to import the module first, and the import statement has to be outside class definition.</p>
+
+### Write a class from scratch
+
+
+<div class>
+<p>You are a Python developer writing a visualization package. For any element in a visualization, you want to be able to tell the position of the element, how far it is from other elements, and easily implement horizontal or vertical flip .</p>
+<p>The most basic element of any visualization is a single point. In this exercise, you'll write a class for a point on a plane from scratch.</p>
+</div>
+
+<p>Define the class  <code>Point</code> that has:</p>
+<ul>
+<li>
+<em>Two attributes, <code>x</code> and <code>y</code></em> -  the coordinates of the point on the plane;</li>
+<li>
+<em>A constructor</em> that accepts two arguments, <code>x</code> and <code>y</code>, that initialize the corresponding attributes.
+These arguments should have default value of <code>0.0</code>;</li>
+<li>
+<em>A method <code>distance_to_origin()</code></em> that <em>returns</em> the distance from the point to the origin. The formula for that is \(\sqrt{x^2 + y^2}\). </li>
+<li>
+<em>A method <code>reflect()</code></em>, that reflects the point with respect to the x- or y-axis:<ul>
+<li>accepts one argument <code>axis</code>,</li>
+<li>if <code>axis="x"</code> , it sets the <code>y</code> (not a typo!) attribute to the negative value of the <code>y</code> attribute,</li>
+<li>if <code>axis="y"</code>, it sets the <code>x</code> attribute to the negative value of the <code>x</code> attribute,</li>
+<li>for any other value of <code>axis</code>, prints an error message.
+<img src="https://assets.datacamp.com/production/repositories/5748/datasets/ae24abb426a181d3785bba89c3130b17f7001704/reflect.png" width="400," alt="Reflection of a point with respect to y and x axes">
+</li>
+</ul>
+</li>
+</ul>
+<p>Note: <em>You can choose to use <code>sqrt()</code> function from either the <code>numpy</code> or the <code>math</code> package, but whichever package you choose, <strong>don't forget to import it</strong> before starting the class definition!</em></p>
+<hr>
+<p><em>To check your work, you should be able to run the following code without errors:</em></p>
+<pre><code>pt = Point(x=3.0)
+pt.reflect("y")
+print((pt.x, pt.y))
+pt.y = 4.0
+print(pt.distance_to_origin())
+</code></pre>
+<p><em>and return the output</em></p>
+<pre><code>(-3.0,0.0)
+5.0
+</code></pre>
+
+
+
+<div>
+
+
+```python
+# For use of np.sqrt
+import numpy as np
+
+class Point:
+    """ A point on a 2D plane
+    
+   Attributes
+    ----------
+    x : float, default 0.0. The x coordinate of the point        
+    y : float, default 0.0. The y coordinate of the point
+    """
+    def __init__(self, x=0.0, y=0.0):
+      self.x = x
+      self.y = y
+      
+    def distance_to_origin(self):
+      """Calculate distance from the point to the origin (0,0)"""
+      return np.sqrt(self.x ** 2 + self.y ** 2)
+    
+    def reflect(self, axis):
+      """Reflect the point with respect to x or y axis."""
+      if axis == "x":
+        self.y = - self.y
+      elif axis == "y":
+        self.x = - self.x
+      else:
+        print("The argument axis only accepts values 'x' and 'y'!")
+```
+
+</div>
+
+<p class="">Great work! Notice how you implemented <code>distance_to_origin()</code> as a method instead of an attribute. Implementing it as an attribute would be less sustainable - you would have to recalculate it every time you change the values of the <code>x</code> and <code>y</code> attributes to make sure the object state stays current.</p>
+
+# Inheritance and Polymorphism
+
+<p class="chapter__description">
+    Inheritance and polymorphism are the core concepts of OOP that enable efficient and consistent code reuse. Learn how to inherit from a class, customize and redefine methods, and review the differences between class-level data and instance-level data.
+  </p>
+
+## Instance and class data
+
+
+
+### Class-level attributes
+
+
+<div class>
+<p>Class attributes store data that is shared among all the class instances. They are assigned values in the class body, and are referred to using the <code>ClassName.</code> syntax rather than <code>self.</code> syntax when used in methods.</p>
+<p>In this exercise, you will be a game developer working on a game that will have several players moving on a grid and interacting with each other. As the first step, you want to define a <code>Player</code> class that will just move along a straight line. <code>Player</code> will have a <code>position</code> attribute and a <code>move()</code> method. The grid is limited, so the <code>position</code> of <code>Player</code> will have a maximal value.</p>
+</div>
+
+<ul>
+
+<li>Define a class <code>Player</code> that has:</li>
+<li>A class attribute <code>MAX_POSITION</code> with value <code>10</code>.</li>
+<li>The <code>__init__()</code> method that sets the <code>position</code> instance attribute to <code>0</code>.  </li>
+<li>Print <code>Player.MAX_POSITION</code>.</li>
+<li>Create a <code>Player</code> object <code>p</code> and print its <code>MAX_POSITION</code>.</li>
+</ul>
+
+
+
+<div>
+
+
+```python
+# Create a Player class
+class Player:
+    MAX_POSITION = 10
+    
+    def __init__(self):
+      self.position = 0
+
+# Print Player.MAX_POSITION  
+print(Player.MAX_POSITION)   
+```
+
+```
+## 10
+```
+
+</div>
+
+<div>
+
+
+```python
+# Create a player p and print its MAX_POSITITON
+p = Player()
+print(p.MAX_POSITION)
+```
+
+```
+## 10
+```
+
+</div>
+
+<p>Add a <code>move()</code> method with a <code>steps</code> parameter such that:</p>
+<ul>
+<li>if <code>position</code> plus <code>steps</code> is less than <code>MAX_POSITION</code>, then add <code>steps</code> to <code>position</code> and assign the result back to <code>position</code>;</li>
+<li>otherwise, set <code>position</code> to <code>MAX_POSITION</code>.</li>
+</ul>
+<p><em>Take a look at the console for a visualization</em>!</p>
+
+
+<div>
+
+
+```python
+class Player:
+    MAX_POSITION = 10
+    
+    def __init__(self):
+        self.position = 0
+
+    # Add a move() method with steps parameter     
+    def move(self, steps):
+        if self.position + steps < Player.MAX_POSITION:
+           self.position = self.position + steps 
+        else:
+           self.position = Player.MAX_POSITION
+    
+    # This method provides a rudimentary visualization in the console    
+    def draw(self):
+        drawing = "-" * self.position + "|" +"-"*(Player.MAX_POSITION - self.position)
+        print(drawing)
+
+p = Player(); p.draw()
+```
+
+```
+## |----------
+```
+
+```python
+p.move(4); p.draw()
+```
+
+```
+## ----|------
+```
+
+```python
+p.move(5); p.draw()
+```
+
+```
+## ---------|-
+```
+
+```python
+p.move(3); p.draw()
+```
+
+```
+## ----------|
+```
+
+</div>
+
+<p class="">Great work!</p>
+
+### Changing class attributes
+
+
+<div class>
+<p>You learned how to define class attributes and how to access them from class instances. So what will happen if you try to assign another value to a class attribute when accessing it from an instance? The answer is not as simple as you might think!</p>
+<p>The <code>Player</code> class from the previous exercise is pre-defined. Recall that it has a <code>position</code> instance attribute, and <code>MAX_SPEED</code> and <code>MAX_POSITION</code> class attributes. The initial value of <code>MAX_SPEED</code> is <code>3</code>.</p>
+</div>
+
+
+
+
+<div>
+
+
+```python
+# edited/added
+class Player:
+    MAX_POSITION = 10
+    MAX_SPEED = 3
+    
+    def __init__(self):
+        self.position = 0
+    # Add a move() method with steps parameter     
+    def move(self, steps):
+        if self.position + steps < Player.MAX_POSITION:
+           self.position = self.position + steps 
+        else:
+           self.position = Player.MAX_POSITION
+    # This method provides a rudimentary visualization in the console    
+    def draw(self):
+        drawing = "-" * self.position + "|" +"-"*(Player.MAX_POSITION - self.position)
+        print(drawing)
+```
+
+</div>
+<li>Create two <code>Player</code> objects <code>p1</code> and <code>p2</code>.</li>
+<li>Print <code>p1.MAX_SPEED</code> and <code>p2.MAX_SPEED</code>.</li>
+<li>Assign <code>7</code> to <code>p1.MAX_SPEED</code>.</li>
+<li>Print <code>p1.MAX_SPEED</code> and <code>p2.MAX_SPEED</code> again.</li>
+<li>Print <code>Player.MAX_SPEED</code>.</li>
+<li><em>Examine the output carefully.</em></li>
+
+
+
+
+<div>
+
+
+```python
+# Create Players p1 and p2
+p1, p2 = Player(), Player()
+
+print("MAX_SPEED of p1 and p2 before assignment:")
+```
+
+```
+## MAX_SPEED of p1 and p2 before assignment:
+```
+
+</div>
+
+<div>
+
+
+```python
+# Print p1.MAX_SPEED and p2.MAX_SPEED
+print(p1.MAX_SPEED)
+```
+
+```
+## 3
+```
+
+```python
+print(p2.MAX_SPEED)
+```
+
+```
+## 3
+```
+
+</div>
+
+<div>
+
+
+```python
+# Assign 7 to p1.MAX_SPEED
+p1.MAX_SPEED = 7
+
+print("MAX_SPEED of p1 and p2 after assignment:")
+# Print p1.MAX_SPEED and p2.MAX_SPEED
+```
+
+```
+## MAX_SPEED of p1 and p2 after assignment:
+```
+
+```python
+print(p1.MAX_SPEED)
+```
+
+```
+## 7
+```
+
+```python
+print(p2.MAX_SPEED)
+```
+
+```
+## 3
+```
+
+</div>
+
+<div>
+
+
+```python
+print("MAX_SPEED of Player:")
+```
+
+```
+## MAX_SPEED of Player:
+```
+
+</div>
+
+<div>
+
+
+```python
+# Print Player.MAX_SPEED
+print(Player.MAX_SPEED)
+```
+
+```
+## 3
+```
+
+</div>
+
+<p>Even though <code>MAX_SPEED</code> is shared across instances, assigning 7 to <code>p1.MAX_SPEED</code> didn't change the value of <code>MAX_SPEED</code> in <code>p2</code>, or in the <code>Player</code> class. </p>
+<p>So what happened? In fact, Python created a new <em>instance attribute</em> in <code>p1</code>, also called it <code>MAX_SPEED</code>, and assigned <code>7</code> to it, without touching the class attribute.</p>
+<p>Now let's change the class attribute value for real.</p>
+<ul>
+<li>Modify the assignment to assign <code>7</code> to <code>Player.MAX_SPEED</code> instead.</li>
+</ul>
+
+
+<div>
+
+
+```python
+# Create Players p1 and p2
+p1, p2 = Player(), Player()
+
+print("MAX_SPEED of p1 and p2 before assignment:")
+# Print p1.MAX_SPEED and p2.MAX_SPEED
+```
+
+```
+## MAX_SPEED of p1 and p2 before assignment:
+```
+
+```python
+print(p1.MAX_SPEED)
+```
+
+```
+## 3
+```
+
+```python
+print(p2.MAX_SPEED)
+
+# ---MODIFY THIS LINE---
+```
+
+```
+## 3
+```
+
+```python
+Player.MAX_SPEED = 7
+
+print("MAX_SPEED of p1 and p2 after assignment:")
+# Print p1.MAX_SPEED and p2.MAX_SPEED
+```
+
+```
+## MAX_SPEED of p1 and p2 after assignment:
+```
+
+```python
+print(p1.MAX_SPEED)
+```
+
+```
+## 7
+```
+
+```python
+print(p2.MAX_SPEED)
+```
+
+```
+## 7
+```
+
+```python
+print("MAX_SPEED of Player:")
+# Print Player.MAX_SPEED
+```
+
+```
+## MAX_SPEED of Player:
+```
+
+```python
+print(Player.MAX_SPEED)
+```
+
+```
+## 7
+```
+
+</div>
+
+<p class="">Not obvious, right? But it makes sense, when you think about it! You shouldn't be able to change the data in all the instances of the class through a single instance. Imagine if you could change the time on all the computers in the world by changing the time on your own computer! If you want to change the value of the class attribute at runtime, you need to do it by referring to the class name, not through an instance.</p>
+
+### Alternative constructors
+
+
+<div class>
+<p>Python allows you to define class <em>methods</em> as well, using the <code>@classmethod</code> decorator and a special first argument <code>cls</code>. The main use of class methods is defining  methods that return an instance of the class, but aren't using the same code as <code>__init__()</code>.</p>
+<p>For example, you are developing a time series package and want to define your own class for working with dates, <code>BetterDate</code>. The attributes of the class will be <code>year</code>, <code>month</code>, and <code>day</code>.  You want to have a constructor that creates <code>BetterDate</code> objects given the values for year, month, and day, but you also want to be able to create <code>BetterDate</code> objects from strings like <code>2020-04-30</code>.</p>
+<p>You might find the following functions useful:</p>
+<ul>
+<li>
+<code>.split("-")</code> method  will split a string at<code>"-"</code> into an array, e.g. <code>"2020-04-30".split("-")</code> returns <code>["2020", "04", "30"]</code>,</li>
+<li>
+<code>int()</code> will convert a string into a number, e.g. <code>int("2019")</code> is <code>2019</code> .</li>
+</ul>
+</div>
+
+<p>Add a class method <code>from_str()</code> that:</p>
+<ul>
+<li>accepts a string <code>datestr</code> of the format<code>'YYYY-MM-DD'</code>, </li>
+<li>splits <code>datestr</code> and converts each part into an integer,</li>
+<li>returns an instance of the class with the attributes set to the values extracted from <code>datestr</code>.</li>
+</ul>
+
+
+
+<div>
+
+
+```python
+class BetterDate:
+    # Constructor
+    def __init__(self, year, month, day):
+      # Recall that Python allows multiple variable assignments in one line
+      self.year, self.month, self.day = year, month, day
+    
+    # Define a class method from_str
+    @classmethod
+    def from_str(cls, datestr):
+         # Split the string at "-" and  convert each part to integer
+        parts = datestr.split("-")
+        year, month, day = int(parts[0]), int(parts[1]), int(parts[2])
+        # Return the class instance
+        return cls(year, month, day)
+        
+bd = BetterDate.from_str('2020-04-30')   
+print(bd.year)
+```
+
+```
+## 2020
+```
+
+```python
+print(bd.month)
+```
+
+```
+## 4
+```
+
+```python
+print(bd.day)
+```
+
+```
+## 30
+```
+
+</div>
+
+<p>For compatibility, you also want to be able to convert a  <code>datetime</code> object into a <code>BetterDate</code> object.</p>
+<ul>
+<li>Add a class method <code>from_datetime()</code> that accepts a <code>datetime</code> object as the argument, and uses its attributes <code>.year</code>, <code>.month</code> and <code>.day</code> to create a <code>BetterDate</code> object with the same attribute values.</li>
+</ul>
+
+
+<div>
+
+
+```python
+# import datetime from datetime
+from datetime import datetime
+
+class BetterDate:
+    def __init__(self, year, month, day):
+      self.year, self.month, self.day = year, month, day
+      
+    @classmethod
+    def from_str(cls, datestr):
+        year, month, day = map(int, datestr.split("-"))
+        return cls(year, month, day)
+      
+    # Define a class method from_datetime accepting a datetime object
+    @classmethod
+    def from_datetime(cls, dateobj):
+      year, month, day = dateobj.year, dateobj.month, dateobj.day
+      return cls(year, month, day) 
+
+
+# You should be able to run the code below with no errors: 
+today = datetime.today()     
+bd = BetterDate.from_datetime(today)   
+print(bd.year)
+```
+
+```
+## 2023
+```
+
+```python
+print(bd.month)
+```
+
+```
+## 1
+```
+
+```python
+print(bd.day)
+```
+
+```
+## 12
+```
+
+</div>
+
+<p class="">Great work on those class methods! There's another type of methods that are not bound to a class instance - static methods, defined with the decorator <code>@staticmethod</code>. They are mainly used for helper or utility functions that could as well live outside of the class, but make more sense when bundled into the class. Static methods are beyond the scope of this class, but you can read about them <a href="https://docs.python.org/3/library/functions.html#staticmethod" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+## Class inheritance
+
+
+
+### Understanding inheritance
+
+<div class=""><p>Inheritance is a powerful tool of object-oriented languages that allows you to customize functionality of existing classes without having to re-implement methods from scratch. </p>
+<p>In this exercise you'll check your understanding of the basics of inheritance. In the questions, we'll make use of the following two classes:</p>
+<pre><code>class Counter:
+    def __init__(self, count):
+       self.count = count
+
+    def add_counts(self, n):
+       self.count += n
+
+class Indexer(Counter):
+   pass
+</code></pre>
+<p>`</p></div>
+
+<ul>
+<li>Classify the cards into the correct buckets. Are the statements true or false?</li>
+</ul>
+
+<div>
+**True**:
+
+- <p>Inheritance represents is-a relationship.</p>
+- <p>Running <code>ind = Indexer()</code> will cause an error.</p>
+- <p>Class <code>Indexer</code> is inherited from <code>Counter</code>.</p>
+- <p>If <code>ind</code> is an <code>Indexer</code> object, then <code>isinstance(ind, Counter)</code> will return <code>True</code>.</p>
+
+**False**:
+
+- <p>Every <code>Counter</code> object is an <code>Indexer</code> object.</p>
+- <p>If <code>ind</code> is an <code>Indexer</code> object, then running <code>ind.add_counts(5)</code> will cause an error.</p>
+- <p>Inheritance can be used to add some of the parts of one class to another class.</p>
+</div>
+
+<p>Great job, you're a pro! The fact that the instances of a child class are also instances of the parent class allows you to create consistent interfaces that Alex mentioned in the video. Any place that a <code>Counter</code> could go -- for example, as an argument to a function, you will be able to use <code>Indexer</code> instead because it has the same methods and attributes as <code>Counter</code>.</p>
+
+### Create a subclass
+
+
+<div class>
+<p>The purpose of child classes -- or sub-classes, as they are usually called - is to customize and extend functionality of the parent class. </p>
+<p>Recall the <code>Employee</code> class from earlier in the course. In most organizations, managers enjoy more privileges and more responsibilities than a regular employee. So it would make sense to introduce a <code>Manager</code> class that has more functionality than <code>Employee</code>.</p>
+<p>But a <code>Manager</code> is still an employee, so the <code>Manager</code> class should be <em>inherited</em> from the <code>Employee</code> class.</p>
+</div>
+
+<li>Add an empty <code>Manager</code> class that is inherited from <code>Employee</code>.</li>
+<li>Create an object <code>mng</code> of the <code>Manager</code> class with the name <code>Debbie Lashko</code> and salary <code>86500</code>.</li>
+<li>Print the name of <code>mng</code>.</li>
+
+
+
+<div>
+
+
+```python
+class Employee:
+  MIN_SALARY = 30000    
+
+  def __init__(self, name, salary=MIN_SALARY):
+      self.name = name
+      if salary >= Employee.MIN_SALARY:
+        self.salary = salary
+      else:
+        self.salary = Employee.MIN_SALARY
+        
+  def give_raise(self, amount):
+      self.salary += amount
+        
+# Define a new class Manager inheriting from Employee
+class Manager(Employee):
+  pass
+
+# Define a Manager object
+mng = Manager("Debbie Lashko", 86500)
+
+# Print mng's name
+print(mng.name)
+```
+
+```
+## Debbie Lashko
+```
+
+</div>
+
+<ul>
+<li>Remove the <code>pass</code> statement and add a <code>display()</code> method to the <code>Manager</code> class that just prints the string <code>"Manager"</code> followed by the full name, e.g. <code>"Manager Katie Flatcher"</code></li>
+<li>Call the <code>.display()</code>method from the <code>mng</code>instance.</li>
+</ul>
+
+
+<div>
+
+
+```python
+class Employee:
+  MIN_SALARY = 30000    
+
+  def __init__(self, name, salary=MIN_SALARY):
+      self.name = name
+      if salary >= Employee.MIN_SALARY:
+        self.salary = salary
+      else:
+        self.salary = Employee.MIN_SALARY
+        
+  def give_raise(self, amount):
+    self.salary += amount
+
+        
+# MODIFY Manager class and add a display method
+class Manager(Employee):
+  def display(self):
+    print("Manager ", self.name)
+
+
+mng = Manager("Debbie Lashko", 86500)
+print(mng.name)
+```
+
+```
+## Debbie Lashko
+```
+
+</div>
+
+<div>
+
+
+```python
+# Call mng.display()
+mng.display()
+```
+
+```
+## Manager  Debbie Lashko
+```
+
+</div>
+
+<p class="">Excellent! You already started customizing! The <code>Manager</code> class now includes functionality that wasn't present in the original class (the <code>display()</code> function) in addition to all the functionality of the <code>Employee</code> class. Notice that there wasn't anything special about adding this new method.</p>
+
+## Customizing functionality via inheritance
+
+
+
+### Method inheritance
+
+
+<div class>
+<p>Inheritance is powerful because it allows us to reuse and customize code without rewriting existing code. By calling methods of the parent class within the child class, we reuse all the code in those methods, making our code concise and manageable. </p>
+<p>In this exercise, you'll continue working with the <code>Manager</code> class that is inherited from the <code>Employee</code> class. You'll add new data to the class, and customize the <code>give_raise()</code> method from Chapter 1 to increase the manager's raise amount by a bonus percentage whenever they are given a raise.</p>
+<p>A simplified version of the <code>Employee</code> class, as well as the beginning of the <code>Manager</code> class from the previous lesson is provided for you in the script pane.</p>
+</div>
+
+<p>Add a constructor to <code>Manager</code> that:</p>
+<ul>
+<li>accepts <code>name</code>, <code>salary</code> (default <code>50000</code>), and <code>project</code> (default <code>None</code>)</li>
+<li>calls the constructor of the <code>Employee</code> class with the <code>name</code> and <code>salary</code> parameters,</li>
+<li>creates a <code>project</code> attribute and sets it to the <code>project</code> parameter.</li>
+</ul>
+
+
+
+<div>
+
+
+```python
+class Employee:
+    def __init__(self, name, salary=30000):
+        self.name = name
+        self.salary = salary
+
+    def give_raise(self, amount):
+        self.salary += amount
+
+        
+class Manager(Employee):
+  # Add a constructor 
+    def __init__(self, name, salary=50000, project=None):
+        # Call the parent's constructor   
+        Employee.__init__(self, name, salary)
+
+        # Assign project attribute
+        self.project = project
+  
+    def display(self):
+        print("Manager ", self.name)
+```
+
+</div>
+
+<p>Add a <code>give_raise()</code> method to <code>Manager</code> that:</p>
+<ul>
+<li>accepts the same parameters as <code>Employee.give_raise()</code>, plus a <code>bonus</code> parameter with the default value of <code>1.05</code> (bonus of 5%),</li>
+<li>multiplies <code>amount</code> by <code>bonus</code>,</li>
+<li>uses the <code>Employee</code>'s method to raise salary by that product.</li>
+</ul>
+
+
+<div>
+
+
+```python
+class Employee:
+    def __init__(self, name, salary=30000):
+        self.name = name
+        self.salary = salary
+
+    def give_raise(self, amount):
+        self.salary += amount
+
+        
+class Manager(Employee):
+    def display(self):
+        print("Manager ", self.name)
+
+    def __init__(self, name, salary=50000, project=None):
+        Employee.__init__(self, name, salary)
+        self.project = project
+
+    # Add a give_raise method
+    def give_raise(self, amount, bonus=1.05):
+        new_amount = amount * bonus
+        Employee.give_raise(self, new_amount)
+    
+    
+mngr = Manager("Ashta Dunbar", 78500)
+mngr.give_raise(1000)
+print(mngr.salary)
+```
+
+```
+## 79550.0
+```
+
+```python
+mngr.give_raise(2000, bonus=1.03)
+print(mngr.salary)
+```
+
+```
+## 81610.0
+```
+
+</div>
+
+<p class="">Good work! In the new class, the use of the default values ensured that the signature of the customized method was compatible with its signature in the parent class. But what if we defined <code>Manager</code>'s'<code>give_raise()</code> to have 2 non-optional parameters? What would be the result of <code>mngr.give_raise(1000)</code>? Experiment in console and see if you can understand what's happening. Adding print statements to both <code>give_raise()</code> could help!</p>
+
+### Inheritance of class attributes
+
+
+<div class>
+<p>In the beginning of this chapter, you learned about class attributes and methods that are shared among all the instances of a class. How do they work with inheritance? </p>
+<p>In this exercise, you'll create subclasses of the <code>Player</code> class from the first lesson of the chapter, and explore the inheritance of class attributes and methods.</p>
+<p>The <code>Player</code> class has been defined for you. Recall that the <code>Player</code> class had two class-level attributes: <code>MAX_POSITION</code> and <code>MAX_SPEED</code>, with default values <code>10</code> and <code>3</code>.</p>
+</div>
+
+<ul>
+
+<li>Create a class <code>Racer</code> inherited from <code>Player</code>, </li>
+<li>Assign  <code>5</code> to <code>MAX_SPEED</code> in the body of the class.</li>
+<li>Create a <code>Player</code> object <code>p</code> and a <code>Racer</code> object <code>r</code> (no arguments needed for the constructor).</li>
+</ul>
+<p><em>Examine the printouts carefully. Next step is a quiz!</em></p>
+
+
+
+<div>
+
+
+```python
+class Racer(Player):
+    MAX_SPEED = 5
+    
+p = Player()
+r = Racer()
+
+print("p.MAX_SPEED = ", p.MAX_SPEED)
+```
+
+```
+## p.MAX_SPEED =  7
+```
+
+```python
+print("r.MAX_SPEED = ", r.MAX_SPEED)
+```
+
+```
+## r.MAX_SPEED =  5
+```
+
+```python
+print("p.MAX_POSITION = ", p.MAX_POSITION)
+```
+
+```
+## p.MAX_POSITION =  10
+```
+
+```python
+print("r.MAX_POSITION = ", r.MAX_POSITION)
+```
+
+```
+## r.MAX_POSITION =  10
+```
+
+</div>
+
+<p>Which of the following statements about inheritance of class attributes is correct?</p>
+
+- [ ] Class attributes CANNOT be inherited, but new class attributes of the same name CAN be created in a child class.
+- [ ] Class attributes CANNOT be inherited, and new class attributes of the same name CANNOT be created in a child class.
+- [x] Class attributes CAN be inherited, and the value of class attributes CAN be overwritten in the child class
+- [ ] Class attributes can be inherited, and the value of class attributes CANNOT be overwritten in the child class
+
+<p class="">Correct! But notice that the value of <code>MAX_SPEED</code> in <code>Player</code> was not affected by the changes to the attribute of the same name in <code>Racer</code>.</p>
+
+### Customizing a DataFrame
+
+
+<div class>
+<p>In your company, any data has to come with a timestamp recording when the dataset was created, to make sure that outdated information is not being used. You would like to use <code>pandas</code> DataFrames for processing data, but you would need to customize the class to allow for the use of timestamps.</p>
+<p>In this exercise, you will implement a small <code>LoggedDF</code> class that inherits from a regular <code>pandas</code> DataFrame but has a <code>created_at</code> attribute storing the timestamp. You will then augment the standard <code>to_csv()</code> method to always include a column storing the creation date.</p>
+<p><em>Tip: all DataFrame methods have many parameters, and it is not sustainable to copy all of them for each method you're customizing. The trick is to use variable-length arguments <code>*args</code> and <code>**kwargs</code>to catch all of them.</em></p>
+</div>
+
+<li>Import <code>pandas</code> as <code>pd</code>.</li>
+<li>Define <code>LoggedDF</code> class inherited from <code>pd.DataFrame</code>.</li>
+<li>Define a constructor with arguments <code>*args</code> and <code>**kwargs</code> that:<ul>
+<li>calls the <code>pd.DataFrame</code> constructor with the same arguments,</li>
+<li>assigns <code>datetime.today()</code> to <code>self.created_at</code>.</li>
+</ul>
+</li>
+
+
+
+<div>
+
+
+```python
+# Import pandas as pd
+import pandas as pd
+
+# Define LoggedDF inherited from pd.DataFrame and add the constructor
+class LoggedDF(pd.DataFrame):
+  
+  def __init__(self, *args, **kwargs):
+    pd.DataFrame.__init__(self, *args, **kwargs)
+    self.created_at = datetime.today()
+    
+    
+ldf = LoggedDF({"col1": [1,2], "col2": [3,4]})
+print(ldf.values)
+```
+
+```
+## [[1 3]
+##  [2 4]]
+```
+
+```python
+print(ldf.created_at)
+```
+
+```
+## 2023-01-12 13:48:06.307813
+```
+
+</div>
+
+<ul>
+<li>Add a <code>to_csv()</code> method to <code>LoggedDF</code> that:</li>
+<li>copies <code>self</code> to a temporary DataFrame using <code>.copy()</code>,</li>
+<li>creates a new column <code>created_at</code> in the temporary DataFrame and fills it with <code>self.created_at</code></li>
+<li>calls <code>pd.DataFrame.to_csv()</code> <em>on the temporary variable</em>.</li>
+</ul>
+
+
+<div>
+
+
+```python
+# Import pandas as pd
+import pandas as pd
+
+# Define LoggedDF inherited from pd.DataFrame and add the constructor
+class LoggedDF(pd.DataFrame):
+  
+  def __init__(self, *args, **kwargs):
+    pd.DataFrame.__init__(self, *args, **kwargs)
+    self.created_at = datetime.today()
+    
+  def to_csv(self, *args, **kwargs):
+    # Copy self to a temporary DataFrame
+    temp = self.copy()
+    
+    # Create a new column filled with self.created_at
+    temp["created_at"] = self.created_at
+    
+    # Call pd.DataFrame.to_csv on temp, passing in *args and **kwargs
+    pd.DataFrame.to_csv(temp, *args, **kwargs)
+```
+
+</div>
+
+<p class="">Incredible work! Using <code>*args</code> and <code>**kwargs</code> allows you to not worry about keeping the signature of your customized method compatible. Notice how in the very last line, you called the parent method and passed an object to it that isn't <code>self</code>. When you call parent methods in the class, they should accept <em>some</em> object as the first argument, and that object is <em>usually</em> <code>self</code>, but it doesn't have to be!</p>
+
+# Integrating with Standard Python
+
+<p class="chapter__description">
+    In this chapter, you'll learn how to make sure that objects that store the same data are considered equal, how to define and customize string representations of objects, and even how to create new error types. Through interactive exercises, you’ll learn how to further customize your classes to make them work more like standard Python data types.
+  </p>
+
+## Operator overloading: comparison
+
+
+
+### Overloading equality
+
+
+<div class>
+<p>When comparing two objects of a custom class using <code>==</code>, Python by default compares just the object references, not the data contained in the objects. To override this behavior, the class can implement the special <code>__eq__()</code> method, which accepts two arguments -- the objects to be compared -- and returns <code>True</code> or <code>False</code>. This method will be implicitly called when two objects are compared.</p>
+<p>The <code>BankAccount</code> class from the previous chapter is available for you in the script pane. It has one attribute, <code>balance</code>, and a <code>withdraw()</code> method. Two bank accounts with the same balance are not necessarily the same account, but a bank account usually has an <em>account number</em>, and two accounts with the same account number should be considered the same.</p>
+</div>
+
+<p><em>Try selecting the code in lines 1-7 and pressing the "Run code" button. Then try to create a few <code>BankAccount</code> objects in the console and compare them.</em></p>
+<ul>
+<li>Modify the <code>__init__()</code> method to accept a new parameter - <code>number</code> - and initialize a new <code>number</code> attribute.</li>
+<li>Define an <code>__eq__()</code> method that returns <code>True</code> if the <code>number</code> attribute of two objects is equal.</li>
+<li><em>Examine the print statements and the output in the console.</em></li>
+</ul>
+
+
+
+<div>
+
+
+```python
+class BankAccount:
+     # MODIFY to initialize a number attribute
+    def __init__(self, number, balance=0):
+        self.balance = balance
+        self.number = number
+      
+    def withdraw(self, amount):
+        self.balance -= amount 
+
+    # Define __eq__ that returns True if the number attributes are equal 
+    def __eq__(self, other):
+        return self.number == other.number    
+    
+acct1 = BankAccount(123, 1000)
+acct2 = BankAccount(123, 1000)
+acct3 = BankAccount(456, 1000)
+print(acct1 == acct2)
+```
+
+```
+## True
+```
+
+```python
+print(acct1 == acct3)
+```
+
+```
+## False
+```
+
+</div>
+
+<p class="">Great job! Notice that your method compares just the account numbers, but not balances. What would happen if two accounts have the same account number but different balances? The code you wrote will treat these accounts as equal, but it might be better to throw an error - an <em>exception</em> - instead, informing the user that something is wrong. At the end of the chapter, you'll learn how to define your own exception classes to create these kinds of custom errors.</p>
+
+### Checking class equality
+
+
+<div class>
+<p>In the previous exercise, you defined a <code>BankAccount</code> class with a <code>number</code> attribute that was used for comparison. But if you were to compare a <code>BankAccount</code> object to an object of another class that also has a <code>number</code> attribute, you could end up with unexpected results.</p>
+<p>For example, consider two classes</p>
+<table><tr>
+<td>
+<pre><code>
+class Phone:
+  def __init__(self, number):
+     self.number = number
+
+  def __eq__(self, other):
+    return self.number == \
+          other.number
+
+pn = Phone(873555333)
+</code></pre>
+</td>
+<td>
+<pre><code>
+class BankAccount:
+  def __init__(self, number):
+     self.number = number
+
+  def __eq__(self, other):
+    return self.number == \
+           other.number
+
+acct = BankAccount(873555333)
+</code></pre>
+</td>
+</tr></table>
+<p>Running <code>acct == pn</code> will return <code>True</code>, even though we're comparing a phone number with a bank account number. </p>
+<p>It is good practice to check the class of objects passed to the <code>__eq__()</code> method to make sure the comparison makes sense.</p>
+</div>
+
+<p><em>Both the <code>Phone</code> and the <code>BankAccount</code> classes have been defined. Try running the code as-is using the "Run code" button and examine the output.</em></p>
+<ul>
+<li>Modify the definition of <code>BankAccount</code> to only return <code>True</code>  if the <code>number</code> attribute is the same <strong>and</strong> the <code>type()</code> of both objects passed to it is the same.</li>
+</ul>
+<p><em>Run the code and examine the output again.</em></p>
+
+
+
+<div>
+
+
+```python
+# edited/added
+class Phone:
+  def __init__(self, number):
+     self.number = number
+
+  def __eq__(self, other):
+    return self.number == \
+          other.number
+
+pn = Phone(873555333)
+
+class BankAccount:
+    def __init__(self, number, balance=0):
+        self.number, self.balance = number, balance
+      
+    def withdraw(self, amount):
+        self.balance -= amount 
+
+    # MODIFY to add a check for the type()
+    def __eq__(self, other):
+        return (self.number == other.number) and (type(self) == type(other))    
+
+acct = BankAccount(873555333)      
+pn = Phone(873555333)
+print(acct == pn)
+```
+
+```
+## False
+```
+
+</div>
+
+<p>Perfect! Now only comparing objects of the same class <code>BankAccount</code> could return <code>True</code>. Another way to ensure that an object has the same type as you expect is to use the <code>isinstance(obj, Class)</code> function. This can helpful when handling inheritance, as Python considers an object to be an instance of both the parent and the child class. 
+ Try running <code>pn == acct</code> in the console (with reversed order of equality). What does this tell you about the <code>__eq__()</code> method?</p>
+
+### Comparison and inheritance
+
+
+<div class>
+<p>What happens when an object is compared to an object of a child class? Consider the following two classes:</p>
+<pre><code>class Parent:
+    def __eq__(self, other):
+        print("Parent's __eq__() called")
+        return True
+
+class Child(Parent):
+    def __eq__(self, other):
+        print("Child's __eq__() called")
+        return True
+</code></pre>
+<p>The <code>Child</code> class inherits from the <code>Parent</code> class, and both implement the <code>__eq__()</code> method that includes a diagnostic printout.</p>
+</div>
+
+<div class=""><p><strong>Which <code>__eq__()</code> method will be called when the following code is run?</strong></p>
+<pre><code>p = Parent()
+c = Child()
+
+p == c 
+</code></pre>
+<p>Feel free to experiment in the console -- the classes have already been defined for you.</p></div>
+
+- [ ] <code>Parent</code>'s <code>__eq__()</code> method will be called.
+- [x] <code>Child</code>'s <code>__eq__()</code> method will be called.
+- [ ] The code will cause an error.
+
+<p class="">Correct! Python always calls the <em>child's</em> <code>__eq__()</code> method when comparing a child object to a parent object.</p>
+
+## Operator overloading: string representation
+
+
+
+### String formatting review
+
+
+<div class>
+<p>Before you start defining custom string representations for objects, make sure you are comfortable working with strings and formatting them. If you need a refresher, take a minute to look through the <a href="https://docs.python.org/3/library/stdtypes.html#str.format">official Python tutorial on string formatting</a>.</p>
+<p>In this exercise, consider the following code</p>
+<pre><code>my_num = 5
+my_str = "Hello"
+
+f = ...
+print(f)
+</code></pre>
+<p>where the definition for <code>f</code> is missing.</p>
+<p>Here are a few possible variants for the definition of <code>f</code>:</p>
+<p>1.</p>
+<pre><code>
+f = "my_num is {0}, and my_str is {1}.".format(my_num, my_str)
+ </code></pre>
+<p></p>
+<p>2.</p>
+<pre><code>
+f = "my_num is {}, and my_str is \"{}\".".format(my_num, my_str)
+</code></pre>
+<p></p>
+<p>3.</p>
+<pre><code>
+f = "my_num is {n}, and my_str is '{s}'.".format(n=my_num, s=my_str)
+</code></pre>
+<p></p>
+<p>4.</p>
+<pre><code>
+f = "my_num is {my_num}, and my_str is '{my_str}'.".format()
+</code></pre>
+<p></p>
+</div>
+
+<div class=""><p>Pick the definition of <code>f</code> that will make the code above print <em>exactly</em> the following:</p>
+<pre><code>my_num is 5, and my_str is "Hello".
+</code></pre>
+<p>There is only one correct answer! Feel free to use the script pane or console to experiment.</p></div>
+
+- [ ] 1
+- [x] 2
+- [ ] 3
+- [ ] 4
+
+<p class="">Great work! To recap: to format a string with variables, you can either use keyword arguments in <code>.format</code> (<code>'Insert {n} here'.format(n=num)</code>), refer to them by position index explicitly (like <code>'Insert {0} here'.format(num)</code>) or implicitly  (like <code>'Insert {} here'.format(num)</code>). You can use double quotation marks inside single quotation marks and the way around, but to nest the same set of quotation marks, you need to escape them with a slash like <code>\"</code>.</p>
+
+### String representation of objects
+
+
+<div class>
+<p>There are two special methods in Python that return a string representation of an object. <code>__str__()</code> is called when you use <code>print()</code> or <code>str()</code> on an object, and <code>__repr__()</code> is called when you use <code>repr()</code> on an object, print the object in the console without calling <code>print()</code>, or instead of <code>__str__()</code> if <code>__str__()</code> is not defined.</p>
+<p><code>__str__()</code> is supposed to provide a "user-friendly" output describing an object, and <code>__repr__()</code> should return the expression that, when evaluated, will return the same object, ensuring the reproducibility of your code.</p>
+<p>In this exercise, you will continue working with the <code>Employee</code> class from Chapter 2.</p>
+</div>
+
+<p>Add the <code>__str__()</code> method to <code>Employee</code> that satisfies the following:</p>
+<ul>
+<li>If <code>emp</code> is an <code>Employee</code> object with name <code>"Amar Howard"</code> and salary of <code>40000</code>, then <code>print(emp)</code> outputs</li>
+</ul>
+<pre><code>Employee name: Amar Howard
+Employee salary: 40000
+</code></pre>
+
+
+
+<div>
+
+
+```python
+class Employee:
+    def __init__(self, name, salary=30000):
+        self.name, self.salary = name, salary
+      
+    # Add the __str__() method
+    def __str__(self):
+        s = "Employee name: {name}\nEmployee salary: {salary}".format(name=self.name, salary=self.salary)      
+        return s
+
+emp1 = Employee("Amar Howard", 30000)
+print(emp1)
+```
+
+```
+## Employee name: Amar Howard
+## Employee salary: 30000
+```
+
+```python
+emp2 = Employee("Carolyn Ramirez", 35000)
+print(emp2)
+```
+
+```
+## Employee name: Carolyn Ramirez
+## Employee salary: 35000
+```
+
+</div>
+
+<p>Add the <code>__repr__()</code> method to <code>Employee</code> that satisfies the following:</p>
+<ul>
+<li>If <code>emp</code> is an <code>Employee</code> object with name <code>"Amar Howard"</code> and salary of <code>40000</code>, then <code>repr(emp)</code> outputs</li>
+</ul>
+<pre><code>Employee("Amar Howard", 40000)
+</code></pre>
+
+
+<div>
+
+
+```python
+class Employee:
+    def __init__(self, name, salary=30000):
+        self.name, self.salary = name, salary
+      
+
+    def __str__(self):
+        s = "Employee name: {name}\nEmployee salary: {salary}".format(name=self.name, salary=self.salary)      
+        return s
+      
+    # Add the __repr__method  
+    def __repr__(self):
+        s = "Employee(\"{name}\", {salary})".format(name=self.name, salary=self.salary)      
+        return s      
+
+emp1 = Employee("Amar Howard", 30000)
+print(repr(emp1))
+```
+
+```
+## Employee("Amar Howard", 30000)
+```
+
+```python
+emp2 = Employee("Carolyn Ramirez", 35000)
+print(repr(emp2))
+```
+
+```
+## Employee("Carolyn Ramirez", 35000)
+```
+
+</div>
+
+<p class="">Fantastic! You should always define at least one of the string representation methods for your object to make sure that the person using your class can get important information about the object easily.</p>
+
+## Exceptions
+
+
+
+### Catching exceptions
+
+
+<div class>
+<p>Before you start writing your own custom exceptions, let's make sure you have the basics of handling exceptions down.</p>
+<p>In this exercise, you are given a function <code>invert_at_index(x, ind)</code> that takes two arguments, a list <code>x</code> and an index <code>ind</code>, and inverts the element of the list at that index. For example <code>invert_at_index([5,6,7], 1)</code> returns <code>1/6</code>, or <code>0.166666</code> .</p>
+<p>Try running the code as-is and examine the output in the console. There are two unsafe operations in this function: first, if the element that we're trying to invert has the value <code>0</code>, then the code will cause a <code>ZeroDivisionError</code> exception. Second, if the index passed to the function is out of range for the list, the code will cause a <code>IndexError</code>. In both cases, the script will be interrupted, which might not be desirable.</p>
+</div>
+
+<p>Use  a <code>try</code> - <code>except</code> - <code>except</code> pattern (with two <code>except</code> blocks) inside the function to catch and handle two exceptions as follows:</p>
+<ul>
+<li>
+<code>try</code> executing the code as-is,</li>
+<li>if <code>ZeroDivisionError</code> occurs, print <code>"Cannot divide by zero!"</code>,</li>
+<li>if <code>IndexError</code> occurs, print <code>"Index out of range!"</code>
+</li>
+</ul>
+<p><em>You know you got it right if the code runs without errors, and the output in the console is</em>:</p>
+<pre><code>0.16666666666666666
+Cannot divide by zero!
+None
+Index out of range!
+None
+</code></pre>
+
+
+
+<div>
+
+
+```python
+# MODIFY the function to catch exceptions
+def invert_at_index(x, ind):
+  try:
+    return 1/x[ind]
+  except ZeroDivisionError:
+    print("Cannot divide by zero!")
+  except IndexError:
+    print("Index out of range!")
+ 
+a = [5,6,0,7]
+
+# Works okay
+print(invert_at_index(a, 1))
+```
+
+```
+## 0.16666666666666666
+```
+
+</div>
+
+<div>
+
+
+```python
+# Potential ZeroDivisionError
+print(invert_at_index(a, 2))
+
+# Potential IndexError
+```
+
+```
+## Cannot divide by zero!
+## None
+```
+
+```python
+print(invert_at_index(a, 5))
+```
+
+```
+## Index out of range!
+## None
+```
+
+</div>
+
+<p class="">Great job! Of course, this is only a toy example to illustrate the structure: you can do much more in the <code>except</code> block than just print a message. For example, it might make sense for a function to return a special value when an error occurs. It's important to note, though, that this code will only be able to handle the two particular errors specified in the <code>except</code> blocks. Any other error would still terminate the program.</p>
+
+### Custom exceptions
+
+
+<div class>
+<p>You don't have to rely solely on built-in exceptions like <code>IndexError</code>: you can define your own exceptions more specific to your application. You can also define exception hierarchies. All you need to define an exception is a class inherited from the built-in <code>Exception</code> class or one of its subclasses.</p>
+<p>In Chapter 1, you defined an <code>Employee</code> class and used <code>print</code> statements and default values to handle errors like creating an employee with a salary below the minimum or giving a raise that is too big. A better way to handle this situation is to use exceptions. Because these errors are specific to our application (unlike, for example, a division by zero error which is universal), it makes sense to use custom exception classes.</p>
+</div>
+
+<ul>
+
+<li>Define an empty class <code>SalaryError</code> inherited from the built-in <code>ValueError</code> class.</li>
+<li>Define an empty class <code>BonusError</code> inherited from the <code>SalaryError</code> class.</li>
+</ul>
+
+
+
+<div>
+
+
+```python
+# Define SalaryError inherited from ValueError
+class SalaryError(ValueError): pass
+
+# Define BonusError inherited from SalaryError
+class BonusError(SalaryError): pass
+```
+
+</div>
+
+<ul>
+<li>Complete the definition of <code>__init__()</code> to <code>raise</code> a <code>SalaryError</code> with the message <code>"Salary is too low!"</code> if the <code>salary</code> parameter is less than <code>MIN_SALARY</code> class attribute. </li>
+</ul>
+<p><em>There's no need for <code>else</code> because <code>raise</code> terminates the program anyway.</em></p>
+
+
+<div>
+
+
+```python
+class SalaryError(ValueError): pass
+class BonusError(SalaryError): pass
+
+class Employee:
+  MIN_SALARY = 30000
+  MAX_RAISE = 5000
+
+  def __init__(self, name, salary = 30000):
+    self.name = name
+    
+    # If salary is too low
+    if salary < Employee.MIN_SALARY:
+      # Raise a SalaryError exception
+      raise SalaryError("Salary is too low!")
+      
+    self.salary = salary
+```
+
+</div>
+
+<p>Examine the <code>give_bonus()</code> method, and the rewrite it using exceptions instead of print statements:</p>
+<ul>
+<li>raise a <code>BonusError</code> if the bonus amount is too high;</li>
+<li>raise a <code>SalaryError</code> if the result of adding the bonus would be too low.</li>
+</ul>
+
+
+<div>
+
+
+```python
+class SalaryError(ValueError): pass
+class BonusError(SalaryError): pass
+
+class Employee:
+  MIN_SALARY = 30000
+  MAX_BONUS = 5000
+
+  def __init__(self, name, salary = 30000):
+    self.name = name    
+    if salary < Employee.MIN_SALARY:
+      raise SalaryError("Salary is too low!")      
+    self.salary = salary
+    
+  # Rewrite using exceptions  
+  def give_bonus(self, amount):
+    if amount > Employee.MAX_BONUS:
+       raise BonusError("The bonus amount is too high!")
+        
+    if self.salary + amount <  Employee.MIN_SALARY:
+       raise SalaryError("The salary after bonus is too low!")
+      
+    self.salary += amount
+```
+
+</div>
+
+<p class="">Wonderful! Notice that if you <code>raise</code> an exception inside an <code>if</code> statement, you don't need to add an <code>else</code> branch to run the rest of the code. Because <code>raise</code> terminates the function, the code after <code>raise</code> will only be executed if an exception did not occur.</p>
+
+### Handling exception hierarchies
+
+
+<div class>
+<p>Previously, you defined an <code>Employee</code> class with a method <code>get_bonus()</code> that raises a <code>BonusError</code> and a <code>SalaryError</code> depending on parameters. But the <code>BonusError</code> exception was inherited from the <code>SalaryError</code> exception. How does exception inheritance affect exception handling?</p>
+<p>The <code>Employee</code> class has been defined for you. It has a minimal salary of <code>30000</code> and a maximal bonus amount of <code>5000</code>.</p>
+</div>
+
+<div class=""><p>Experiment with the following code</p>
+<pre><code>emp = Employee("Katze Rik", salary=50000)
+try:
+  emp.give_bonus(7000)
+except SalaryError:
+  print("SalaryError caught!")
+
+try:
+  emp.give_bonus(7000)
+except BonusError:
+  print("BonusError caught!")
+
+try:
+  emp.give_bonus(-100000)
+except SalaryError:
+  print("SalaryError caught again!")
+
+try:
+  emp.give_bonus(-100000)
+except BonusError:
+  print("BonusError caught again!")  
+</code></pre>
+<p>and select the statement which is TRUE about handling parent/child exception classes:</p></div>
+
+- [x] <code>except</code> block  for a parent exception will catch child exceptions
+- [ ] <code>except</code> block for a parent exception will <em>not</em> catch child exceptions
+
+<div class=""><p>Experiment with two pieces of code:</p>
+<table>
+  <tbody><tr>
+    <td>
+      <pre><code>
+emp = Employee("Katze Rik",\
+                    50000)
+try:
+  emp.give_bonus(7000)
+except SalaryError:
+  print("SalaryError caught")
+except BonusError:
+  print("BonusError caught")
+      </code></pre>
+   </td>
+    <td>
+      <pre><code>
+emp = Employee("Katze Rik",\
+                    50000)
+try:
+  emp.give_bonus(7000)
+except BonusError:
+  print("BonusError caught")
+except SalaryError:
+  print("SalaryError caught")
+      </code></pre>
+   </td>    
+  </tr>   
+</tbody></table>
+<p>(one catches <code>BonusError</code> before <code>SalaryError</code>, and the other -<code>SalaryError</code> before <code>BonusError</code>)</p>
+<p>Select the statement which is TRUE about the order of <code>except</code> blocks:</p></div>
+
+- [ ] The order of <code>except</code> blocks doesn't matter: the result is the same.
+- [ ] It's better to include an <code>except</code> block for a parent exception before the block for a child exception to ensure that the most general exception is handled first.
+- [x] It's better to include an <code>except</code> block for a child exception before the block for a parent exception, otherwise the child exceptions will be always be caught in the parent block, and the <code>except</code> block for the child will never be executed.
+ 
+ <p class="">Exactly! It's better to list the <code>except</code> blocks in the increasing order of specificity, i.e. children before parents, otherwise the child exception will be called in the parent <code>except</code> block.</p>
+ 
+# Best Practices of Class Design
+
+<p class="chapter__description">
+    How do you design classes for inheritance? Does Python have private attributes? Is it possible to control attribute access? You'll find answers to these questions (and more) as you learn class design best practices.
+  </p>
+
+## Designing for inheritance and polymorphism
+
+
+
+### Polymorphic methods
+
+<div class=""><p>To design classes effectively, you need to understand how inheritance and polymorphism work together. </p>
+<p>In this exercise, you have three classes - one parent and two children - each of which has a <code>talk()</code> method. Analyze the following code:</p>
+<pre><code>class Parent:
+    def talk(self):
+        print("Parent talking!")     
+
+class Child(Parent):
+    def talk(self):
+        print("Child talking!")          
+
+class TalkativeChild(Parent):
+    def talk(self):
+        print("TalkativeChild talking!")
+        Parent.talk(self)
+
+
+p, c, tc = Parent(), Child(), TalkativeChild()
+
+for obj in (p, c, tc):
+    obj.talk()
+</code></pre>
+<p>What is the output of the code above?</p>
+<table>
+  <tbody><tr>
+    <td>
+      1.
+     </td>
+    <td>
+      2.
+     </td>
+  </tr>  
+  <tr>
+    <td> 
+      <pre><code>
+Parent talking!
+Parent talking!
+Parent talking!      
+</code>
+      </pre>
+    </td>
+    <td> 
+      <pre><code>
+Parent talking!
+Child talking!
+Talkative Child talking!     
+</code>      
+      </pre>
+    </td>    
+  </tr>
+  <tr>
+    <td>
+      3.
+     </td>
+    <td>
+      4.
+     </td>
+  </tr>   
+  <tr>
+    <td> 
+      <pre><code>
+Parent talking!
+Child talking!
+Parent talking! 
+Talkative Child talking!
+Parent talking!      
+</code>      
+      </pre>
+    </td>
+    <td> 
+      <pre><code>
+Parent talking!
+Child talking!
+Talkative Child talking!
+Parent talking!      
+</code>
+      </pre>
+    </td>    
+  </tr>  
+</tbody></table>
+<p><strong>You should be able to complete the exercise just by reading the code, without running it in the console!</strong></p></div>
+
+- [ ] 1
+- [ ] 2
+- [ ] 3
+- [x] 4
+- [ ] Code causes an error
+
+<p class="dc-completion-pane__message dc-u-maxw-100pc">Great job! Polymorphism ensures that the exact method called is determined dynamically based on the instance. What do you think would happen if <code>Child</code> did not implement <code>talk()</code>?</p>
+
+### Square and rectangle
+
+
+<div class>
+<p>The classic example of a problem that violates the Liskov Substitution Principle is the <a href="https://en.wikipedia.org/wiki/Circle%E2%80%93ellipse_problem">Circle-Ellipse problem</a>, sometimes called the Square-Rectangle problem.</p>
+<p>By all means, it seems like you should be able to define a class <code>Rectangle</code>, with attributes <code>h</code> and <code>w</code> (for height and width), and then define a class <code>Square</code> that inherits from the <code>Rectangle</code>. After all, a square "is-a" rectangle!</p>
+<p>Unfortunately, this intuition doesn't apply to object-oriented design.</p>
+</div>
+
+<li>Create a class <code>Rectangle</code> with a constructor that accepts two parameters, <code>h</code> and <code>w</code>, and sets its <code>h</code> and <code>w</code> attributes to the values of <code>h</code> and <code>w</code>.</li>
+<li>Create a class <code>Square</code> <em>inherited from</em> <code>Rectangle</code> with a constructor that accepts <em>one</em> parameter <code>w</code>, and sets both the <code>h</code> and <code>w</code> attributes to the value of <code>w</code>.</li>
+
+
+
+<div>
+
+
+```python
+# Define a Rectangle class
+class Rectangle:
+    def __init__(self, h, w):
+      self.h, self.w = h, w
+
+# Define a Square class
+class Square(Rectangle):
+    def __init__(self, w):
+      self.h, self.w = w, w
+```
+
+</div>
+
+<div class=""><p>The classes are defined for you. Experiment with them in the console.</p>
+<p>For example, in the console or the script pane, create a <code>Square</code> object with side length <code>4</code>. Then try assigning <code>7</code> to the <code>h</code> attribute. </p>
+<p>What went wrong with these classes?</p></div>
+
+- [ ] This wasn't a correct use of inheritance: we did not call the parent constructor in the child constructor.
+- [ ] We cannot set the <code>h</code> attribute  to <code>7</code> in the <code>Square</code> object because it will cause an error.
+- [x] The 4x4 <code>Square</code> object would no longer be a square if we assign <code>7</code> to <code>h</code>.
+- [ ] Because a <code>Square</code> only has one side length, it should not have the <code>h</code> attribute. We should not have included the <code>h</code> attribute in the constructor.
+- [ ] All of the above.
+
+<p>A <code>Square</code> inherited from a <code>Rectangle</code> will always have both the <code>h</code> and <code>w</code> attributes, but we can't allow them to change independently of each other.</p>
+<ul>
+<li>Define methods <code>set_h()</code> and <code>set_w()</code> in <code>Rectangle</code>, each accepting one parameter and setting <code>h</code> and <code>w</code>.</li>
+<li>Define methods <code>set_h()</code> and <code>set_w()</code> in <code>Square</code>, each accepting one parameter, and setting both <code>h</code> and <code>w</code> to that parameter in both methods.</li>
+</ul>
+
+
+<div>
+
+
+```python
+class Rectangle:
+    def __init__(self, w,h):
+      self.w, self.h = w,h
+      
+# Define set_h to set h       
+    def set_h(self, h):
+      self.h = h
+
+# Define set_w to set w
+    def set_w(self, w):
+      self.w = w   
+      
+class Square(Rectangle):
+    def __init__(self, w):
+      self.w, self.h = w, w 
+      
+# Define set_h to set w and h 
+    def set_h(self, h):
+      self.h = h
+      self.w = h
+      
+# Define set_w to set w and h 
+    def set_w(self, w):
+      self.w = w   
+      self.h = w
+```
+
+</div>
+
+<div class=""><p>Later in this chapter you'll learn how to make these setter methods run automatically when attributes are assigned new values, don't worry about that for now, just assume that when we assign a value to <code>h</code> of a square, now the <code>w</code> attribute will be changed accordingly.</p>
+<p>How does using these setter methods violate Liskov Substitution principle?</p></div>
+
+- [ ] There are syntactic inconsistencies.
+- [x] Each of the setter methods of <code>Square</code> change both <code>h</code> and <code>w</code> attributes, while setter methods of <code>Rectangle</code> change only one attribute at a time, so the <code>Square</code> objects cannot be substituted for <code>Rectangle</code> into programs that rely on one attribute staying constant.
+- [ ] The setter methods of <code>Square</code> accept only limited range of parameters, unlike the setter methods of <code>Rectangle</code>, so the <code>Square</code> objects cannot be substituted for <code>Rectangle</code> into programs that use parameter values outside that range.
+- [ ] All of the above.
+
+<p class="">Correct! Remember that the substitution principle requires the substitution to preserve the oversall state of the program. An example of a program that would fail when this substitution is made is a unit test for a setter functions in <code>Rectangle</code> class.</p>
+
+## Managing data access: private attributes
+
+
+
+### Attribute naming conventions
+
+<div class="">
+<p>In Python, all data is public. Instead of access modifiers common in languages like Java, Python uses naming conventions to communicate the developer's intention to class users, shifting the responsibility of safe class use onto the class user.</p>
+<p>Python uses underscores extensively to signal the purpose of methods and attributes. In this exercise, you will match a use case with the appropriate naming convention.</p></div>
+
+<li>Drag the cards into the bucket representing the most appropriate naming convention for the use case.</li>
+
+- _name: A helper method that checks validity of an attribute's value but isn't considered a part of class's public interface
+- __name: A 'version' attribute that stores the current version of the class and shouldn't be passed to child classes, who will have their own versions.
+- \_\_name\_\_: A method that is run whenever the object is printed
+
+<p>Great job! The single leading underscore is a convention for internal details of implementation. Double leading underscores are used for attributes that should not be inherited to aviod name clashes in child classes. Finally, leading <em>and</em> trailing double underscores are reserved for built-in methods.</p>
+
+### Using internal attributes
+
+
+<div class>
+<p>In this exercise, you'll return to the <code>BetterDate</code> class of Chapter 2. Your date class is <em>better</em> because it will use the sensible convention of having exactly 30 days in each month.</p>
+<p>You decide to add a method that checks the validity of the date, but you don't want to make it a part of <code>BetterDate</code>'s public interface.</p>
+<p>The class <code>BetterDate</code> is available in the script pane.</p>
+</div>
+
+<ul>
+
+<li>Add a <em>class attribute</em> <code>_MAX_DAYS</code> storing the maximal number of days in a month - <code>30</code>. </li>
+<li>Add another <em>class attribute</em> storing the maximal number of months in a year - <code>12</code>. <em>Use the appropriate naming convention to indicate that this is an internal attribute.</em>
+</li>
+<li>Add an <code>_is_valid()</code> method that returns <code>True</code> if the <code>day</code> and <code>month</code> attributes are less than or equal to the corresponding maximum values, and <code>False</code> otherwise. Make sure to refer to the class attributes by their names!</li>
+</ul>
+
+
+
+<div>
+
+
+```python
+# Add class attributes for max number of days and months
+class BetterDate:
+    _MAX_DAYS = 30
+    _MAX_MONTHS = 12
+    
+    def __init__(self, year, month, day):
+        self.year, self.month, self.day = year, month, day
+        
+    @classmethod
+    def from_str(cls, datestr):
+        year, month, day = map(int, datestr.split("-"))
+        return cls(year, month, day)
+        
+    # Add _is_valid() checking day and month values
+    def _is_valid(self):
+        return (self.day <= BetterDate._MAX_DAYS) and \
+               (self.month <= BetterDate._MAX_MONTHS)
+        
+bd1 = BetterDate(2020, 4, 30)
+print(bd1._is_valid())
+```
+
+```
+## True
+```
+
+```python
+bd2 = BetterDate(2020, 6, 45)
+print(bd2._is_valid())
+```
+
+```
+## False
+```
+
+</div>
+
+<p class="">Great job! Notice that you were still able to use the <code>_is_valid()</code> method as usual. The single underscore naming convention is purely a convention, and Python doesn't do anything special with such attributes and methods behind the scenes. That convention is widely followed, though, so if you see an attribute name with one leading underscore in someone's class - don't use it! The class developer trusts you with this responsibility.</p>
+
+## Properties
+
+
+
+### What do properties do?
+
+<div class=""><p>You could think of properties as attributes with built-in access control. They are especially useful when there is some additional code you'd like to execute when assigning values to attributes.</p>
+<p>Which of the following statements is NOT TRUE about properties?</p></div>
+
+- [ ] Properties can be used to implement "read-only" attributes
+- [x] Properties can prevent creation of new attributes via assignment
+- [ ] Properties can be accessed using the dot syntax just like regular attributes
+- [ ] Properties allow for validation of values that are assigned to them
+
+<p class="dc-completion-pane__message dc-u-maxw-100pc">This statement is indeed not true! Properties control only one specific attribute that they're attached to. There are ways to prevent creating new attributes, but doing so would go against the "we're all adults here" principle.</p>
+
+### Create and set properties
+
+
+<div class>
+<p>There are two parts to defining a property: </p>
+<ul>
+<li>first, define an "internal" attribute that will contain the data;</li>
+<li>then, define a <code>@property</code>-decorated  method whose <em>name is the property name</em>, and that returns the internal attribute storing the data.</li>
+</ul>
+<p>If you'd also like to define a custom <em>setter</em> method, there's an additional step:</p>
+<ul>
+<li>define <em>another</em> method whose name is exactly the property name (again), and decorate it with <code>@prop_name.setter</code> where <code>prop_name</code> is the name of the property. The method should take two arguments -- <code>self</code> (as always), and the value that's being assigned to the property.</li>
+</ul>
+<p>In this exercise, you'll create a <code>balance</code> property for a <code>Customer</code> class - a better, more controlled version of the <code>balance</code> <em>attribute</em> that you worked with before.</p>
+</div>
+
+<p>Create a <code>Customer</code> class with the <code>__init__()</code> method that:</p>
+<ul>
+<li>takes parameters <code>name</code> and <code>new_bal</code>,</li>
+<li>assigns <code>name</code> to the attribute <code>name</code>, </li>
+<li>raises a <code>ValueError</code> if <code>new_bal</code> is negative,</li>
+<li>otherwise, assigns <code>new_bal</code> to the attribute <code>_balance</code> (with <code>_</code>).</li>
+</ul>
+
+
+
+<div>
+
+
+```python
+# Create a Customer class
+class Customer:
+    def __init__(self, name, new_bal):
+        self.name = name
+        if new_bal < 0:
+           raise ValueError("Invalid balance!")
+        self._balance = new_bal
+```
+
+</div>
+
+<li>Add a method <code>balance()</code> with a <code>@property</code> decorator that returns the <code>_balance</code> attribute.</li>
+
+
+<div>
+
+
+```python
+class Customer:
+    def __init__(self, name, new_bal):
+        self.name = name
+        if new_bal < 0:
+           raise ValueError("Invalid balance!")
+        self._balance = new_bal  
+
+    # Add a decorated balance() method returning _balance        
+    @property
+    def balance(self):
+        return self._balance
+```
+
+</div>
+
+<p>Define <em>another</em> <code>balance()</code> method to serve as a <em>setter</em>, with the appropriate decorator and an additional parameter:</p>
+<ul>
+<li>Raise a <code>ValueError</code> if the parameter is negative, </li>
+<li>otherwise assign it to <code>_balance</code> ;</li>
+<li>print <code>"Setter method is called"</code>.</li>
+</ul>
+
+
+<div>
+
+
+```python
+class Customer:
+    def __init__(self, name, new_bal):
+        self.name = name
+        if new_bal < 0:
+           raise ValueError("Invalid balance!")
+        self._balance = new_bal  
+
+    # Add a decorated balance() method returning _balance        
+    @property
+    def balance(self):
+        return self._balance
+
+    # Add a setter balance() method
+    @balance.setter
+    def balance(self, new_bal):
+        # Validate the parameter value
+        if new_bal < 0:
+           raise ValueError("Invalid balance!")
+        self._balance = new_bal
+        
+        # Print "Setter method is called"
+        print("Setter method is called")
+```
+
+</div>
+
+<ul>
+<li>Create a <code>Customer</code> named <code>Belinda Lutz</code> with the balance of <code>2000</code> and save it as <code>cust</code>.</li>
+<li>Use the dot syntax and the <code>=</code> to assign <code>3000</code> to <code>cust.balance</code>.</li>
+<li>Print <code>cust.balance</code>.</li>
+</ul>
+<p><em>In the console, try assigning <code>-1000</code> to <code>cust.balance</code>. What happens?</em></p>
+
+
+<div>
+
+
+```python
+class Customer:
+    def __init__(self, name, new_bal):
+        self.name = name
+        if new_bal < 0:
+           raise ValueError("Invalid balance!")
+        self._balance = new_bal  
+
+    # Add a decorated balance() method returning _balance        
+    @property
+    def balance(self):
+        return self._balance
+
+    # Add a setter balance() method
+    @balance.setter
+    def balance(self, new_bal):
+        # Validate the parameter value
+        if new_bal < 0:
+           raise ValueError("Invalid balance!")
+        self._balance = new_bal
+        print("Setter method called")
+        
+# Create a Customer        
+cust = Customer("Belinda Lutz", 2000)
+
+# Assign 3000 to the balance property
+cust.balance = 3000
+```
+
+```
+## Setter method called
+```
+
+</div>
+
+<div>
+
+
+```python
+# Print the balance property
+print(cust.balance)
+```
+
+```
+## 3000
+```
+
+</div>
+
+<p class="">Great start! Now the user of your <code>Customer</code> class won't be able to assign arbitrary values to the customers' balance. You could also add a custom <em>getter</em> method (with a decorator <code>@balance.getter</code>) that returns a value and gets executed every time the attribute is accessed.</p>
+
+### Read-only properties
+
+
+<div class>
+<p>The <code>LoggedDF</code> class from Chapter 2 was an extension of the <code>pandas</code> DataFrame class that had an additional <code>created_at</code> attribute that stored the timestamp when the DataFrame was created, so that the user could see how out-of-date the data is.</p>
+<p>But that class wasn't very useful: we could just assign any value to <code>created_at</code> after the DataFrame was created, thus defeating the whole point of the attribute! Now, using properties, we can make the attribute read-only.</p>
+<p>The <code>LoggedDF</code> class from Chapter 2 is available for you in the script pane.</p>
+</div>
+
+<li>Assign a new value of <code>'2035-07-13'</code> to the <code>created_at</code> attribute.</li>
+<li>Print the value of <code>ldf</code>'s <code>created_at</code> attribute to verify that your assignment was successful.</li>
+
+
+
+<div>
+
+
+```python
+import pandas as pd
+from datetime import datetime
+
+# LoggedDF class definition from Chapter 2
+class LoggedDF(pd.DataFrame):
+    def __init__(self, *args, **kwargs):
+        pd.DataFrame.__init__(self, *args, **kwargs)
+        self.created_at = datetime.today()
+
+    def to_csv(self, *args, **kwargs):
+        temp = self.copy()
+        temp["created_at"] = self.created_at
+        pd.DataFrame.to_csv(temp, *args, **kwargs)   
+
+# Instantiate a LoggedDF called ldf
+ldf = LoggedDF({"col1": [1,2], "col2":[3,4]})
+
+# Assign a new value to ldf's created_at attribute and print
+ldf.created_at = '2035-07-13'
+print(ldf.created_at)
+```
+
+```
+## 2035-07-13
+```
+
+</div>
+
+<ul>
+<li>Create an internal attribute called <code>_created_at</code> to turn <code>created_at</code> into a read-only attribute.</li>
+<li>Modify the class to use the internal attribute, <code>_created_at</code>, in place of <code>created_at</code>.</li>
+</ul>
+
+
+<div>
+
+
+```python
+import pandas as pd
+from datetime import datetime
+
+# MODIFY the class to use _created_at instead of created_at
+class LoggedDF(pd.DataFrame):
+    def __init__(self, *args, **kwargs):
+        pd.DataFrame.__init__(self, *args, **kwargs)
+        self._created_at = datetime.today()
+    
+    def to_csv(self, *args, **kwargs):
+        temp = self.copy()
+        temp["created_at"] = self._created_at
+        pd.DataFrame.to_csv(temp, *args, **kwargs)   
+    
+    # Add a read-only property: _created_at
+    @property  
+    def created_at(self):
+        return self._created_at
+
+# Instantiate a LoggedDF called ldf
+ldf = LoggedDF({"col1": [1,2], "col2":[3,4]}) 
+```
+
+</div>
+
+<p>What happens when you assign <code>'2035-07-13'</code> to <code>ldf.created_at</code>?</p>
+
+- [ ] The <code>created_at</code> attribute of <code>ldf</code> is updated to <code>'2035-07-13'</code>.
+- [ ] An <code>AttributeError</code> is thrown since <code>'2035-07-13'</code> is not a valid date.
+- [ ] An <code>AttributeError</code> is thrown since the <code>created_at</code> attribute doesn't exist.
+- [x] An <code>AttributeError</code> is thrown since <code>ldf.created_at</code> is read-only.
+
+<p class="">You've put it all together! Notice that the <code>to_csv()</code> method in the original class was using the original <code>created_at</code> attribute. After converting the attribute into a property, you could replace the call to <code>self.created_at</code> with the call to the internal attribute that's attached to the property, or you could keep it as <code>self.created_at</code>, in which case you'll now be accessing the property. Either way works!</p>
+
+## Congratulations!
+
+### Congratulations!
+
+Congratulations on completing this course on introduction to object-oriented programming in Python. You've done a great job!
+
+### Overview
+
+You learned how to think about your code in terms of classes and objects; how to create attributes and methods. You explored inheritance and polymorphism -- two ideas that allows you to leverage and customize existing code in powerful ways. You also learned the distinction between class-level data and instance-level data. What does it mean for two objects to be equal? Turns out, it can mean anything you want, as you learned in chapter 3. You defined custom equality functions, readable string representations, even built your own exceptions. Finally, you learned what makes a relationship between classes suitable for inheritance, how Python handles private vs public data, and how to use properties to manage data access.
+
+### What's next?
+
+So, where can you go from here? You could start by expanding your knowledge of functionality available in Python. For example, learn about mix-in classes and multiple inheritance -- a highly debated feature of Python that isn't present in many other object-oriented languages. You could learn how to override more built-in operators, like arithmetic operators, or the length operator; how to customize attribute access even more using special methods; how to create your own iterator classes that you could use to index loops. You could learn about abstract base classes used to create interfaces, or how leverage dataclasses -- a new type of class that is especially suitable for data storage.
+
+### What's next?
+
+Also consider learning more about object-oriented design, which is based on SOLID principles. Solid is an acronym, and you've already learned about the "L" is SOLID -- the Liskov substitution principle, but the other 4 letters are just as important. Finally, I encourage you to learn more about design patterns -- reusable solutions addressing most common problems in software design.
+
+### Thank you!
+
+Thank you so much for taking this course, and good luck in you future coding adventures!
