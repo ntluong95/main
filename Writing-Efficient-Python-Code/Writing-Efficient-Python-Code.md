@@ -964,8 +964,8 @@ The <code>sample_indices</code> array, <code>hts</code> array, and <code>wts</co
 ```python
 # edited/added
 import pandas as pd
-heroes = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1531075102&single=true&output=csv", header = None).iloc[:,0].tolist()
-publishers = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1911812864&single=true&output=csv", header = None).iloc[:,0].tolist()
+heroes = pd.read_csv("datasets/Writing-Efficient-Python-Code/heroes.csv", header = None).iloc[:,0].tolist()
+publishers = pd.read_csv("datasets/Writing-Efficient-Python-Code/publishers.csv", header = None).iloc[:,0].tolist()
 
 def get_publisher_heroes(heroes, publishers, desired_publisher):
 
@@ -1083,9 +1083,9 @@ print(type(star_wars_heroes_np))
 
 ```python
 # edited/added
-names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=728081830&single=true&output=csv", header = None).iloc[:,0].tolist()
-primary_types = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1599592048&single=true&output=csv", header = None).iloc[:,0].tolist()
-secondary_types = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1185014273&single=true&output=csv", header = None).iloc[:,0].tolist()
+names = pd.read_csv("datasets/Writing-Efficient-Python-Code/names.csv", header = None).iloc[:,0].tolist()
+primary_types = pd.read_csv("datasets/Writing-Efficient-Python-Code/primary_types.csv", header = None).iloc[:,0].tolist()
+secondary_types = pd.read_csv("datasets/Writing-Efficient-Python-Code/secondary_types.csv", header = None).iloc[:,0].tolist()
 
 # Combine names and primary_types
 names_type1 = [*zip(names, primary_types)]
@@ -1094,11 +1094,11 @@ print(*names_type1[:5], sep='\n')
 ```
 
 ```
-## ('Abomasnow', 'Grass')
-## ('Abra', 'Psychic')
-## ('Absol', 'Dark')
-## ('Accelgor', 'Bug')
-## ('Aerodactyl', 'Rock')
+## ('Abomasnow', 'Bug')
+## ('Abra', 'Bug')
+## ('Absol', 'Poison')
+## ('Accelgor', 'Psychic')
+## ('Aerodactyl', 'Fire')
 ```
 </div>
 
@@ -1113,11 +1113,11 @@ print(*names_types[:5], sep='\n')
 ```
 
 ```
-## ('Abomasnow', 'Grass', 'Ice')
-## ('Abra', 'Psychic', 'Flying')
-## ('Absol', 'Dark', 'Rock')
-## ('Accelgor', 'Bug', 'Flying')
-## ('Aerodactyl', 'Rock', 'Ice')
+## ('Abomasnow', 'Bug', 'Ice')
+## ('Abra', 'Bug', 'Flying')
+## ('Absol', 'Poison', 'Rock')
+## ('Accelgor', 'Psychic', 'Flying')
+## ('Aerodactyl', 'Fire', 'Ice')
 ```
 </div>
 
@@ -1132,9 +1132,9 @@ print(*differing_lengths, sep='\n')
 ```
 
 ```
-## ('Abomasnow', 'Grass')
-## ('Abra', 'Psychic')
-## ('Absol', 'Dark')
+## ('Abomasnow', 'Bug')
+## ('Abra', 'Bug')
+## ('Absol', 'Poison')
 ```
 </div>
 
@@ -1158,9 +1158,9 @@ print(*differing_lengths, sep='\n')
 ```python
 # edited/added
 from collections import Counter
-names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1939281460&single=true&output=csv", header = None).iloc[:,0].tolist()
-primary_types = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=642695943&single=true&output=csv", header = None).iloc[:,0].tolist()
-generations = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1609546095&single=true&output=csv", header = None).iloc[:,0].tolist()
+names = pd.read_csv("datasets/Writing-Efficient-Python-Code/names.csv", header = None).iloc[:,0].tolist()
+primary_types = pd.read_csv("datasets/Writing-Efficient-Python-Code/primary_types.csv", header = None).iloc[:,0].tolist()
+generations = pd.read_csv("datasets/Writing-Efficient-Python-Code/generations.csv", header = None).iloc[:,0].tolist()
 ```
 </div>
 <li>Collect the count of each primary type from the sample.</li>
@@ -1176,7 +1176,7 @@ print(type_count, '\n')
 ```
 
 ```
-## Counter({'Water': 66, 'Normal': 64, 'Bug': 51, 'Grass': 47, 'Psychic': 31, 'Rock': 29, 'Fire': 27, 'Electric': 25, 'Ground': 23, 'Fighting': 23, 'Poison': 22, 'Steel': 18, 'Ice': 16, 'Fairy': 16, 'Dragon': 16, 'Ghost': 13, 'Dark': 13})
+## Counter({'Water': 79, 'Normal': 52, 'Psychic': 50, 'Bug': 46, 'Grass': 46, 'Fire': 34, 'Rock': 32, 'Electric': 26, 'Ground': 24, 'Poison': 18, 'Dark': 16, 'Dragon': 15, 'Ice': 15, 'Steel': 14, 'Ghost': 14, 'Fairy': 10, 'Fighting': 9})
 ```
 </div>
 <div>
@@ -1188,7 +1188,7 @@ print(gen_count, '\n')
 ```
 
 ```
-## Counter({5: 122, 3: 103, 1: 99, 4: 78, 2: 51, 6: 47})
+## Counter({3: 107, 1: 96, 5: 95, 4: 84, 2: 69, 6: 49})
 ```
 </div>
 <div>
@@ -1203,7 +1203,7 @@ print(starting_letters_count)
 ```
 
 ```
-## Counter({'S': 83, 'C': 46, 'D': 33, 'M': 32, 'L': 29, 'G': 29, 'B': 28, 'P': 23, 'A': 22, 'K': 20, 'E': 19, 'W': 19, 'T': 19, 'F': 18, 'H': 15, 'R': 14, 'N': 13, 'V': 10, 'Z': 8, 'J': 7, 'I': 4, 'O': 3, 'Y': 3, 'U': 2, 'X': 1})
+## Counter({'S': 102, 'M': 58, 'C': 55, 'P': 47, 'G': 46, 'D': 41, 'B': 39, 'T': 35, 'L': 33, 'A': 32, 'R': 30, 'H': 27, 'F': 26, 'K': 25, 'W': 23, 'V': 22, 'E': 21, 'N': 16, 'Z': 9, 'J': 7, 'O': 6, 'I': 5, 'U': 5, 'Q': 4, 'Y': 4, 'X': 2})
 ```
 </div>
 
@@ -1305,7 +1305,7 @@ print(both)
 ```
 
 ```
-## {'Squirtle', 'Psyduck'}
+## {'Psyduck', 'Squirtle'}
 ```
 </div>
 <div>
@@ -1317,7 +1317,7 @@ print(ash_only)
 ```
 
 ```
-## {'Vulpix', 'Koffing', 'Zubat', 'Spearow', 'Pikachu', 'Wigglytuff', 'Rattata', 'Bulbasaur'}
+## {'Rattata', 'Zubat', 'Wigglytuff', 'Koffing', 'Spearow', 'Pikachu', 'Bulbasaur', 'Vulpix'}
 ```
 </div>
 <div>
@@ -1329,7 +1329,7 @@ print(unique_to_set)
 ```
 
 ```
-## {'Krabby', 'Slowbro', 'Horsea', 'Vulpix', 'Poliwag', 'Koffing', 'Zubat', 'Spearow', 'Pikachu', 'Wigglytuff', 'Vaporeon', 'Tentacool', 'Starmie', 'Rattata', 'Magikarp', 'Bulbasaur'}
+## {'Rattata', 'Spearow', 'Krabby', 'Magikarp', 'Horsea', 'Wigglytuff', 'Koffing', 'Poliwag', 'Starmie', 'Slowbro', 'Tentacool', 'Vaporeon', 'Zubat', 'Pikachu', 'Bulbasaur', 'Vulpix'}
 ```
 </div>
 
@@ -1360,7 +1360,7 @@ print(brock_pokedex_set)
 ```
 
 ```
-## {'Omastar', 'Tauros', 'Vulpix', 'Machop', 'Zubat', 'Kabutops', 'Geodude', 'Golem', 'Dugtrio', 'Onix'}
+## {'Dugtrio', 'Tauros', 'Golem', 'Kabutops', 'Machop', 'Onix', 'Omastar', 'Zubat', 'Geodude', 'Vulpix'}
 ```
 </div>
 <li>Check if <code>'Psyduck'</code> is in Ash's Pokédex list (<code>ash_pokedex</code>) and if <code>'Psyduck'</code> is in Brock's Pokédex <strong>set</strong> (<code>brock_pokedex_set</code>).</li>
@@ -1373,7 +1373,7 @@ print(brock_pokedex_set)
 ```
 
 ```
-## {'Omastar', 'Tauros', 'Vulpix', 'Machop', 'Zubat', 'Kabutops', 'Geodude', 'Golem', 'Dugtrio', 'Onix'}
+## {'Dugtrio', 'Tauros', 'Golem', 'Kabutops', 'Machop', 'Onix', 'Omastar', 'Zubat', 'Geodude', 'Vulpix'}
 ```
 </div>
 <div>
@@ -1405,7 +1405,7 @@ print(brock_pokedex_set)
 ```
 
 ```
-## {'Omastar', 'Tauros', 'Vulpix', 'Machop', 'Zubat', 'Kabutops', 'Geodude', 'Golem', 'Dugtrio', 'Onix'}
+## {'Dugtrio', 'Tauros', 'Golem', 'Kabutops', 'Machop', 'Onix', 'Omastar', 'Zubat', 'Geodude', 'Vulpix'}
 ```
 </div>
 <div>
@@ -1485,9 +1485,9 @@ print('Machop' in brock_pokedex_set)
 ```python
 # edited/added
 from collections import Counter
-names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=425640626&single=true&output=csv", header = None).iloc[:,0].tolist()
-primary_types = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=553528834&single=true&output=csv", header = None).iloc[:,0].tolist()
-generations = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=800099022&single=true&output=csv", header = None).iloc[:,0].tolist()
+names = pd.read_csv("datasets/Writing-Efficient-Python-Code/names.csv", header = None).iloc[:,0].tolist()
+primary_types = pd.read_csv("datasets/Writing-Efficient-Python-Code/primary_types.csv", header = None).iloc[:,0].tolist()
+generations = pd.read_csv("datasets/Writing-Efficient-Python-Code/generations.csv", header = None).iloc[:,0].tolist()
 
 def find_unique_items(data):
     uniques = []
@@ -1509,7 +1509,7 @@ print(len(uniq_names_func))
 ```
 
 ```
-## 368
+## 720
 ```
 </div>
 <li>Use a <code>set</code> data type to collect the unique Pokémon in the <code>names</code> list. Save this as <code>uniq_names_set</code>.</li>
@@ -1522,7 +1522,7 @@ print(len(uniq_names_func))
 ```
 
 ```
-## 368
+## 720
 ```
 </div>
 <div>
@@ -1534,7 +1534,7 @@ print(len(uniq_names_set))
 ```
 
 ```
-## 368
+## 720
 ```
 </div>
 <div>
@@ -1566,7 +1566,7 @@ print(len(uniq_names_func))
 ```
 
 ```
-## 368
+## 720
 ```
 </div>
 <div>
@@ -1578,7 +1578,7 @@ print(len(uniq_names_set))
 ```
 
 ```
-## 368
+## 720
 ```
 </div>
 <div>
@@ -1602,7 +1602,7 @@ print(uniq_types, uniq_gens, sep='\n')
 ```
 
 ```
-## {'Ghost', 'Rock', 'Water', 'Psychic', 'Fire', 'Normal', 'Dragon', 'Dark', 'Electric', 'Ice', 'Grass', 'Steel', 'Fairy', 'Bug', 'Fighting', 'Poison', 'Ground'}
+## {'Ice', 'Electric', 'Dragon', 'Poison', 'Fairy', 'Bug', 'Psychic', 'Ground', 'Normal', 'Water', 'Fire', 'Steel', 'Ghost', 'Dark', 'Fighting', 'Grass', 'Rock'}
 ## {1, 2, 3, 4, 5, 6}
 ```
 </div>
@@ -1632,8 +1632,8 @@ for name,gen in zip(poke_names, poke_gens):
 
 ```python
 # edited/added
-poke_names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=728081830&single=true&output=csv", header = None).iloc[:,0].tolist()
-poke_gens = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1561338519&single=true&output=csv", header = None).iloc[:,0].tolist()
+poke_names = pd.read_csv("datasets/Writing-Efficient-Python-Code/poke_names.csv", header = None).iloc[:,0].tolist()
+poke_gens = pd.read_csv("datasets/Writing-Efficient-Python-Code/poke_gens.csv", header = None).iloc[:,0].tolist()
 gen1_gen2_name_lengths_loop = []
 ```
 </div>
@@ -1693,8 +1693,8 @@ for pokemon,row in zip(names, stats):
 
 ```python
 # edited/added
-names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=728081830&single=true&output=csv", header = None).iloc[:,0].tolist()
-stats_df = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=99951674&single=true&output=csv")
+names = pd.read_csv("datasets/Writing-Efficient-Python-Code/names.csv", header = None).iloc[:,0].tolist()
+stats_df = pd.read_csv("datasets/Writing-Efficient-Python-Code/stats_df.csv")
 stats = stats_df.to_numpy()
 poke_list = []
 
@@ -2011,7 +2011,7 @@ print(*highest_hp_pokemon2, sep='\n')
 
 ```python
 # edited/added
-baseball_df = pd.read_csv("https://assets.datacamp.com/production/repositories/3581/datasets/779033fb8fb5021aee9ff46253980abcbc5851f3/baseball_stats.csv")
+baseball_df = pd.read_csv("datasets/Writing-Efficient-Python-Code/baseball_df.csv")
 pit_df = baseball_df[baseball_df.Team == 'PIT']
 
 # Iterate over pit_df and print each row

@@ -836,8 +836,8 @@ The <code>sample_indices</code> array, <code>hts</code> array, and <code>wts</co
 ```{python}
 # edited/added
 import pandas as pd
-heroes = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1531075102&single=true&output=csv", header = None).iloc[:,0].tolist()
-publishers = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1911812864&single=true&output=csv", header = None).iloc[:,0].tolist()
+heroes = pd.read_csv("datasets/Writing-Efficient-Python-Code/heroes.csv", header = None).iloc[:,0].tolist()
+publishers = pd.read_csv("datasets/Writing-Efficient-Python-Code/publishers.csv", header = None).iloc[:,0].tolist()
 
 def get_publisher_heroes(heroes, publishers, desired_publisher):
 
@@ -930,9 +930,9 @@ print(type(star_wars_heroes_np))
 <div>
 ```{python}
 # edited/added
-names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=728081830&single=true&output=csv", header = None).iloc[:,0].tolist()
-primary_types = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1599592048&single=true&output=csv", header = None).iloc[:,0].tolist()
-secondary_types = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1185014273&single=true&output=csv", header = None).iloc[:,0].tolist()
+names = pd.read_csv("datasets/Writing-Efficient-Python-Code/names.csv", header = None).iloc[:,0].tolist()
+primary_types = pd.read_csv("datasets/Writing-Efficient-Python-Code/primary_types.csv", header = None).iloc[:,0].tolist()
+secondary_types = pd.read_csv("datasets/Writing-Efficient-Python-Code/secondary_types.csv", header = None).iloc[:,0].tolist()
 
 # Combine names and primary_types
 names_type1 = [*zip(names, primary_types)]
@@ -980,9 +980,9 @@ print(*differing_lengths, sep='\n')
 ```{python}
 # edited/added
 from collections import Counter
-names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1939281460&single=true&output=csv", header = None).iloc[:,0].tolist()
-primary_types = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=642695943&single=true&output=csv", header = None).iloc[:,0].tolist()
-generations = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1609546095&single=true&output=csv", header = None).iloc[:,0].tolist()
+names = pd.read_csv("datasets/Writing-Efficient-Python-Code/names.csv", header = None).iloc[:,0].tolist()
+primary_types = pd.read_csv("datasets/Writing-Efficient-Python-Code/primary_types.csv", header = None).iloc[:,0].tolist()
+generations = pd.read_csv("datasets/Writing-Efficient-Python-Code/generations.csv", header = None).iloc[:,0].tolist()
 ```
 </div>
 <li>Collect the count of each primary type from the sample.</li>
@@ -1207,9 +1207,9 @@ print('Machop' in brock_pokedex_set)
 ```{python}
 # edited/added
 from collections import Counter
-names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=425640626&single=true&output=csv", header = None).iloc[:,0].tolist()
-primary_types = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=553528834&single=true&output=csv", header = None).iloc[:,0].tolist()
-generations = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=800099022&single=true&output=csv", header = None).iloc[:,0].tolist()
+names = pd.read_csv("datasets/Writing-Efficient-Python-Code/names.csv", header = None).iloc[:,0].tolist()
+primary_types = pd.read_csv("datasets/Writing-Efficient-Python-Code/primary_types.csv", header = None).iloc[:,0].tolist()
+generations = pd.read_csv("datasets/Writing-Efficient-Python-Code/generations.csv", header = None).iloc[:,0].tolist()
 
 def find_unique_items(data):
     uniques = []
@@ -1312,8 +1312,8 @@ for name,gen in zip(poke_names, poke_gens):
 <div>
 ```{python}
 # edited/added
-poke_names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=728081830&single=true&output=csv", header = None).iloc[:,0].tolist()
-poke_gens = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=1561338519&single=true&output=csv", header = None).iloc[:,0].tolist()
+poke_names = pd.read_csv("datasets/Writing-Efficient-Python-Code/poke_names.csv", header = None).iloc[:,0].tolist()
+poke_gens = pd.read_csv("datasets/Writing-Efficient-Python-Code/poke_gens.csv", header = None).iloc[:,0].tolist()
 gen1_gen2_name_lengths_loop = []
 ```
 </div>
@@ -1360,8 +1360,8 @@ for pokemon,row in zip(names, stats):
 <div>
 ```{python}
 # edited/added
-names = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=728081830&single=true&output=csv", header = None).iloc[:,0].tolist()
-stats_df = pd.read_csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vSoeJegBxXU61LsAJQ4sPPrw99EJXBccEfiC3fhrj6TQCnhZ5Q4J8P7oCP-TtR1W6Z3d9TMcCYc32Xy/pub?gid=99951674&single=true&output=csv")
+names = pd.read_csv("datasets/Writing-Efficient-Python-Code/names.csv", header = None).iloc[:,0].tolist()
+stats_df = pd.read_csv("datasets/Writing-Efficient-Python-Code/stats_df.csv")
 stats = stats_df.to_numpy()
 poke_list = []
 
@@ -1586,7 +1586,7 @@ print(*highest_hp_pokemon2, sep='\n')
 <div>
 ```{python}
 # edited/added
-baseball_df = pd.read_csv("https://assets.datacamp.com/production/repositories/3581/datasets/779033fb8fb5021aee9ff46253980abcbc5851f3/baseball_stats.csv")
+baseball_df = pd.read_csv("datasets/Writing-Efficient-Python-Code/baseball_df.csv")
 pit_df = baseball_df[baseball_df.Team == 'PIT']
 
 # Iterate over pit_df and print each row
